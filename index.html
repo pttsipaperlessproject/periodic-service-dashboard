@@ -1117,95 +1117,92 @@
 
         async function loadData() {
 
-            const refreshButton =
-                document.getElementById('refreshButton');
+    const refreshButton =
+        document.getElementById('refreshButton');
 
-            const refreshIcon =
-                document.getElementById('refreshIcon');
+    const refreshIcon =
+        document.getElementById('refreshIcon');
 
+    // Cegah klik refresh berkali-kali
+    if (refreshButton.disabled) {
+        return;
+    }
 
-            refreshButton.disabled = true;
+    refreshButton.disabled = true;
+    refreshButton.classList.add('opacity-70');
 
-            refreshButton.classList.add('opacity-70');
+    // Mulai animasi
+    refreshIcon.classList.add('refresh-spin');
 
-            refreshIcon.classList.add('refresh-spin');
+    showLoading();
 
+    try {
 
-            showLoading();
+        const response = await fetch(API_URL, {
+            method: 'GET',
+            cache: 'no-store'
+        });
 
-
-            try {
-
-                const response =
-                    await fetch(API_URL);
-
-
-                if (!response.ok) {
-
-                    throw new Error(
-                        `HTTP Error ${response.status}`
-                    );
-
-                }
-
-
-                const data =
-                    await response.json();
-
-
-                if (!Array.isArray(data)) {
-
-                    throw new Error(
-                        'Format data API tidak valid.'
-                    );
-
-                }
-
-
-                allData = data;
-
-                filteredData = [...data];
-
-
-                updateStatistics();
-
-                populateFilters();
-
-                renderTable();
-
-
-                document
-                    .getElementById('loading')
-                    .classList.add('hidden');
-
-
-                document
-                    .getElementById('error')
-                    .classList.add('hidden');
-
-
-                document
-                    .getElementById('tableContainer')
-                    .classList.remove('hidden');
-
-
-            } catch (error) {
-
-                showError(error);
-
-            } finally {
-
-                refreshButton.disabled = false;
-
-                refreshButton.classList.remove('opacity-70');
-
-                refreshIcon.classList.remove('refresh-spin');
-
-                lucide.createIcons();
-
-            }
-
+        if (!response.ok) {
+            throw new Error(
+                `HTTP Error ${response.status}`
+            );
         }
+
+        const data = await response.json();
+
+        if (!Array.isArray(data)) {
+            throw new Error(
+                'Format data API tidak valid.'
+            );
+        }
+
+        // Simpan data
+        allData = data;
+        filteredData = [...data];
+
+        // Update tampilan
+        updateStatistics();
+        populateFilters();
+        renderTable();
+
+        // Sembunyikan loading
+        document
+            .getElementById('loading')
+            .classList.add('hidden');
+
+        document
+            .getElementById('error')
+            .classList.add('hidden');
+
+        document
+            .getElementById('tableContainer')
+            .classList.remove('hidden');
+
+    } catch (error) {
+
+        console.error('Gagal mengambil data:', error);
+
+        showError(error);
+
+    } finally {
+
+        // =================================================
+        // SELALU HENTIKAN ANIMASI
+        // baik berhasil maupun gagal
+        // =================================================
+
+        refreshIcon.classList.remove('refresh-spin');
+
+        refreshButton.disabled = false;
+        refreshButton.classList.remove('opacity-70');
+
+        // Pastikan icon dirender ulang
+        lucide.createIcons();
+
+    }
+
+}
 
 
         /* =======================================================
