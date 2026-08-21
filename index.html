@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PERIODIC SERVICE - PT TSI</title>
+
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
@@ -17,48 +18,85 @@ body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#f8fafc,#f
 .logo-wrapper{transition:transform .4s cubic-bezier(.175,.885,.32,1.275)}
 .logo-wrapper:hover{transform:scale(1.08) rotate(2deg)}
 .logo-shadow{filter:drop-shadow(0 10px 8px rgba(0,0,0,.04)) drop-shadow(0 4px 3px rgba(0,0,0,.1))}
-.stat-card{transition:all .25s ease;background:#fff}.stat-card:hover{transform:translateY(-3px);box-shadow:0 10px 20px -5px rgba(0,0,0,.08)}
-.data-table tbody tr{transition:background-color .2s}.data-table tbody tr:hover{background:#fffbeb}
+.stat-card{transition:all .25s ease;background:#fff}
+.stat-card:hover{transform:translateY(-3px);box-shadow:0 10px 20px -5px rgba(0,0,0,.08)}
+.data-table tbody tr{transition:background-color .2s ease}.data-table tbody tr:hover{background:#fffbeb}
+
 .status-badge,.service-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:999px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
 .status-baik{background:#dcfce7;color:#166534;border:1px solid #bbf7d0}
 .status-rusak{background:#fee2e2;color:#991b1b;border:1px solid #fecaca}
-.status-default,.service-default{background:#f1f5f9;color:#475569;border:1px solid #e2e8f0}
+.status-default{background:#f1f5f9;color:#475569;border:1px solid #e2e8f0}
 .service-periodic{background:#e0e7ff;color:#3730a3;border:1px solid #c7d2fe}
 .service-general{background:#fef3c7;color:#92400e;border:1px solid #fde68a}
+.service-default{background:#f1f5f9;color:#475569;border:1px solid #e2e8f0}
+
 .unit-badge{display:inline-flex;align-items:center;justify-content:center;padding:5px 10px;border-radius:9px;font-size:11px;font-weight:800;letter-spacing:.04em;white-space:nowrap;border:1px solid transparent}
 .unit-w{background:#dcfce7;color:#166534;border-color:#bbf7d0}
 .unit-fd{background:#f3e8ff;color:#7e22ce;border-color:#e9d5ff}
 .unit-d{background:#ffedd5;color:#c2410c;border-color:#fed7aa}
 .unit-e{background:#dbeafe;color:#1d4ed8;border-color:#bfdbfe}
 .unit-default{background:#f1f5f9;color:#475569;border-color:#e2e8f0}
-.filter-control{transition:all .2s}.filter-control:focus{border-color:#D97706;box-shadow:0 0 0 3px rgba(217,119,6,.1);outline:none}
+
+.filter-control{transition:all .2s ease}.filter-control:focus{border-color:#D97706;box-shadow:0 0 0 3px rgba(217,119,6,.1);outline:none}
 .refresh-spin{animation:spin .8s linear infinite}
 @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 
-/* LEADERBOARD BUTTON */
-.leader-btn{transition:transform .3s,box-shadow .3s}
-.leader-btn.attention{animation:leaderAttention 1.3s ease-in-out}
-@keyframes leaderAttention{
-0%{transform:scale(1);opacity:1;box-shadow:0 0 0 rgba(245,158,11,0)}
-35%{transform:scale(1.16);opacity:.72;box-shadow:0 0 18px rgba(245,158,11,.45)}
-65%{transform:scale(.96);opacity:1;box-shadow:0 0 8px rgba(245,158,11,.25)}
-100%{transform:scale(1);opacity:1;box-shadow:0 0 0 rgba(245,158,11,0)}
-}
-
-/* LEADERBOARD POPUP */
-#leaderOverlay{background:rgba(15,23,42,.35);backdrop-filter:blur(3px)}
-.leader-modal{animation:leaderOpen .25s ease-out}
-@keyframes leaderOpen{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
-.rank-1{background:linear-gradient(90deg,#fef3c7,#fff)}
-.rank-2{background:linear-gradient(90deg,#f1f5f9,#fff)}
-.rank-3{background:linear-gradient(90deg,#ffedd5,#fff)}
-.rank-number{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px}
-.rank-gold{background:#fef3c7;color:#b45309}.rank-silver{background:#e2e8f0;color:#475569}.rank-bronze{background:#fed7aa;color:#9a3412}
 #toast{visibility:hidden;min-width:300px;background:#1e293b;color:#fff;text-align:center;border-radius:12px;padding:16px;position:fixed;z-index:100;left:50%;bottom:30px;transform:translateX(-50%);box-shadow:0 10px 25px rgba(0,0,0,.2);border:1px solid #334155}
-#toast.show{visibility:visible;animation:fadein_toast .5s,fadeout_toast .5s 2.5s}
-@keyframes fadein_toast{from{bottom:0;opacity:0}to{bottom:30px;opacity:1}}
-@keyframes fadeout_toast{from{bottom:30px;opacity:1}to{bottom:0;opacity:0}}
-@media(max-width:640px){.glass-panel{padding:1.5rem!important}#toast{min-width:260px}}
+#toast.show{visibility:visible;animation:fadeinToast .5s,fadeoutToast .5s 2.5s}
+@keyframes fadeinToast{from{bottom:0;opacity:0}to{bottom:30px;opacity:1}}
+@keyframes fadeoutToast{from{bottom:30px;opacity:1}to{bottom:0;opacity:0}}
+
+/* LEADERBOARD FLOATING BUTTON */
+#leaderboardButton{
+    position:fixed;right:24px;bottom:24px;z-index:90;
+    width:54px;height:54px;border-radius:18px;
+    background:#1e3a8a;color:#fff;border:1px solid rgba(255,255,255,.3);
+    box-shadow:0 10px 25px rgba(15,23,42,.22);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;transition:transform .25s ease,box-shadow .25s ease,opacity .25s ease;
+}
+#leaderboardButton:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 14px 30px rgba(15,23,42,.28)}
+#leaderboardButton.leader-pulse{animation:leaderPulse 1.3s ease-in-out}
+@keyframes leaderPulse{
+    0%{transform:scale(1);opacity:1}
+    35%{transform:scale(1.18);opacity:.48}
+    65%{transform:scale(1.12);opacity:.72}
+    100%{transform:scale(1);opacity:1}
+}
+.leader-tooltip{
+    position:absolute;right:0;bottom:64px;white-space:nowrap;
+    background:#0f172a;color:#fff;font-size:10px;font-weight:700;
+    padding:7px 10px;border-radius:8px;opacity:0;pointer-events:none;
+    transform:translateY(5px);transition:.2s;
+}
+#leaderboardButton:hover .leader-tooltip{opacity:1;transform:translateY(0)}
+
+#leaderboardOverlay{
+    position:fixed;inset:0;z-index:95;background:rgba(15,23,42,.28);
+    backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:20px;
+}
+#leaderboardOverlay.show{display:flex}
+#leaderboardModal{
+    width:min(430px,100%);max-height:80vh;overflow:hidden;
+    background:#fff;border:1px solid #e2e8f0;border-radius:22px;
+    box-shadow:0 25px 60px rgba(15,23,42,.25);
+    animation:leaderModalIn .25s ease;
+}
+@keyframes leaderModalIn{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.leader-row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;margin-bottom:7px;background:#f8fafc;border:1px solid #f1f5f9}
+.leader-row.top-1{background:#fffbeb;border-color:#fde68a}
+.leader-row.top-2{background:#f8fafc;border-color:#cbd5e1}
+.leader-row.top-3{background:#fff7ed;border-color:#fed7aa}
+.leader-rank{width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;background:#e2e8f0;color:#475569;flex-shrink:0}
+.top-1 .leader-rank{background:#fbbf24;color:#78350f}.top-2 .leader-rank{background:#cbd5e1;color:#334155}.top-3 .leader-rank{background:#fdba74;color:#7c2d12}
+.leader-name{font-size:12px;font-weight:800;color:#334155;flex:1;min-width:0}
+.leader-count{font-size:11px;font-weight:900;color:#1e3a8a;background:#dbeafe;padding:5px 9px;border-radius:999px;white-space:nowrap}
+
+@media(max-width:640px){
+    .glass-panel{padding:1.5rem!important}
+    #toast{min-width:260px}
+    #leaderboardButton{right:16px;bottom:16px;width:50px;height:50px;border-radius:16px}
+}
 </style>
 </head>
 
@@ -66,167 +104,220 @@ body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#f8fafc,#f
 
 <main class="w-full max-w-7xl flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl relative fade-in">
 
-<header class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center">
-<div class="mb-4 logo-wrapper"><div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
-<img src="default_logo.png" alt="Logo PT TSI" class="w-full h-full object-contain" id="companyLogo" onerror="handleLogoError()">
-<div id="logoFallback" class="hidden flex flex-col items-center justify-center bg-blue-900 w-full h-full text-white"><span class="font-black text-2xl">TSI</span></div>
-</div></div>
+<header id="mainHeader" class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center">
+    <div class="mb-4 logo-wrapper">
+        <div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
+            <img src="default_logo.png" alt="Logo PT TSI" class="w-full h-full object-contain" id="companyLogo" onerror="handleLogoError()">
+            <div id="logoFallback" class="hidden flex flex-col items-center justify-center bg-blue-900 w-full h-full text-white">
+                <span class="font-black text-2xl">TSI</span>
+            </div>
+        </div>
+    </div>
 
-<div class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1">
-<h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">PAPERLESS PROJECT</h1>
-<div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
-<h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">PT TATSUMI SERUNI INDONESIA</h2>
-</div>
+    <div class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1">
+        <h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">PAPERLESS PROJECT</h1>
+        <div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
+        <h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">PT TATSUMI SERUNI INDONESIA</h2>
+    </div>
 
-<div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase">Digitalization Initiative v2.0</div>
+    <div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase">Digitalization Initiative v2.0</div>
 </header>
 
 <section class="fade-in">
 
 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-<div>
-<h2 class="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight flex items-center gap-3">
-<span class="bg-blue-900 text-white p-3 rounded-xl shadow-md"><i data-lucide="calendar-clock" class="w-6 h-6"></i></span>
-Periodic Service
-</h2>
-<p class="text-slate-500 font-medium text-sm mt-2 ml-1">Monitoring data periodic service unit secara terintegrasi.</p>
-</div>
+    <div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight flex items-center gap-3">
+            <span class="bg-blue-900 text-white p-3 rounded-xl shadow-md"><i data-lucide="calendar-clock" class="w-6 h-6"></i></span>
+            Periodic Service
+        </h2>
+        <p class="text-slate-500 font-medium text-sm mt-2 ml-1">Monitoring data periodic service unit secara terintegrasi.</p>
+    </div>
 
-<div class="flex gap-2">
-<button onclick="goBack()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-4 rounded-xl transition flex items-center gap-2 border border-slate-200">
-<i data-lucide="arrow-left" class="w-4 h-4"></i><span class="hidden sm:inline">Kembali</span>
-</button>
+    <div class="flex gap-2">
+        <button onclick="goBack()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-4 rounded-xl transition flex items-center gap-2 border border-slate-200">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i><span class="hidden sm:inline">Kembali</span>
+        </button>
 
-<button onclick="openLeaderboard()" title="Leaderboard Mekanik" class="leader-btn bg-amber-500 hover:bg-amber-400 text-white font-bold py-3 px-4 rounded-xl transition flex items-center gap-2 shadow-md">
-<i data-lucide="trophy" class="w-4 h-4"></i><span class="hidden sm:inline">Leaderboard</span>
-</button>
-
-<button id="refreshButton" onclick="loadData()" class="bg-blue-800 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl transition flex items-center gap-2 shadow-md">
-<i id="refreshIcon" data-lucide="refresh-cw" class="w-4 h-4"></i>Refresh
-</button>
-</div>
+        <button id="refreshButton" onclick="loadData()" class="bg-blue-800 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl transition flex items-center gap-2 shadow-md">
+            <i id="refreshIcon" data-lucide="refresh-cw" class="w-4 h-4"></i>Refresh
+        </button>
+    </div>
 </div>
 
 <div class="mb-6 p-5 rounded-2xl bg-emerald-50 border border-emerald-100 shadow-sm flex flex-col sm:flex-row items-start gap-4">
-<div class="bg-emerald-600 p-2.5 rounded-xl text-white shrink-0"><i data-lucide="database" class="w-6 h-6"></i></div>
-<div class="space-y-1">
-<h4 class="font-bold text-emerald-900 text-[11px] sm:text-xs uppercase tracking-[0.15em]">Data Terintegrasi</h4>
-<p class="text-emerald-800 text-[10px] sm:text-xs leading-relaxed font-medium">Data ditampilkan langsung dari database <b>Google Sheet</b> melalui sistem API <b>Periodic Service</b>.</p>
-</div>
+    <div class="bg-emerald-600 p-2.5 rounded-xl text-white shrink-0"><i data-lucide="database" class="w-6 h-6"></i></div>
+    <div class="space-y-1">
+        <h4 class="font-bold text-emerald-900 text-[11px] sm:text-xs uppercase tracking-[0.15em]">Data Terintegrasi</h4>
+        <p class="text-emerald-800 text-[10px] sm:text-xs leading-relaxed font-medium">Data ditampilkan langsung dari database <b>Google Sheet</b> melalui sistem API <b>Periodic Service</b>.</p>
+    </div>
 </div>
 
 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
 
-<div class="stat-card rounded-2xl border border-slate-100 shadow-sm p-5">
-<div class="flex items-center justify-between"><div><p class="text-[10px] font-bold text-slate-400 tracking-[0.15em] uppercase">Total Data</p><p id="totalData" class="text-3xl font-black text-blue-900 mt-2">-</p></div><div class="bg-blue-50 text-blue-800 p-3 rounded-xl"><i data-lucide="database" class="w-6 h-6"></i></div></div>
-</div>
+    <div class="stat-card rounded-2xl border border-slate-100 shadow-sm p-5">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-[10px] font-bold text-slate-400 tracking-[0.15em] uppercase">Total Data</p>
+                <p id="totalData" class="text-3xl font-black text-blue-900 mt-2">-</p>
+            </div>
+            <div class="bg-blue-50 text-blue-800 p-3 rounded-xl"><i data-lucide="database" class="w-6 h-6"></i></div>
+        </div>
+    </div>
 
-<div class="stat-card rounded-2xl border border-slate-100 shadow-sm p-5">
-<div class="flex items-center justify-between"><div><p class="text-[10px] font-bold text-slate-400 tracking-[0.15em] uppercase">Status Baik</p><p id="statusBaik" class="text-3xl font-black text-emerald-600 mt-2">-</p></div><div class="bg-emerald-50 text-emerald-600 p-3 rounded-xl"><i data-lucide="check-circle" class="w-6 h-6"></i></div></div>
-</div>
+    <div class="stat-card rounded-2xl border border-slate-100 shadow-sm p-5">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-[10px] font-bold text-slate-400 tracking-[0.15em] uppercase">Status Baik</p>
+                <p id="statusBaik" class="text-3xl font-black text-emerald-600 mt-2">-</p>
+            </div>
+            <div class="bg-emerald-50 text-emerald-600 p-3 rounded-xl"><i data-lucide="check-circle" class="w-6 h-6"></i></div>
+        </div>
+    </div>
 
-<div class="stat-card rounded-2xl border border-slate-100 shadow-sm p-5">
-<div class="flex items-center justify-between"><div class="min-w-0"><p class="text-[10px] font-bold text-slate-400 tracking-[0.15em] uppercase">Data Terakhir</p><p id="lastUpdate" class="text-lg font-black text-slate-700 mt-2 truncate">-</p></div><div class="bg-amber-50 text-amber-600 p-3 rounded-xl shrink-0"><i data-lucide="clock-3" class="w-6 h-6"></i></div></div>
-</div>
+    <div class="stat-card rounded-2xl border border-slate-100 shadow-sm p-5">
+        <div class="flex items-center justify-between">
+            <div class="min-w-0">
+                <p class="text-[10px] font-bold text-slate-400 tracking-[0.15em] uppercase">Data Terakhir</p>
+                <p id="lastUpdate" class="text-lg font-black text-slate-700 mt-2 truncate">-</p>
+            </div>
+            <div class="bg-amber-50 text-amber-600 p-3 rounded-xl shrink-0"><i data-lucide="clock-3" class="w-6 h-6"></i></div>
+        </div>
+    </div>
 
 </div>
 
 <div class="bg-white border border-slate-100 rounded-2xl shadow-sm p-4 mb-6">
-<div class="flex flex-col lg:flex-row gap-3">
+    <div class="flex flex-col lg:flex-row gap-3">
+        <div class="relative flex-1">
+            <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"></i>
+            <input id="searchInput" type="text" placeholder="Cari unit, service, PIC, remark..." class="filter-control w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-11 pr-4 text-sm font-medium text-slate-700" oninput="applyFilters()">
+        </div>
 
-<div class="relative flex-1">
-<i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"></i>
-<input id="searchInput" type="text" placeholder="Cari unit, service, PIC, remark..." class="filter-control w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-11 pr-4 text-sm font-medium text-slate-700" oninput="applyFilters()">
-</div>
+        <select id="statusFilter" onchange="applyFilters()" class="filter-control bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 text-sm font-semibold text-slate-600">
+            <option value="">Semua Status</option>
+        </select>
 
-<select id="statusFilter" onchange="applyFilters()" class="filter-control bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 text-sm font-semibold text-slate-600"><option value="">Semua Status</option></select>
-<select id="serviceFilter" onchange="applyFilters()" class="filter-control bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 text-sm font-semibold text-slate-600"><option value="">Semua Service</option></select>
+        <select id="serviceFilter" onchange="applyFilters()" class="filter-control bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 text-sm font-semibold text-slate-600">
+            <option value="">Semua Service</option>
+        </select>
 
-<button onclick="resetFilters()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold px-4 py-3 rounded-xl transition flex items-center justify-center gap-2">
-<i data-lucide="rotate-ccw" class="w-4 h-4"></i>Reset
-</button>
-
-</div>
+        <button onclick="resetFilters()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold px-4 py-3 rounded-xl transition flex items-center justify-center gap-2">
+            <i data-lucide="rotate-ccw" class="w-4 h-4"></i>Reset
+        </button>
+    </div>
 </div>
 
 <section class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
 
 <div class="px-5 py-4 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-<div>
-<h3 class="font-bold text-primary flex items-center gap-2"><i data-lucide="clipboard-list" class="w-5 h-5"></i>Data Periodic Service</h3>
-<p id="resultInfo" class="text-[10px] text-slate-400 font-medium mt-1">Memuat data...</p>
-</div>
+    <div>
+        <h3 class="font-bold text-primary flex items-center gap-2"><i data-lucide="clipboard-list" class="w-5 h-5"></i>Data Periodic Service</h3>
+        <p id="resultInfo" class="text-[10px] text-slate-400 font-medium mt-1">Memuat data...</p>
+    </div>
 </div>
 
-<div id="loading" class="p-12 text-center"><div class="flex flex-col items-center gap-3 text-slate-400"><i data-lucide="loader-circle" class="w-8 h-8 animate-spin text-amber-500"></i><p class="font-semibold text-sm">Memuat data Periodic Service...</p></div></div>
+<div id="loading" class="p-12 text-center">
+    <div class="flex flex-col items-center gap-3 text-slate-400">
+        <i data-lucide="loader-circle" class="w-8 h-8 animate-spin text-amber-500"></i>
+        <p class="font-semibold text-sm">Memuat data Periodic Service...</p>
+    </div>
+</div>
 
 <div id="error" class="hidden p-12 text-center">
-<div class="flex flex-col items-center gap-3">
-<div class="bg-red-50 text-red-600 p-4 rounded-full"><i data-lucide="alert-circle" class="w-8 h-8"></i></div>
-<h3 class="font-bold text-red-700">Gagal mengambil data</h3>
-<p id="errorMessage" class="text-xs text-slate-500 max-w-md"></p>
-<button onclick="loadData()" class="mt-2 bg-blue-800 text-white font-bold px-5 py-2.5 rounded-xl text-sm">Coba Lagi</button>
-</div>
+    <div class="flex flex-col items-center gap-3">
+        <div class="bg-red-50 text-red-600 p-4 rounded-full"><i data-lucide="alert-circle" class="w-8 h-8"></i></div>
+        <h3 class="font-bold text-red-700">Gagal mengambil data</h3>
+        <p id="errorMessage" class="text-xs text-slate-500 max-w-md"></p>
+        <button onclick="loadData()" class="mt-2 bg-blue-800 text-white font-bold px-5 py-2.5 rounded-xl text-sm">Coba Lagi</button>
+    </div>
 </div>
 
 <div id="tableContainer" class="hidden overflow-x-auto">
 <table class="data-table w-full text-sm">
-<thead class="bg-slate-800 text-white"><tr>
-<th class="px-4 py-4 text-left whitespace-nowrap">TANGGAL</th>
-<th class="px-4 py-4 text-left whitespace-nowrap">UNIT</th>
-<th class="px-2 py-4 text-center whitespace-nowrap w-[80px] min-w-[80px] max-w-[80px]">HM</th>
-<th class="px-4 py-4 text-left whitespace-nowrap">SERVICE</th>
-<th class="px-4 py-4 text-left whitespace-nowrap">STATUS</th>
-<th class="px-4 py-4 text-left whitespace-nowrap">PIC</th>
-<th class="px-4 py-4 text-left whitespace-nowrap">ITEM "RUSAK"</th>
-<th class="px-4 py-4 text-left whitespace-nowrap">REMARK</th>
-<th class="px-4 py-4 text-left whitespace-nowrap">PAP</th>
-</tr></thead>
+<thead class="bg-slate-800 text-white">
+<tr>
+    <th class="px-4 py-4 text-left whitespace-nowrap">TANGGAL</th>
+    <th class="px-4 py-4 text-left whitespace-nowrap">UNIT</th>
+    <th class="px-2 py-4 text-center whitespace-nowrap w-[80px] min-w-[80px] max-w-[80px]">HM</th>
+    <th class="px-4 py-4 text-left whitespace-nowrap">SERVICE</th>
+    <th class="px-4 py-4 text-left whitespace-nowrap">STATUS</th>
+    <th class="px-4 py-4 text-left whitespace-nowrap">PIC</th>
+    <th class="px-4 py-4 text-left whitespace-nowrap">ITEM "RUSAK"</th>
+    <th class="px-4 py-4 text-left whitespace-nowrap">REMARK</th>
+    <th class="px-4 py-4 text-left whitespace-nowrap">PAP</th>
+</tr>
+</thead>
 <tbody id="tableBody" class="divide-y divide-slate-100"></tbody>
 </table>
 </div>
 
 <div id="emptyState" class="hidden p-12 text-center">
-<div class="mx-auto bg-slate-100 text-slate-400 w-16 h-16 rounded-full flex items-center justify-center mb-4"><i data-lucide="search-x" class="w-7 h-7"></i></div>
-<h3 class="font-bold text-slate-700">Data tidak ditemukan</h3>
-<p class="text-xs text-slate-400 mt-1">Coba ubah kata pencarian atau filter.</p>
+    <div class="mx-auto bg-slate-100 text-slate-400 w-16 h-16 rounded-full flex items-center justify-center mb-4"><i data-lucide="search-x" class="w-7 h-7"></i></div>
+    <h3 class="font-bold text-slate-700">Data tidak ditemukan</h3>
+    <p class="text-xs text-slate-400 mt-1">Coba ubah kata pencarian atau filter.</p>
 </div>
 
 </section>
 </section>
 
-<div id="toast" class="flex items-center gap-3"><i data-lucide="info" class="text-amber-400 w-5 h-5"></i><span id="toastMsg"></span></div>
+<div id="toast" class="flex items-center gap-3">
+    <i data-lucide="info" class="text-amber-400 w-5 h-5"></i>
+    <span id="toastMsg"></span>
+</div>
 
 </main>
 
 <footer class="mt-8 text-center text-slate-400 px-4 pb-8">
-<p class="font-bold text-slate-500 tracking-tight uppercase">&copy; 2026 Paperless Project - PT TSI. All rights reserved.</p>
-<p class="text-[10px] mt-1">System Architecture by: <span class="text-slate-600 font-semibold uppercase">Imam Wahyu Ramadhan, S.T.</span> | <span class="text-amber-600 font-bold uppercase tracking-tighter">Project 2.0</span></p>
+    <p class="font-bold text-slate-500 tracking-tight uppercase">&copy; 2026 Paperless Project - PT TSI. All rights reserved.</p>
+    <p class="text-[10px] mt-1">System Architecture by: <span class="text-slate-600 font-semibold uppercase">Imam Wahyu Ramadhan, S.T.</span> | <span class="text-amber-600 font-bold uppercase tracking-tighter">Project 2.0</span></p>
 </footer>
 
-<!-- LEADERBOARD POPUP -->
-<div id="leaderOverlay" class="hidden fixed inset-0 z-[90] flex items-center justify-center p-4" onclick="closeLeaderboard(event)">
-<div class="leader-modal bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden border border-slate-200" onclick="event.stopPropagation()">
 
-<div class="bg-blue-900 text-white px-5 py-4 flex items-center justify-between">
-<div class="flex items-center gap-3">
-<div class="bg-amber-500 p-2 rounded-xl"><i data-lucide="trophy" class="w-5 h-5"></i></div>
-<div>
-<h3 class="font-black text-base">MECHANIC LEADERBOARD</h3>
-<p class="text-[9px] text-blue-200 uppercase tracking-widest">Total pekerjaan</p>
-</div>
-</div>
-<button onclick="closeLeaderboard()" class="hover:bg-white/10 p-2 rounded-lg transition"><i data-lucide="x" class="w-5 h-5"></i></button>
+<!-- =========================================================
+     FLOATING LEADERBOARD BUTTON
+========================================================= -->
+
+<button id="leaderboardButton" onclick="openLeaderboard()" aria-label="Leaderboard">
+    <i data-lucide="trophy" class="w-6 h-6"></i>
+    <span class="leader-tooltip">Leaderboard Mekanik</span>
+</button>
+
+
+<!-- =========================================================
+     LEADERBOARD POPUP
+========================================================= -->
+
+<div id="leaderboardOverlay" onclick="closeLeaderboardOutside(event)">
+    <div id="leaderboardModal">
+
+        <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
+            <div>
+                <h3 class="font-black text-slate-800 flex items-center gap-2">
+                    <span class="bg-amber-100 text-amber-600 p-2 rounded-xl">
+                        <i data-lucide="trophy" class="w-5 h-5"></i>
+                    </span>
+                    Leaderboard Mekanik
+                </h3>
+                <p class="text-[10px] text-slate-400 font-medium mt-1">
+                    Berdasarkan total pekerjaan
+                </p>
+            </div>
+
+            <button onclick="closeLeaderboard()" class="text-slate-400 hover:text-slate-700 hover:bg-slate-100 p-2 rounded-xl transition">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <div id="leaderboardList" class="p-5 overflow-y-auto max-h-[60vh]">
+            <div class="text-center text-slate-400 text-sm py-6">
+                Belum ada data.
+            </div>
+        </div>
+
+    </div>
 </div>
 
-<div id="leaderboardList" class="p-4 max-h-[65vh] overflow-y-auto"></div>
-
-<div class="px-5 py-3 bg-slate-50 border-t border-slate-100 text-center">
-<p class="text-[9px] text-slate-400 font-medium uppercase tracking-widest">Keep improving • Keep competing • Keep moving</p>
-</div>
-
-</div>
-</div>
 
 <script>
 const API_URL='https://script.google.com/macros/s/AKfycby9wfiYdn4jrpHgFV6YgySj0ia7h1WSIInQAFAHDeGNUJdIT94EgSJsF2nF6kJS79cD/exec';
@@ -237,178 +328,228 @@ function handleLogoError(){document.getElementById('companyLogo').classList.add(
 function goBack(){window.location.href=MAIN_APP_URL}
 
 async function loadData(){
-const b=document.getElementById('refreshButton'),i=document.getElementById('refreshIcon');
-b.disabled=true;b.classList.add('opacity-70');i.classList.add('refresh-spin');showLoading();
-try{
-const r=await fetch(API_URL,{method:'GET',cache:'no-store'});
-if(!r.ok)throw new Error(`HTTP Error ${r.status}`);
-const data=await r.json();
-if(!Array.isArray(data))throw new Error('Format data API tidak valid.');
-allData=data;filteredData=[...data];updateStatistics();populateFilters();renderTable();
-document.getElementById('loading').classList.add('hidden');
-document.getElementById('error').classList.add('hidden');
-document.getElementById('tableContainer').classList.remove('hidden');
-}catch(e){showError(e)}
-finally{i.classList.remove('refresh-spin');b.disabled=false;b.classList.remove('opacity-70');lucide.createIcons()}
+    const btn=document.getElementById('refreshButton'),icon=document.getElementById('refreshIcon');
+    btn.disabled=true;btn.classList.add('opacity-70');icon.classList.add('refresh-spin');showLoading();
+    try{
+        const response=await fetch(API_URL,{method:'GET',cache:'no-store'});
+        if(!response.ok)throw new Error(`HTTP Error ${response.status}`);
+        const data=await response.json();
+        if(!Array.isArray(data))throw new Error('Format data API tidak valid.');
+        allData=data;filteredData=[...data];
+        updateStatistics();populateFilters();renderTable();updateLeaderboard();
+        document.getElementById('loading').classList.add('hidden');
+        document.getElementById('error').classList.add('hidden');
+        document.getElementById('tableContainer').classList.remove('hidden');
+    }catch(error){showError(error)}
+    finally{
+        icon.classList.remove('refresh-spin');
+        btn.disabled=false;btn.classList.remove('opacity-70');
+        lucide.createIcons();
+    }
 }
 
 function updateStatistics(){
-document.getElementById('totalData').textContent=allData.length;
-document.getElementById('statusBaik').textContent=allData.filter(r=>String(r.status||'').trim().toLowerCase()==='baik').length;
-document.getElementById('lastUpdate').textContent=allData.length?allData[allData.length-1].tanggal||'-':'-';
+    document.getElementById('totalData').textContent=allData.length;
+    document.getElementById('statusBaik').textContent=allData.filter(r=>String(r.status||'').trim().toLowerCase()==='baik').length;
+    document.getElementById('lastUpdate').textContent=allData.length?allData[allData.length-1].tanggal||'-':'-';
 }
 
 function populateFilters(){
-const sf=document.getElementById('statusFilter'),sv=document.getElementById('serviceFilter');
-const statuses=[...new Set(allData.map(r=>String(r.status||'').trim()).filter(Boolean))].sort();
-const services=[...new Set(allData.map(r=>String(r.service||'').trim()).filter(Boolean))].sort();
-sf.innerHTML='<option value="">Semua Status</option>';sv.innerHTML='<option value="">Semua Service</option>';
-statuses.forEach(v=>sf.innerHTML+=`<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`);
-services.forEach(v=>sv.innerHTML+=`<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`);
+    const status=document.getElementById('statusFilter'),service=document.getElementById('serviceFilter');
+    const getUnique=key=>[...new Set(allData.map(r=>String(r[key]||'').trim()).filter(Boolean))].sort();
+    status.innerHTML='<option value="">Semua Status</option>';
+    service.innerHTML='<option value="">Semua Service</option>';
+    getUnique('status').forEach(v=>status.innerHTML+=`<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`);
+    getUnique('service').forEach(v=>service.innerHTML+=`<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`);
 }
 
 function applyFilters(){
-const q=document.getElementById('searchInput').value.trim().toLowerCase();
-const s=document.getElementById('statusFilter').value.toLowerCase();
-const v=document.getElementById('serviceFilter').value.toLowerCase();
-filteredData=allData.filter(r=>{
-const text=[r.tanggal,r.unit,r.hm,r.service,r.status,r.pic,r.itemRusak,r.remark,r.pap].join(' ').toLowerCase();
-return(!q||text.includes(q))&&(!s||String(r.status||'').toLowerCase()===s)&&(!v||String(r.service||'').toLowerCase()===v);
-});
-renderTable();
+    const search=document.getElementById('searchInput').value.trim().toLowerCase();
+    const status=document.getElementById('statusFilter').value.toLowerCase();
+    const service=document.getElementById('serviceFilter').value.toLowerCase();
+    filteredData=allData.filter(row=>{
+        const searchable=[row.tanggal,row.unit,row.hm,row.service,row.status,row.pic,row.itemRusak,row.remark,row.pap].join(' ').toLowerCase();
+        return(!search||searchable.includes(search))&&(!status||String(row.status||'').toLowerCase()===status)&&(!service||String(row.service||'').toLowerCase()===service);
+    });
+    renderTable();
 }
 
 function resetFilters(){
-document.getElementById('searchInput').value='';
-document.getElementById('statusFilter').value='';
-document.getElementById('serviceFilter').value='';
-filteredData=[...allData];renderTable();
+    document.getElementById('searchInput').value='';
+    document.getElementById('statusFilter').value='';
+    document.getElementById('serviceFilter').value='';
+    filteredData=[...allData];renderTable();
 }
 
 function createUnitBadge(unit){
-const v=String(unit||'').trim(),n=v.toUpperCase();
-let c='unit-default';
-if(n.startsWith('FD-'))c='unit-fd';else if(n.startsWith('W-'))c='unit-w';else if(n.startsWith('D-'))c='unit-d';else if(n.startsWith('E-'))c='unit-e';
-return `<span class="unit-badge ${c}">${escapeHtml(v||'-')}</span>`;
+    const value=String(unit||'').trim();
+    if(!value)return'<span class="unit-badge unit-default">-</span>';
+    const n=value.toUpperCase();
+    let c='unit-default';
+    if(n.startsWith('FD-'))c='unit-fd';
+    else if(n.startsWith('W-'))c='unit-w';
+    else if(n.startsWith('D-'))c='unit-d';
+    else if(n.startsWith('E-'))c='unit-e';
+    return`<span class="unit-badge ${c}">${escapeHtml(value)}</span>`;
 }
 
 function createServiceBadge(service){
-const v=String(service||'').trim(),n=v.toLowerCase();
-let c='service-default';
-if(n.includes('periodic'))c='service-periodic';else if(n.includes('general'))c='service-general';
-return `<span class="service-badge ${c}">${escapeHtml(v||'-')}</span>`;
+    const value=String(service||'').trim();
+    if(!value)return'<span class="service-badge service-default">-</span>';
+    const n=value.toLowerCase();
+    const c=n.includes('periodic')?'service-periodic':n.includes('general')?'service-general':'service-default';
+    return`<span class="service-badge ${c}">${escapeHtml(value)}</span>`;
 }
 
 function createStatusBadge(status){
-const v=String(status||'').trim(),n=v.toLowerCase();
-let c='status-default';
-if(n==='baik')c='status-baik';else if(n.includes('rusak')||n.includes('bad')||n.includes('damage'))c='status-rusak';
-return `<span class="status-badge ${c}"><span>●</span>${escapeHtml(v||'-')}</span>`;
+    const value=String(status||'').trim();
+    if(!value)return'<span class="status-badge status-default">-</span>';
+    const n=value.toLowerCase();
+    const c=n==='baik'?'status-baik':n.includes('rusak')||n.includes('bad')||n.includes('damage')?'status-rusak':'status-default';
+    return`<span class="status-badge ${c}"><span>●</span>${escapeHtml(value)}</span>`;
 }
 
 function renderTable(){
-const tb=document.getElementById('tableBody'),tc=document.getElementById('tableContainer'),es=document.getElementById('emptyState');
-tb.innerHTML='';
-document.getElementById('resultInfo').textContent=`${filteredData.length} dari ${allData.length} data ditampilkan`;
-if(!filteredData.length){tc.classList.add('hidden');es.classList.remove('hidden');lucide.createIcons();return}
-tc.classList.remove('hidden');es.classList.add('hidden');
-filteredData.forEach(r=>{
-const tr=document.createElement('tr');
-tr.innerHTML=`
-<td class="px-4 py-3 whitespace-nowrap text-slate-600 font-medium">${escapeHtml(r.tanggal||'-')}</td>
-<td class="px-4 py-3 whitespace-nowrap">${createUnitBadge(r.unit)}</td>
-<td class="px-2 py-3 text-center whitespace-nowrap w-[80px] min-w-[80px] max-w-[80px] text-slate-600 font-semibold">${escapeHtml(r.hm||'-')}</td>
-<td class="px-4 py-3 whitespace-nowrap">${createServiceBadge(r.service)}</td>
-<td class="px-4 py-3 whitespace-nowrap">${createStatusBadge(r.status)}</td>
-<td class="px-4 py-3 whitespace-nowrap text-slate-600">${escapeHtml(r.pic||'-')}</td>
-<td class="px-4 py-3 text-slate-600 min-w-[150px]">${escapeHtml(r.itemRusak||'-')}</td>
-<td class="px-4 py-3 text-slate-600 min-w-[180px]">${escapeHtml(r.remark||'-')}</td>
-<td class="px-4 py-3 text-slate-600">${escapeHtml(r.pap||'-')}</td>`;
-tb.appendChild(tr);
-});
-lucide.createIcons();
+    const tbody=document.getElementById('tableBody'),table=document.getElementById('tableContainer'),empty=document.getElementById('emptyState');
+    tbody.innerHTML='';
+    document.getElementById('resultInfo').textContent=`${filteredData.length} dari ${allData.length} data ditampilkan`;
+    if(!filteredData.length){table.classList.add('hidden');empty.classList.remove('hidden');lucide.createIcons();return}
+    table.classList.remove('hidden');empty.classList.add('hidden');
+    filteredData.forEach(row=>{
+        const tr=document.createElement('tr');
+        tr.innerHTML=`
+        <td class="px-4 py-3 whitespace-nowrap text-slate-600 font-medium">${escapeHtml(row.tanggal||'-')}</td>
+        <td class="px-4 py-3 whitespace-nowrap">${createUnitBadge(row.unit)}</td>
+        <td class="px-2 py-3 text-center whitespace-nowrap w-[80px] min-w-[80px] max-w-[80px] text-slate-600 font-semibold">${escapeHtml(row.hm||'-')}</td>
+        <td class="px-4 py-3 whitespace-nowrap">${createServiceBadge(row.service)}</td>
+        <td class="px-4 py-3 whitespace-nowrap">${createStatusBadge(row.status)}</td>
+        <td class="px-4 py-3 whitespace-nowrap text-slate-600">${escapeHtml(row.pic||'-')}</td>
+        <td class="px-4 py-3 text-slate-600 min-w-[150px]">${escapeHtml(row.itemRusak||'-')}</td>
+        <td class="px-4 py-3 text-slate-600 min-w-[180px]">${escapeHtml(row.remark||'-')}</td>
+        <td class="px-4 py-3 text-slate-600">${escapeHtml(row.pap||'-')}</td>`;
+        tbody.appendChild(tr);
+    });
+    lucide.createIcons();
 }
 
-/* LEADERBOARD */
-function normalizeName(name){return String(name||'').replace(/\s+/g,' ').trim().toLowerCase()}
+
+/* =========================================================
+   LEADERBOARD
+========================================================= */
+
+function updateLeaderboard(){
+    const mechanics={};
+
+    allData.forEach(row=>{
+        const original=String(row.pic||'').trim();
+        if(!original)return;
+
+        const key=original.toLowerCase().replace(/\s+/g,' ');
+        if(!mechanics[key])mechanics[key]={name:original,count:0};
+        mechanics[key].count++;
+    });
+
+    const ranking=Object.values(mechanics).sort((a,b)=>b.count-a.count||a.name.localeCompare(b.name));
+    const list=document.getElementById('leaderboardList');
+
+    if(!ranking.length){
+        list.innerHTML='<div class="text-center text-slate-400 text-sm py-6">Belum ada data mekanik.</div>';
+        return;
+    }
+
+    list.innerHTML=ranking.map((mechanic,index)=>{
+        const rank=index+1;
+        const cls=rank<=3?`top-${rank}`:'';
+        const medal=rank===1?'🥇':rank===2?'🥈':rank===3?'🥉':rank;
+        return`
+        <div class="leader-row ${cls}">
+            <div class="leader-rank">${medal}</div>
+            <div class="leader-name truncate">${escapeHtml(mechanic.name)}</div>
+            <div class="leader-count">${mechanic.count} pekerjaan</div>
+        </div>`;
+    }).join('');
+
+    lucide.createIcons();
+}
 
 function openLeaderboard(){
-const counts={};
-allData.forEach(r=>{
-const raw=String(r.pic||'').replace(/\s+/g,' ').trim();
-if(!raw)return;
-const key=normalizeName(raw);
-if(!counts[key])counts[key]={name:raw,count:0};
-counts[key].count++;
-});
-const list=Object.values(counts).sort((a,b)=>b.count-a.count||a.name.localeCompare(b.name));
-const el=document.getElementById('leaderboardList');
-if(!list.length){
-el.innerHTML='<div class="text-center py-8 text-slate-400 text-sm font-semibold">Belum ada data mekanik.</div>';
-}else{
-el.innerHTML=list.map((m,i)=>{
-const rank=i+1;
-let row='',badge='';
-if(rank===1){row='rank-1';badge='rank-gold';}
-else if(rank===2){row='rank-2';badge='rank-silver';}
-else if(rank===3){row='rank-3';badge='rank-bronze';}
-return `<div class="flex items-center gap-3 p-3 rounded-xl mb-2 ${row||'bg-slate-50'} border border-slate-100">
-<div class="rank-number ${badge}">${rank}</div>
-<div class="flex-1 min-w-0"><p class="font-bold text-slate-700 truncate">${escapeHtml(m.name)}</p><p class="text-[9px] text-slate-400 uppercase tracking-wider">${rank<=3?'Top Performer':'Mechanic'}</p></div>
-<div class="text-right"><p class="text-lg font-black text-blue-900">${m.count}</p><p class="text-[8px] text-slate-400 uppercase font-bold">Pekerjaan</p></div>
-</div>`;
-}).join('');
-}
-document.getElementById('leaderOverlay').classList.remove('hidden');
-document.body.classList.add('overflow-hidden');
-lucide.createIcons();
+    updateLeaderboard();
+    document.getElementById('leaderboardOverlay').classList.add('show');
+    document.body.style.overflow='hidden';
 }
 
-function closeLeaderboard(e){
-if(!e||e.target===document.getElementById('leaderOverlay')){
-document.getElementById('leaderOverlay').classList.add('hidden');
-document.body.classList.remove('overflow-hidden');
-}
+function closeLeaderboard(){
+    document.getElementById('leaderboardOverlay').classList.remove('show');
+    document.body.style.overflow='';
 }
 
-/* EFEK LEADERBOARD SESekALI */
-function triggerLeaderboardAttention(){
-const b=document.querySelector('.leader-btn');
-if(!b)return;
-b.classList.remove('attention');
-void b.offsetWidth;
-b.classList.add('attention');
-setTimeout(()=>b.classList.remove('attention'),1400);
-const next=8000+Math.random()*5000;
-setTimeout(triggerLeaderboardAttention,next);
+function closeLeaderboardOutside(event){
+    if(event.target===document.getElementById('leaderboardOverlay'))closeLeaderboard();
 }
+
+
+/* =========================================================
+   SUBTLE LEADERBOARD ANIMATION
+========================================================= */
+
+function scheduleLeaderboardPulse(){
+    const button=document.getElementById('leaderboardButton');
+    const delay=18000+Math.random()*22000;
+
+    setTimeout(()=>{
+        if(!document.getElementById('leaderboardOverlay').classList.contains('show')){
+            button.classList.remove('leader-pulse');
+            void button.offsetWidth;
+            button.classList.add('leader-pulse');
+        }
+        scheduleLeaderboardPulse();
+    },delay);
+}
+
+
+/* =========================================================
+   LOADING / ERROR / SECURITY
+========================================================= */
 
 function showLoading(){
-document.getElementById('loading').classList.remove('hidden');
-document.getElementById('error').classList.add('hidden');
-document.getElementById('tableContainer').classList.add('hidden');
-document.getElementById('emptyState').classList.add('hidden');
+    document.getElementById('loading').classList.remove('hidden');
+    document.getElementById('error').classList.add('hidden');
+    document.getElementById('tableContainer').classList.add('hidden');
+    document.getElementById('emptyState').classList.add('hidden');
 }
 
-function showError(e){
-document.getElementById('loading').classList.add('hidden');
-document.getElementById('tableContainer').classList.add('hidden');
-document.getElementById('emptyState').classList.add('hidden');
-document.getElementById('error').classList.remove('hidden');
-document.getElementById('errorMessage').textContent=e?.message||'Terjadi kesalahan saat mengambil data.';
-document.getElementById('resultInfo').textContent='Gagal memuat data.';
-lucide.createIcons();
+function showError(error){
+    document.getElementById('loading').classList.add('hidden');
+    document.getElementById('tableContainer').classList.add('hidden');
+    document.getElementById('emptyState').classList.add('hidden');
+    document.getElementById('error').classList.remove('hidden');
+    document.getElementById('errorMessage').textContent=error?.message||'Terjadi kesalahan saat mengambil data.';
+    document.getElementById('resultInfo').textContent='Gagal memuat data.';
+    lucide.createIcons();
 }
 
-function escapeHtml(v){
-return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+function escapeHtml(value){
+    return String(value??'')
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;').replace(/"/g,'&quot;')
+        .replace(/'/g,'&#039;');
 }
+
+
+/* =========================================================
+   START
+========================================================= */
 
 window.onload=()=>{
-lucide.createIcons();
-loadData();
-setTimeout(triggerLeaderboardAttention,7000+Math.random()*4000);
+    lucide.createIcons();
+    loadData();
+    scheduleLeaderboardPulse();
 };
+
+document.addEventListener('keydown',e=>{
+    if(e.key==='Escape')closeLeaderboard();
+});
 </script>
+
 </body>
 </html>
