@@ -10,7 +10,223 @@
 <script src="https://unpkg.com/lucide@latest"></script>
 
 <style>
-body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#f8fafc,#f1f5f9);min-height:100vh;color:#1e293b}
+/* =====================================================
+   MOBILE RESPONSIVE
+   Desktop tetap besar.
+   Mobile dibuat lebih compact tetapi tetap mudah dibaca.
+===================================================== */
+
+@media (max-width: 640px) {
+
+    body {
+        padding: 10px !important;
+    }
+
+    main {
+        padding: 18px !important;
+        border-radius: 20px !important;
+    }
+
+    /* HEADER */
+
+    #mainHeader {
+        margin-bottom: 20px !important;
+        padding-bottom: 18px !important;
+    }
+
+    .logo-wrapper {
+        margin-bottom: 12px !important;
+    }
+
+    .logo-wrapper > div {
+        width: 70px !important;
+        height: 70px !important;
+    }
+
+    .color-primary {
+        padding: 12px 18px !important;
+        border-radius: 14px !important;
+        width: 100%;
+    }
+
+    .color-primary h1 {
+        font-size: 15px !important;
+        letter-spacing: 0.06em !important;
+    }
+
+    .color-primary h2 {
+        font-size: 10px !important;
+        letter-spacing: 0.08em !important;
+    }
+
+    /* PAGE TITLE */
+
+    section h2 {
+        font-size: 20px !important;
+    }
+
+    section h2 span {
+        padding: 9px !important;
+    }
+
+    section h2 span svg {
+        width: 20px !important;
+        height: 20px !important;
+    }
+
+    section > div > div > p {
+        font-size: 11px !important;
+        line-height: 1.5;
+    }
+
+    /* BUTTON */
+
+    #refreshButton,
+    button[onclick="goBack()"] {
+        padding: 10px 12px !important;
+        font-size: 11px !important;
+    }
+
+    /* INFORMATION PANEL */
+
+    .mb-6.p-5 {
+        padding: 14px !important;
+    }
+
+    /* STATISTICS */
+
+    .stat-card {
+        padding: 14px !important;
+    }
+
+    .stat-card p.text-3xl {
+        font-size: 24px !important;
+    }
+
+    .stat-card p.text-lg {
+        font-size: 14px !important;
+    }
+
+    .stat-card svg {
+        width: 20px !important;
+        height: 20px !important;
+    }
+
+    .stat-card div.bg-blue-50,
+    .stat-card div.bg-emerald-50,
+    .stat-card div.bg-amber-50 {
+        padding: 9px !important;
+    }
+
+    /* FILTER */
+
+    .filter-control {
+        font-size: 12px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+    }
+
+    /* TABLE */
+
+    #tableContainer {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .data-table {
+        min-width: 950px;
+    }
+
+    .data-table th,
+    .data-table td {
+        font-size: 11px !important;
+    }
+
+    .data-table th {
+        padding-top: 11px !important;
+        padding-bottom: 11px !important;
+    }
+
+    .data-table td {
+        padding-top: 9px !important;
+        padding-bottom: 9px !important;
+    }
+
+    /* RESULT INFO */
+
+    #resultInfo {
+        font-size: 9px !important;
+    }
+
+    /* LOADING */
+
+    #loading {
+        padding: 40px 15px !important;
+    }
+
+    /* TOAST */
+
+    #toast {
+        min-width: unset !important;
+        width: calc(100% - 30px);
+        max-width: 360px;
+        font-size: 11px;
+        padding: 12px !important;
+    }
+
+    /* FOOTER */
+
+    footer {
+        margin-top: 20px !important;
+        padding-bottom: 20px !important;
+        font-size: 10px;
+    }
+
+}
+
+
+/* =====================================================
+   EXTRA SMALL PHONE
+   Contoh: 320px - 375px
+===================================================== */
+
+@media (max-width: 375px) {
+
+    body {
+        padding: 6px !important;
+    }
+
+    main {
+        padding: 14px !important;
+        border-radius: 16px !important;
+    }
+
+    .color-primary h1 {
+        font-size: 13px !important;
+    }
+
+    .color-primary h2 {
+        font-size: 9px !important;
+    }
+
+    section h2 {
+        font-size: 18px !important;
+    }
+
+    .stat-card {
+        padding: 12px !important;
+    }
+
+    .stat-card p.text-3xl {
+        font-size: 22px !important;
+    }
+
+    .data-table {
+        min-width: 900px;
+    }
+
+}
+    body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#f8fafc,#f1f5f9);min-height:100vh;color:#1e293b}
 .color-primary{background:#1E3A8A}.text-primary{color:#1E3A8A}
 .fade-in{animation:fadeIn .5s cubic-bezier(.4,0,.2,1)}
 @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
