@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Periodic Service - PT TSI</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen p-4 sm:p-8">
+
+    <main class="max-w-7xl mx-auto">
+
+        <!-- HEADER -->
+        <header class="bg-white rounded-3xl shadow-xl p-6 sm:p-8 mb-6">
+
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+
+                <div>
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="bg-blue-900 text-white p-3 rounded-xl">
+                            <i data-lucide="calendar-clock" class="w-7 h-7"></i>
+                        </div>
+
+                        <div>
+                            <h1 class="text-2xl sm:text-3xl font-black text-slate-800">
+                                PERIODIC SERVICE
+                            </h1>
+
+                            <p class="text-xs font-bold text-slate-400 tracking-widest uppercase">
+                                PT TATSUMI SERUNI INDONESIA
+                            </p>
+                        </div>
+                    </div>
+
+                    <p class="text-sm text-slate-500 mt-4">
+                        Monitoring data periodic service dari Google Sheet.
+                    </p>
+                </div>
+
+                <!-- REFRESH -->
+                <button
+                    onclick="loadData()"
+                    class="bg-blue-800 hover:bg-blue-700 text-white font-bold px-5 py-3 rounded-xl flex items-center justify-center gap-2 transition"
+                >
+                    <i data-lucide="refresh-cw" class="w-5 h-5"></i>
+                    Refresh
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- STATISTIC -->
+        <section class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+
+            <div class="bg-white rounded-2xl shadow-md p-5">
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">
+                    Total Data
+                </p>
+
+                <p id="totalData" class="text-3xl font-black text-blue-900 mt-2">
+                    -
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-md p-5">
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">
+                    Status Baik
+                </p>
+
+                <p id="statusBaik" class="text-3xl font-black text-emerald-600 mt-2">
+                    -
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-md p-5">
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">
+                    Data Terakhir
+                </p>
+
+                <p id="lastUpdate" class="text-lg font-black text-slate-700 mt-2">
+                    -
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- TABLE -->
+        <section class="bg-white rounded-3xl shadow-xl overflow-hidden">
+
+            <div class="p-5 sm:p-6 border-b border-slate-100">
+
+                <h2 class="font-black text-slate-800 text-lg">
+                    Data Periodic Service
+                </h2>
+
+                <p class="text-xs text-slate-400 mt-1">
+                    Data diambil langsung dari Google Sheet.
+                </p>
+
+            </div>
+
+
+            <!-- LOADING -->
+            <div id="loading" class="p-10 text-center">
+
+                <div class="inline-flex items-center gap-3 text-slate-500 font-semibold">
+
+                    <i data-lucide="loader-circle" class="w-5 h-5 animate-spin"></i>
+
+                    Memuat data...
+
+                </div>
+
+            </div>
+
+
+            <!-- ERROR -->
+            <div id="error" class="hidden p-10 text-center">
+
+                <div class="inline-flex flex-col items-center gap-3">
+
+                    <i data-lucide="alert-circle" class="w-10 h-10 text-red-500"></i>
+
+                    <p class="font-bold text-red-600">
+                        Gagal mengambil data.
+                    </p>
+
+                    <p id="errorMessage" class="text-sm text-slate-500"></p>
+
+                </div>
+
+            </div>
+
+
+            <!-- TABLE -->
+            <div id="tableContainer" class="hidden overflow-x-auto">
+
+                <table class="w-full text-sm">
+
+                    <thead class="bg-slate-800 text-white">
+
+                        <tr>
+
+                            <th class="px-4 py-4 text-left whitespace-nowrap">
+                                TANGGAL
+                            </th>
+
+                            <th class="px-4 py-4 text-left whitespace-nowrap">
+                                UNIT
+                            </th>
+
+                            <th class="px-4 py-4 text-left whitespace-nowrap">
+                                HM
+                            </th>
+
+                            <th class="px-4 py-4 text-left whitespace-nowrap">
+                                SERVICE
+                            </th>
+
+                            <th class="px-4 py-4 text-left whitespace-nowrap">
+                                STATUS
+                            </th>
+
+                            <th class="px-4 py-4 text-left whitespace-nowrap">
+                                PIC
+                            </th>
+
+                            <th class="px-4 py-4 text-left whitespace-nowrap">
+                                ITEM RUSAK
+                            </th>
+
+                            <th class="px-4 py-4 text-left whitespace-nowrap">
+                                REMARK
+                            </th>
+
+                            <th class="px-4 py-4 text-left whitespace-nowrap">
+                                PAP
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tableBody" class="divide-y divide-slate-100">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer class="text-center py-8 text-xs text-slate-400">
+
+            Periodic Service Dashboard — PT TSI
+
+        </footer>
+
+    </main>
+
+
+    <script>
+
+        /*
+         * URL API GOOGLE APPS SCRIPT
+         */
+
+        const API_URL =
+            'https://script.google.com/macros/s/AKfycby9wfiYdn4jrpHgFV6YgySj0ia7h1WSIInQAFAHDeGNUJdIT94EgSJsF2nF6kJS79cD/exec';
+
+
+        /*
+         * LOAD DATA
+         */
+
+        async function loadData() {
+
+            showLoading();
+
+            try {
+
+                const response = await fetch(API_URL);
+
+                if (!response.ok) {
+                    throw new Error(
+                        `HTTP Error ${response.status}`
+                    );
+                }
+
+                const data = await response.json();
+
+                renderData(data);
+
+            } catch (error) {
+
+                showError(error);
+
+            }
+
+        }
+
+
+        /*
+         * RENDER DATA
+         */
+
+        function renderData(data) {
+
+            const tbody =
+                document.getElementById('tableBody');
+
+            tbody.innerHTML = '';
+
+
+            data.forEach(row => {
+
+                const tr =
+                    document.createElement('tr');
+
+                tr.className =
+                    'hover:bg-slate-50 transition';
+
+
+                tr.innerHTML = `
+
+                    <td class="px-4 py-3 whitespace-nowrap">
+                        ${escapeHtml(row.tanggal)}
+                    </td>
+
+                    <td class="px-4 py-3 font-semibold whitespace-nowrap">
+                        ${escapeHtml(row.unit)}
+                    </td>
+
+                    <td class="px-4 py-3 whitespace-nowrap">
+                        ${escapeHtml(row.hm)}
+                    </td>
+
+                    <td class="px-4 py-3 whitespace-nowrap">
+                        ${escapeHtml(row.service)}
+                    </td>
+
+                    <td class="px-4 py-3 whitespace-nowrap">
+                        ${escapeHtml(row.status)}
+                    </td>
+
+                    <td class="px-4 py-3 whitespace-nowrap">
+                        ${escapeHtml(row.pic)}
+                    </td>
+
+                    <td class="px-4 py-3">
+                        ${escapeHtml(row.itemRusak)}
+                    </td>
+
+                    <td class="px-4 py-3">
+                        ${escapeHtml(row.remark)}
+                    </td>
+
+                    <td class="px-4 py-3">
+                        ${escapeHtml(row.pap)}
+                    </td>
+
+                `;
+
+                tbody.appendChild(tr);
+
+            });
+
+
+            /*
+             * STATISTICS
+             */
+
+            document.getElementById('totalData')
+                .textContent = data.length;
+
+
+            const baik =
+                data.filter(row =>
+                    String(row.status).toLowerCase() === 'baik'
+                ).length;
+
+            document.getElementById('statusBaik')
+                .textContent = baik;
+
+
+            if (data.length > 0) {
+
+                document.getElementById('lastUpdate')
+                    .textContent = data[data.length - 1].tanggal;
+
+            } else {
+
+                document.getElementById('lastUpdate')
+                    .textContent = '-';
+
+            }
+
+
+            /*
+             * SHOW TABLE
+             */
+
+            document.getElementById('loading')
+                .classList.add('hidden');
+
+            document.getElementById('error')
+                .classList.add('hidden');
+
+            document.getElementById('tableContainer')
+                .classList.remove('hidden');
+
+        }
+
+
+        /*
+         * LOADING
+         */
+
+        function showLoading() {
+
+            document.getElementById('loading')
+                .classList.remove('hidden');
+
+            document.getElementById('error')
+                .classList.add('hidden');
+
+            document.getElementById('tableContainer')
+                .classList.add('hidden');
+
+        }
+
+
+        /*
+         * ERROR
+         */
+
+        function showError(error) {
+
+            document.getElementById('loading')
+                .classList.add('hidden');
+
+            document.getElementById('tableContainer')
+                .classList.add('hidden');
+
+            document.getElementById('error')
+                .classList.remove('hidden');
+
+            document.getElementById('errorMessage')
+                .textContent = error.message;
+
+        }
+
+
+        /*
+         * SECURITY
+         *
+         * Mencegah isi Sheet dianggap sebagai HTML.
+         */
+
+        function escapeHtml(value) {
+
+            return String(value ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+
+        }
+
+
+        /*
+         * START
+         */
+
+        window.onload = () => {
+
+            lucide.createIcons();
+
+            loadData();
+
+        };
+
+    </script>
+
+</body>
+</html>
