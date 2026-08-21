@@ -93,6 +93,10 @@
             background-color: #fffbeb;
         }
 
+        /* =====================================================
+           STATUS BADGE
+        ===================================================== */
+
         .status-badge {
             display: inline-flex;
             align-items: center;
@@ -124,6 +128,111 @@
             border: 1px solid #e2e8f0;
         }
 
+
+        /* =====================================================
+           SERVICE BADGE
+        ===================================================== */
+
+        .service-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 10px;
+            border-radius: 999px;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            white-space: nowrap;
+        }
+
+        /* PERIODIC SERVICE */
+
+        .service-periodic {
+            background: #e0e7ff;
+            color: #3730a3;
+            border: 1px solid #c7d2fe;
+        }
+
+        /* GENERAL SERVICE */
+
+        .service-general {
+            background: #fef3c7;
+            color: #92400e;
+            border: 1px solid #fde68a;
+        }
+
+        /* SERVICE LAIN */
+
+        .service-default {
+            background: #f1f5f9;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+        }
+
+
+        /* =====================================================
+           UNIT BADGE
+        ===================================================== */
+
+        .unit-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 10px;
+            border-radius: 9px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+            border: 1px solid transparent;
+        }
+
+        /* W- */
+
+        .unit-w {
+            background: #dcfce7;
+            color: #166534;
+            border-color: #bbf7d0;
+        }
+
+        /* FD- */
+
+        .unit-fd {
+            background: #f3e8ff;
+            color: #7e22ce;
+            border-color: #e9d5ff;
+        }
+
+        /* D- */
+
+        .unit-d {
+            background: #ffedd5;
+            color: #c2410c;
+            border-color: #fed7aa;
+        }
+
+        /* E- */
+
+        .unit-e {
+            background: #dbeafe;
+            color: #1d4ed8;
+            border-color: #bfdbfe;
+        }
+
+        /* UNKNOWN */
+
+        .unit-default {
+            background: #f1f5f9;
+            color: #475569;
+            border-color: #e2e8f0;
+        }
+
+
+        /* =====================================================
+           FILTER
+        ===================================================== */
+
         .filter-control {
             transition: all 0.2s ease;
         }
@@ -133,6 +242,11 @@
             box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
             outline: none;
         }
+
+
+        /* =====================================================
+           REFRESH
+        ===================================================== */
 
         .refresh-spin {
             animation: spin 0.8s linear infinite;
@@ -147,6 +261,11 @@
                 transform: rotate(360deg);
             }
         }
+
+
+        /* =====================================================
+           TOAST
+        ===================================================== */
 
         #toast {
             visibility: hidden;
@@ -196,6 +315,11 @@
             }
         }
 
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
         @media (max-width: 640px) {
 
             .glass-panel {
@@ -205,6 +329,7 @@
             #toast {
                 min-width: 260px;
             }
+
         }
 
     </style>
@@ -213,13 +338,15 @@
 
 <body class="flex flex-col items-center p-4 sm:p-8">
 
+
     <main
         class="w-full max-w-7xl flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl relative fade-in"
     >
 
-        <!-- ===================================================== -->
-        <!-- HEADER -->
-        <!-- ===================================================== -->
+
+        <!-- =====================================================
+             HEADER
+        ====================================================== -->
 
         <header
             id="mainHeader"
@@ -244,9 +371,11 @@
                         id="logoFallback"
                         class="hidden flex flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
                     >
+
                         <span class="font-black text-2xl">
                             TSI
                         </span>
+
                     </div>
 
                 </div>
@@ -286,11 +415,12 @@
         </header>
 
 
-        <!-- ===================================================== -->
-        <!-- PAGE TITLE -->
-        <!-- ===================================================== -->
+        <!-- =====================================================
+             PAGE TITLE
+        ====================================================== -->
 
         <section class="fade-in">
+
 
             <div
                 class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6"
@@ -305,15 +435,18 @@
                         <span
                             class="bg-blue-900 text-white p-3 rounded-xl shadow-md"
                         >
+
                             <i
                                 data-lucide="calendar-clock"
                                 class="w-6 h-6"
                             ></i>
+
                         </span>
 
                         Periodic Service
 
                     </h2>
+
 
                     <p
                         class="text-slate-500 font-medium text-sm mt-2 ml-1"
@@ -325,6 +458,7 @@
 
 
                 <div class="flex gap-2">
+
 
                     <button
                         onclick="goBack()"
@@ -364,9 +498,9 @@
             </div>
 
 
-            <!-- ================================================= -->
-            <!-- INFORMATION PANEL -->
-            <!-- ================================================= -->
+            <!-- =================================================
+                 INFORMATION PANEL
+            ================================================== -->
 
             <div
                 class="mb-6 p-5 rounded-2xl bg-emerald-50 border border-emerald-100 shadow-sm flex flex-col sm:flex-row items-start gap-4"
@@ -382,6 +516,7 @@
                     ></i>
 
                 </div>
+
 
                 <div class="space-y-1">
 
@@ -404,13 +539,14 @@
             </div>
 
 
-            <!-- ================================================= -->
-            <!-- STATISTICS -->
-            <!-- ================================================= -->
+            <!-- =================================================
+                 STATISTICS
+            ================================================== -->
 
             <div
                 class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6"
             >
+
 
                 <!-- TOTAL -->
 
@@ -436,6 +572,7 @@
                             </p>
 
                         </div>
+
 
                         <div
                             class="bg-blue-50 text-blue-800 p-3 rounded-xl"
@@ -478,6 +615,7 @@
 
                         </div>
 
+
                         <div
                             class="bg-emerald-50 text-emerald-600 p-3 rounded-xl"
                         >
@@ -519,6 +657,7 @@
 
                         </div>
 
+
                         <div
                             class="bg-amber-50 text-amber-600 p-3 rounded-xl shrink-0"
                         >
@@ -537,9 +676,9 @@
             </div>
 
 
-            <!-- ================================================= -->
-            <!-- FILTER -->
-            <!-- ================================================= -->
+            <!-- =================================================
+                 FILTER
+            ================================================== -->
 
             <div
                 class="bg-white border border-slate-100 rounded-2xl shadow-sm p-4 mb-6"
@@ -548,6 +687,7 @@
                 <div
                     class="flex flex-col lg:flex-row gap-3"
                 >
+
 
                     <!-- SEARCH -->
 
@@ -620,13 +760,14 @@
             </div>
 
 
-            <!-- ================================================= -->
-            <!-- DATA TABLE -->
-            <!-- ================================================= -->
+            <!-- =================================================
+                 DATA TABLE
+            ================================================== -->
 
             <section
                 class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden"
             >
+
 
                 <div
                     class="px-5 py-4 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2"
@@ -646,6 +787,7 @@
                             Data Periodic Service
 
                         </h3>
+
 
                         <p
                             id="resultInfo"
@@ -708,16 +850,19 @@
 
                         </div>
 
+
                         <h3
                             class="font-bold text-red-700"
                         >
                             Gagal mengambil data
                         </h3>
 
+
                         <p
                             id="errorMessage"
                             class="text-xs text-slate-500 max-w-md"
                         ></p>
+
 
                         <button
                             onclick="loadData()"
@@ -752,33 +897,45 @@
                                     TANGGAL
                                 </th>
 
+
                                 <th class="px-4 py-4 text-left whitespace-nowrap">
                                     UNIT
                                 </th>
 
-                                <th class="px-4 py-4 text-left whitespace-nowrap">
+
+                                <!-- HM DIPERKECIL -->
+
+                                <th
+                                    class="px-2 py-4 text-center whitespace-nowrap w-[80px] min-w-[80px] max-w-[80px]"
+                                >
                                     HM
                                 </th>
+
 
                                 <th class="px-4 py-4 text-left whitespace-nowrap">
                                     SERVICE
                                 </th>
 
+
                                 <th class="px-4 py-4 text-left whitespace-nowrap">
                                     STATUS
                                 </th>
+
 
                                 <th class="px-4 py-4 text-left whitespace-nowrap">
                                     PIC
                                 </th>
 
+
                                 <th class="px-4 py-4 text-left whitespace-nowrap">
                                     ITEM "RUSAK"
                                 </th>
 
+
                                 <th class="px-4 py-4 text-left whitespace-nowrap">
                                     REMARK
                                 </th>
+
 
                                 <th class="px-4 py-4 text-left whitespace-nowrap">
                                     PAP
@@ -787,6 +944,7 @@
                             </tr>
 
                         </thead>
+
 
                         <tbody
                             id="tableBody"
@@ -816,11 +974,13 @@
 
                     </div>
 
+
                     <h3
                         class="font-bold text-slate-700"
                     >
                         Data tidak ditemukan
                     </h3>
+
 
                     <p
                         class="text-xs text-slate-400 mt-1"
@@ -835,7 +995,9 @@
         </section>
 
 
-        <!-- TOAST -->
+        <!-- =====================================================
+             TOAST
+        ====================================================== -->
 
         <div
             id="toast"
@@ -854,9 +1016,9 @@
     </main>
 
 
-    <!-- ========================================================= -->
-    <!-- FOOTER -->
-    <!-- ========================================================= -->
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
 
     <footer
         class="mt-8 text-center text-slate-400 px-4 pb-8"
@@ -869,9 +1031,11 @@
             All rights reserved.
         </p>
 
+
         <p class="text-[10px] mt-1">
 
             System Architecture by:
+
             <span
                 class="text-slate-600 font-semibold uppercase"
             >
@@ -891,11 +1055,12 @@
     </footer>
 
 
-    <!-- ========================================================= -->
-    <!-- JAVASCRIPT -->
-    <!-- ========================================================= -->
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
 
     <script>
+
 
         /* =======================================================
            CONFIGURATION
@@ -904,10 +1069,6 @@
         const API_URL =
             'https://script.google.com/macros/s/AKfycby9wfiYdn4jrpHgFV6YgySj0ia7h1WSIInQAFAHDeGNUJdIT94EgSJsF2nF6kJS79cD/exec';
 
-
-        /*
-         * GANTI jika URL Portal Utama berbeda.
-         */
 
         const MAIN_APP_URL =
             'https://pttsipaperlessproject2.netlify.app/';
@@ -918,6 +1079,7 @@
         ======================================================= */
 
         let allData = [];
+
         let filteredData = [];
 
 
@@ -960,6 +1122,7 @@
 
             const refreshIcon =
                 document.getElementById('refreshIcon');
+
 
             refreshButton.disabled = true;
 
@@ -1108,7 +1271,9 @@
             const statuses =
                 [...new Set(
                     allData
-                        .map(row => String(row.status || '').trim())
+                        .map(row =>
+                            String(row.status || '').trim()
+                        )
                         .filter(Boolean)
                 )]
                 .sort();
@@ -1117,7 +1282,9 @@
             const services =
                 [...new Set(
                     allData
-                        .map(row => String(row.service || '').trim())
+                        .map(row =>
+                            String(row.service || '').trim()
+                        )
                         .filter(Boolean)
                 )]
                 .sort();
@@ -1250,9 +1417,11 @@
                 .getElementById('searchInput')
                 .value = '';
 
+
             document
                 .getElementById('statusFilter')
                 .value = '';
+
 
             document
                 .getElementById('serviceFilter')
@@ -1261,7 +1430,141 @@
 
             filteredData = [...allData];
 
+
             renderTable();
+
+        }
+
+
+        /* =======================================================
+           UNIT BADGE
+        ======================================================= */
+
+        function createUnitBadge(unit) {
+
+            const value =
+                String(unit || '').trim();
+
+
+            if (!value) {
+
+                return `
+                    <span class="unit-badge unit-default">
+                        -
+                    </span>
+                `;
+
+            }
+
+
+            const normalized =
+                value.toUpperCase();
+
+
+            let className = 'unit-default';
+
+
+            /*
+             * URUTAN FD HARUS DICEK TERLEBIH DAHULU
+             * karena FD juga mengandung huruf F + D.
+             */
+
+            if (normalized.startsWith('FD-')) {
+
+                className = 'unit-fd';
+
+            }
+
+            else if (normalized.startsWith('W-')) {
+
+                className = 'unit-w';
+
+            }
+
+            else if (normalized.startsWith('D-')) {
+
+                className = 'unit-d';
+
+            }
+
+            else if (normalized.startsWith('E-')) {
+
+                className = 'unit-e';
+
+            }
+
+
+            return `
+                <span class="unit-badge ${className}">
+                    ${escapeHtml(value)}
+                </span>
+            `;
+
+        }
+
+
+        /* =======================================================
+           SERVICE BADGE
+        ======================================================= */
+
+        function createServiceBadge(service) {
+
+            const value =
+                String(service || '').trim();
+
+
+            if (!value) {
+
+                return `
+                    <span class="service-badge service-default">
+                        -
+                    </span>
+                `;
+
+            }
+
+
+            const normalized =
+                value.toLowerCase();
+
+
+            let className =
+                'service-default';
+
+
+            /*
+             * PERIODIC SERVICE
+             */
+
+            if (
+                normalized.includes('periodic')
+            ) {
+
+                className =
+                    'service-periodic';
+
+            }
+
+
+            /*
+             * GENERAL SERVICE
+             */
+
+            else if (
+                normalized.includes('general')
+            ) {
+
+                className =
+                    'service-general';
+
+            }
+
+
+            return `
+                <span class="service-badge ${className}">
+                    ${escapeHtml(value)}
+                </span>
+            `;
 
         }
 
@@ -1317,40 +1620,86 @@
 
                 tr.innerHTML = `
 
-                    <td class="px-4 py-3 whitespace-nowrap text-slate-600 font-medium">
-                        ${escapeHtml(row.tanggal)}
+
+                    <!-- TANGGAL -->
+
+                    <td
+                        class="px-4 py-3 whitespace-nowrap text-slate-600 font-medium"
+                    >
+                        ${escapeHtml(row.tanggal || '-')}
                     </td>
 
-                    <td class="px-4 py-3 whitespace-nowrap text-slate-800 font-bold">
-                        ${escapeHtml(row.unit)}
+
+                    <!-- UNIT -->
+
+                    <td
+                        class="px-4 py-3 whitespace-nowrap"
+                    >
+                        ${createUnitBadge(row.unit)}
                     </td>
 
-                    <td class="px-4 py-3 whitespace-nowrap text-slate-600">
-                        ${escapeHtml(row.hm)}
+
+                    <!-- HM
+                         DIBUAT SEMPIT -->
+
+                    <td
+                        class="px-2 py-3 text-center whitespace-nowrap w-[80px] min-w-[80px] max-w-[80px] text-slate-600 font-semibold"
+                    >
+                        ${escapeHtml(row.hm || '-')}
                     </td>
 
-                    <td class="px-4 py-3 whitespace-nowrap text-slate-700 font-semibold">
-                        ${escapeHtml(row.service)}
+
+                    <!-- SERVICE -->
+
+                    <td
+                        class="px-4 py-3 whitespace-nowrap"
+                    >
+                        ${createServiceBadge(row.service)}
                     </td>
 
-                    <td class="px-4 py-3 whitespace-nowrap">
+
+                    <!-- STATUS -->
+
+                    <td
+                        class="px-4 py-3 whitespace-nowrap"
+                    >
                         ${createStatusBadge(row.status)}
                     </td>
 
-                    <td class="px-4 py-3 whitespace-nowrap text-slate-600">
-                        ${escapeHtml(row.pic)}
+
+                    <!-- PIC -->
+
+                    <td
+                        class="px-4 py-3 whitespace-nowrap text-slate-600"
+                    >
+                        ${escapeHtml(row.pic || '-')}
                     </td>
 
-                    <td class="px-4 py-3 text-slate-600 min-w-[150px]">
-                        ${escapeHtml(row.itemRusak)}
+
+                    <!-- ITEM RUSAK -->
+
+                    <td
+                        class="px-4 py-3 text-slate-600 min-w-[150px]"
+                    >
+                        ${escapeHtml(row.itemRusak || '-')}
                     </td>
 
-                    <td class="px-4 py-3 text-slate-600 min-w-[180px]">
-                        ${escapeHtml(row.remark)}
+
+                    <!-- REMARK -->
+
+                    <td
+                        class="px-4 py-3 text-slate-600 min-w-[180px]"
+                    >
+                        ${escapeHtml(row.remark || '-')}
                     </td>
 
-                    <td class="px-4 py-3 text-slate-600">
-                        ${escapeHtml(row.pap)}
+
+                    <!-- PAP -->
+
+                    <td
+                        class="px-4 py-3 text-slate-600"
+                    >
+                        ${escapeHtml(row.pap || '-')}
                     </td>
 
                 `;
@@ -1391,6 +1740,10 @@
                 value.toLowerCase();
 
 
+            /*
+             * BAIK
+             */
+
             if (normalized === 'baik') {
 
                 return `
@@ -1402,6 +1755,10 @@
 
             }
 
+
+            /*
+             * RUSAK / BAD / DAMAGE
+             */
 
             if (
                 normalized.includes('rusak') ||
@@ -1418,6 +1775,10 @@
 
             }
 
+
+            /*
+             * STATUS LAIN
+             */
 
             return `
                 <span class="status-badge status-default">
