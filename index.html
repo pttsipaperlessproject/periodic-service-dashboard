@@ -2,859 +2,1783 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>PERIODIC SERVICE - PT TSI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard Periodic Service - PT TSI</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
 
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 <style>
-body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#f8fafc,#f1f5f9);min-height:100vh;color:#1e293b}
-.color-primary{background:#1E3A8A}.text-primary{color:#1E3A8A}
-.fade-in{animation:fadeIn .5s cubic-bezier(.4,0,.2,1)}
-@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.glass-panel{background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2)}
-.logo-wrapper{transition:transform .4s cubic-bezier(.175,.885,.32,1.275)}
-.logo-wrapper:hover{transform:scale(1.08) rotate(2deg)}
-.logo-shadow{filter:drop-shadow(0 10px 8px rgba(0,0,0,.04)) drop-shadow(0 4px 3px rgba(0,0,0,.1))}
-.stat-card{transition:all .25s ease;background:#fff}
-.stat-card:hover{transform:translateY(-3px);box-shadow:0 10px 20px -5px rgba(0,0,0,.08)}
-.data-table tbody tr{transition:background-color .2s ease}
-.data-table tbody tr:hover{background:#fffbeb}
+*{box-sizing:border-box}
 
-.status-badge,.service-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:999px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
-.status-baik{background:#dcfce7;color:#166534;border:1px solid #bbf7d0}
-.status-rusak{background:#fee2e2;color:#991b1b;border:1px solid #fecaca}
-.status-default{background:#f1f5f9;color:#475569;border:1px solid #e2e8f0}
-.service-periodic{background:#e0e7ff;color:#3730a3;border:1px solid #c7d2fe}
-.service-general{background:#fef3c7;color:#92400e;border:1px solid #fde68a}
-.service-default{background:#f1f5f9;color:#475569;border:1px solid #e2e8f0}
-
-.unit-badge{display:inline-flex;align-items:center;justify-content:center;padding:5px 10px;border-radius:9px;font-size:11px;font-weight:800;letter-spacing:.04em;white-space:nowrap;border:1px solid transparent}
-.unit-w{background:#dcfce7;color:#166534;border-color:#bbf7d0}
-.unit-fd{background:#f3e8ff;color:#7e22ce;border-color:#e9d5ff}
-.unit-d{background:#ffedd5;color:#c2410c;border-color:#fed7aa}
-.unit-e{background:#dbeafe;color:#1d4ed8;border-color:#bfdbfe}
-.unit-default{background:#f1f5f9;color:#475569;border-color:#e2e8f0}
-
-.filter-control{transition:all .2s ease}
-.filter-control:focus{border-color:#D97706;box-shadow:0 0 0 3px rgba(217,119,6,.1);outline:none}
-.refresh-spin{animation:spin .8s linear infinite}
-@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
-
-.pap-button{
-    display:inline-flex;align-items:center;gap:6px;
-    padding:7px 11px;border-radius:10px;
-    background:#eff6ff;color:#1d4ed8;
-    border:1px solid #bfdbfe;
-    font-size:10px;font-weight:800;
-    text-decoration:none;white-space:nowrap;
-    transition:all .2s ease
+body{
+    margin:0;
+    font-family:'Inter',sans-serif;
+    background:linear-gradient(135deg,#f8fafc,#eef2f7);
+    color:#1e293b;
 }
-.pap-button:hover{
-    background:#dbeafe;
-    transform:translateY(-1px);
-    box-shadow:0 4px 10px rgba(37,99,235,.12)
-}
-.pap-button i{width:14px;height:14px}
-.pap-text{font-size:11px;color:#64748b;font-weight:600}
 
-#toast{
-    visibility:hidden;min-width:300px;background:#1e293b;color:#fff;
-    text-align:center;border-radius:12px;padding:16px;
-    position:fixed;z-index:100;left:50%;bottom:30px;
-    transform:translateX(-50%);
-    box-shadow:0 10px 25px rgba(0,0,0,.2);
-    border:1px solid #334155
+.color-primary{background:#1E3A8A}
+.text-primary{color:#1E3A8A}
+
+.fade-in{
+    animation:fadeIn .5s cubic-bezier(.4,0,.2,1);
 }
-#toast.show{visibility:visible;animation:fadeinToast .5s,fadeoutToast .5s 2.5s}
-@keyframes fadeinToast{from{bottom:0;opacity:0}to{bottom:30px;opacity:1}}
-@keyframes fadeoutToast{from{bottom:30px;opacity:1}to{bottom:0;opacity:0}}
+
+@keyframes fadeIn{
+    from{opacity:0;transform:translateY(12px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+.glass-panel{
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.3);
+}
+
+.logo-wrapper{
+    transition:transform .4s cubic-bezier(.175,.885,.32,1.275);
+}
+
+.logo-wrapper:hover{
+    transform:scale(1.08) rotate(2deg);
+}
+
+.logo-shadow{
+    filter:drop-shadow(0 10px 8px rgba(0,0,0,.04))
+           drop-shadow(0 4px 3px rgba(0,0,0,.1));
+}
+
+.chart-card{
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 4px 12px rgba(15,23,42,.04);
+    transition:.25s ease;
+}
+
+.chart-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 25px rgba(15,23,42,.08);
+}
+
+.chart-title{
+    font-size:14px;
+    font-weight:900;
+    color:#334155;
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+.chart-subtitle{
+    font-size:10px;
+    color:#94a3b8;
+    font-weight:600;
+    margin-top:4px;
+}
+
+.chart-wrapper{
+    position:relative;
+    height:300px;
+    margin-top:15px;
+}
+
+.stat-card{
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:18px;
+    padding:18px;
+    transition:.25s ease;
+}
+
+.stat-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 20px rgba(15,23,42,.07);
+}
 
 /* LEADERBOARD */
+
 #leaderboardButton{
-    position:fixed;right:24px;bottom:24px;z-index:90;
-    width:54px;height:54px;border-radius:18px;
-    background:#1e3a8a;color:#fff;
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    z-index:90;
+    width:56px;
+    height:56px;
+    border-radius:18px;
+    background:#1e3a8a;
+    color:#fff;
     border:1px solid rgba(255,255,255,.3);
     box-shadow:0 10px 25px rgba(15,23,42,.22);
-    display:flex;align-items:center;justify-content:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     cursor:pointer;
-    transition:transform .25s ease,box-shadow .25s ease,opacity .25s ease
+    transition:transform .25s ease,box-shadow .25s ease;
 }
+
 #leaderboardButton:hover{
     transform:translateY(-3px) scale(1.04);
-    box-shadow:0 14px 30px rgba(15,23,42,.28)
+    box-shadow:0 14px 30px rgba(15,23,42,.28);
 }
-#leaderboardButton.leader-pulse{animation:leaderPulse 1.3s ease-in-out}
+
+#leaderboardButton.leader-pulse{
+    animation:leaderPulse 1.3s ease-in-out;
+}
+
 @keyframes leaderPulse{
     0%{transform:scale(1);opacity:1}
     35%{transform:scale(1.18);opacity:.48}
     65%{transform:scale(1.12);opacity:.72}
     100%{transform:scale(1);opacity:1}
 }
+
 .leader-tooltip{
-    position:absolute;right:0;bottom:64px;white-space:nowrap;
-    background:#0f172a;color:#fff;font-size:10px;font-weight:700;
-    padding:7px 10px;border-radius:8px;opacity:0;
-    pointer-events:none;transform:translateY(5px);transition:.2s
+    position:absolute;
+    right:0;
+    bottom:66px;
+    white-space:nowrap;
+    background:#0f172a;
+    color:#fff;
+    font-size:10px;
+    font-weight:700;
+    padding:7px 10px;
+    border-radius:8px;
+    opacity:0;
+    pointer-events:none;
+    transform:translateY(5px);
+    transition:.2s;
 }
+
 #leaderboardButton:hover .leader-tooltip{
-    opacity:1;transform:translateY(0)
+    opacity:1;
+    transform:translateY(0);
 }
 
 #leaderboardOverlay{
-    position:fixed;inset:0;z-index:95;
+    position:fixed;
+    inset:0;
+    z-index:95;
     background:rgba(15,23,42,.28);
     backdrop-filter:blur(3px);
-    display:none;align-items:center;justify-content:center;
-    padding:20px
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
 }
-#leaderboardOverlay.show{display:flex}
+
+#leaderboardOverlay.show{
+    display:flex;
+}
+
 #leaderboardModal{
-    width:min(430px,100%);max-height:80vh;
-    overflow:hidden;background:#fff;
-    border:1px solid #e2e8f0;border-radius:22px;
+    width:min(430px,100%);
+    max-height:80vh;
+    overflow:hidden;
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:22px;
     box-shadow:0 25px 60px rgba(15,23,42,.25);
-    animation:leaderModalIn .25s ease
+    animation:leaderModalIn .25s ease;
 }
+
 @keyframes leaderModalIn{
     from{opacity:0;transform:translateY(12px) scale(.97)}
     to{opacity:1;transform:translateY(0) scale(1)}
 }
+
 .leader-row{
-    display:flex;align-items:center;gap:12px;
-    padding:12px 14px;border-radius:14px;
-    margin-bottom:7px;background:#f8fafc;
-    border:1px solid #f1f5f9
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 14px;
+    border-radius:14px;
+    margin-bottom:7px;
+    background:#f8fafc;
+    border:1px solid #f1f5f9;
 }
-.leader-row.top-1{background:#fffbeb;border-color:#fde68a}
-.leader-row.top-2{background:#f8fafc;border-color:#cbd5e1}
-.leader-row.top-3{background:#fff7ed;border-color:#fed7aa}
+
+.leader-row.top-1{
+    background:#fffbeb;
+    border-color:#fde68a;
+}
+
+.leader-row.top-2{
+    background:#f8fafc;
+    border-color:#cbd5e1;
+}
+
+.leader-row.top-3{
+    background:#fff7ed;
+    border-color:#fed7aa;
+}
+
 .leader-rank{
-    width:30px;height:30px;border-radius:10px;
-    display:flex;align-items:center;justify-content:center;
-    font-size:12px;font-weight:900;
-    background:#e2e8f0;color:#475569;flex-shrink:0
+    width:30px;
+    height:30px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+    font-weight:900;
+    background:#e2e8f0;
+    color:#475569;
+    flex-shrink:0;
 }
-.top-1 .leader-rank{background:#fbbf24;color:#78350f}
-.top-2 .leader-rank{background:#cbd5e1;color:#334155}
-.top-3 .leader-rank{background:#fdba74;color:#7c2d12}
+
+.top-1 .leader-rank{
+    background:#fbbf24;
+    color:#78350f;
+}
+
+.top-2 .leader-rank{
+    background:#cbd5e1;
+    color:#334155;
+}
+
+.top-3 .leader-rank{
+    background:#fdba74;
+    color:#7c2d12;
+}
+
 .leader-name{
-    font-size:12px;font-weight:800;color:#334155;
-    flex:1;min-width:0
+    font-size:12px;
+    font-weight:800;
+    color:#334155;
+    flex:1;
+    min-width:0;
 }
+
 .leader-count{
-    font-size:11px;font-weight:900;color:#1e3a8a;
-    background:#dbeafe;padding:5px 9px;
-    border-radius:999px;white-space:nowrap
+    font-size:11px;
+    font-weight:900;
+    color:#1e3a8a;
+    background:#dbeafe;
+    padding:5px 9px;
+    border-radius:999px;
+    white-space:nowrap;
+}
+
+/* LOADING */
+
+#loading{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    min-height:400px;
+}
+
+#dashboard{
+    display:none;
+}
+
+#dashboard.show{
+    display:block;
 }
 
 /* MOBILE */
+
 @media(max-width:640px){
-    body{padding:10px!important}
-    main{padding:18px!important;border-radius:20px!important}
-    #mainHeader{margin-bottom:20px!important;padding-bottom:18px!important}
-    .logo-wrapper{margin-bottom:12px!important}
-    .logo-wrapper>div{width:70px!important;height:70px!important}
+
+    body{
+        padding:6px!important;
+    }
+
+    main{
+        padding:14px!important;
+        border-radius:18px!important;
+    }
+
+    .logo-wrapper>div{
+        width:70px!important;
+        height:70px!important;
+    }
+
     .color-primary{
-        padding:12px 18px!important;
+        width:100%;
+        padding:12px 15px!important;
         border-radius:14px!important;
-        width:100%
     }
-    .color-primary h1{font-size:15px!important;letter-spacing:.06em!important}
-    .color-primary h2{font-size:10px!important;letter-spacing:.08em!important}
-    section h2{font-size:20px!important}
-    section h2 span{padding:9px!important}
-    section h2 span svg{width:20px!important;height:20px!important}
-    section>div>div>p{font-size:11px!important;line-height:1.5}
-    #refreshButton,button[onclick="goBack()"]{
-        padding:10px 12px!important;font-size:11px!important
+
+    .color-primary h1{
+        font-size:14px!important;
+        letter-spacing:.06em!important;
     }
-    .mb-6.p-5{padding:14px!important}
-    .stat-card{padding:14px!important}
-    .stat-card p.text-3xl{font-size:24px!important}
-    .stat-card p.text-lg{font-size:14px!important}
-    .stat-card svg{width:20px!important;height:20px!important}
-    .stat-card div.bg-blue-50,
-    .stat-card div.bg-emerald-50,
-    .stat-card div.bg-amber-50{padding:9px!important}
-    .filter-control{
-        font-size:12px!important;
-        padding-top:10px!important;
-        padding-bottom:10px!important
+
+    .color-primary h2{
+        font-size:9px!important;
     }
-    #tableContainer{
-        overflow-x:auto!important;
-        -webkit-overflow-scrolling:touch
+
+    .chart-card{
+        padding:14px;
+        border-radius:16px;
     }
-    .data-table{min-width:950px}
-    .data-table th,.data-table td{font-size:11px!important}
-    .data-table th{
-        padding-top:11px!important;
-        padding-bottom:11px!important
+
+    .chart-title{
+        font-size:12px;
     }
-    .data-table td{
-        padding-top:9px!important;
-        padding-bottom:9px!important
+
+    .chart-subtitle{
+        font-size:9px;
     }
-    #resultInfo{font-size:9px!important}
-    #loading{padding:40px 15px!important}
-    #toast{
-        min-width:unset!important;
-        width:calc(100% - 30px);
-        max-width:360px;
-        font-size:11px;
-        padding:12px!important
+
+    .chart-wrapper{
+        height:240px;
     }
-    footer{
-        margin-top:20px!important;
-        padding-bottom:20px!important;
-        font-size:10px
+
+    .stat-card{
+        padding:14px;
     }
-    .glass-panel{padding:1.5rem!important}
+
     #leaderboardButton{
-        right:16px;bottom:16px;
-        width:50px;height:50px;border-radius:16px
+        right:15px;
+        bottom:15px;
+        width:50px;
+        height:50px;
+        border-radius:16px;
+    }
+
+    .leader-tooltip{
+        display:none;
     }
 }
 
 @media(max-width:375px){
-    body{padding:6px!important}
-    main{padding:14px!important;border-radius:16px!important}
-    .color-primary h1{font-size:13px!important}
-    .color-primary h2{font-size:9px!important}
-    section h2{font-size:18px!important}
-    .stat-card{padding:12px!important}
-    .stat-card p.text-3xl{font-size:22px!important}
-    .data-table{min-width:900px}
+
+    main{
+        padding:11px!important;
+    }
+
+    .chart-wrapper{
+        height:220px;
+    }
+
+    .chart-card{
+        padding:12px;
+    }
 }
 </style>
 </head>
 
+
 <body class="flex flex-col items-center p-4 sm:p-8">
 
-<main class="w-full max-w-7xl flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl relative fade-in">
+<main class="w-full max-w-7xl flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl fade-in">
 
-<header id="mainHeader" class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center">
+<!-- HEADER -->
+
+<header class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center">
+
     <div class="mb-4 logo-wrapper">
         <div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
-            <img src="default_logo.png" alt="Logo PT TSI" class="w-full h-full object-contain" id="companyLogo" onerror="handleLogoError()">
-            <div id="logoFallback" class="hidden flex flex-col items-center justify-center bg-blue-900 w-full h-full text-white">
+
+            <img
+                src="default_logo.png"
+                alt="Logo PT TSI"
+                class="w-full h-full object-contain"
+                id="companyLogo"
+                onerror="handleLogoError()"
+            >
+
+            <div
+                id="logoFallback"
+                class="hidden flex flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
+            >
                 <span class="font-black text-2xl">TSI</span>
             </div>
+
         </div>
     </div>
+
 
     <div class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1">
-        <h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">PAPERLESS PROJECT</h1>
+
+        <h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">
+            PAPERLESS PROJECT
+        </h1>
+
         <div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
-        <h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">PT TATSUMI SERUNI INDONESIA</h2>
+
+        <h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">
+            PT TATSUMI SERUNI INDONESIA
+        </h2>
+
     </div>
 
-    <div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase">Digitalization Initiative v2.0</div>
+    <div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase">
+        Digitalization Initiative v2.0
+    </div>
+
 </header>
 
-<section class="fade-in">
 
-<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-    <div>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight flex items-center gap-3">
-            <span class="bg-blue-900 text-white p-3 rounded-xl shadow-md">
-                <i data-lucide="calendar-clock" class="w-6 h-6"></i>
-            </span>
-            Periodic Service
-        </h2>
-        <p class="text-slate-500 font-medium text-sm mt-2 ml-1">Monitoring data periodic service unit secara terintegrasi.</p>
-    </div>
+<!-- TITLE -->
 
-    <div class="flex gap-2">
-        <button onclick="goBack()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-4 rounded-xl transition flex items-center gap-2 border border-slate-200">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i>
-            <span class="hidden sm:inline">Kembali</span>
+<section>
+
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+
+        <div>
+
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight flex items-center gap-3">
+
+                <span class="bg-blue-900 text-white p-3 rounded-xl shadow-md">
+                    <i data-lucide="layout-dashboard" class="w-6 h-6"></i>
+                </span>
+
+                Dashboard Periodic Service
+
+            </h2>
+
+            <p class="text-slate-500 font-medium text-sm mt-2 ml-1">
+                Monitoring dan analisis data periodic service secara terintegrasi.
+            </p>
+
+        </div>
+
+
+        <button
+            onclick="goToTable()"
+            class="bg-blue-800 hover:bg-blue-700 text-white font-bold py-3 px-5 rounded-xl transition flex items-center justify-center gap-2 shadow-md"
+        >
+
+            <i data-lucide="table-2" class="w-4 h-4"></i>
+
+            Lihat Data
+
         </button>
 
-        <button id="refreshButton" onclick="loadData()" class="bg-blue-800 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl transition flex items-center gap-2 shadow-md">
-            <i id="refreshIcon" data-lucide="refresh-cw" class="w-4 h-4"></i>
-            Refresh
-        </button>
     </div>
-</div>
 
-<div class="mb-6 p-5 rounded-2xl bg-emerald-50 border border-emerald-100 shadow-sm flex flex-col sm:flex-row items-start gap-4">
-    <div class="bg-emerald-600 p-2.5 rounded-xl text-white shrink-0">
-        <i data-lucide="database" class="w-6 h-6"></i>
+
+    <!-- INFO -->
+
+    <div class="mb-6 p-5 rounded-2xl bg-emerald-50 border border-emerald-100 shadow-sm flex flex-col sm:flex-row items-start gap-4">
+
+        <div class="bg-emerald-600 p-2.5 rounded-xl text-white shrink-0">
+
+            <i data-lucide="database" class="w-6 h-6"></i>
+
+        </div>
+
+        <div class="space-y-1">
+
+            <h4 class="font-bold text-emerald-900 text-[11px] sm:text-xs uppercase tracking-[0.15em]">
+                Dashboard Terintegrasi
+            </h4>
+
+            <p class="text-emerald-800 text-[10px] sm:text-xs leading-relaxed font-medium">
+                Grafik diperbarui langsung berdasarkan data
+                <b>Google Sheet</b> melalui sistem API
+                <b>Periodic Service</b>.
+            </p>
+
+        </div>
+
     </div>
-    <div class="space-y-1">
-        <h4 class="font-bold text-emerald-900 text-[11px] sm:text-xs uppercase tracking-[0.15em]">Data Terintegrasi</h4>
-        <p class="text-emerald-800 text-[10px] sm:text-xs leading-relaxed font-medium">
-            Data ditampilkan langsung dari database <b>Google Sheet</b> melalui sistem API <b>Periodic Service</b>.
+
+
+    <!-- LOADING -->
+
+    <div id="loading">
+
+        <i
+            data-lucide="loader-circle"
+            class="w-9 h-9 animate-spin text-amber-500"
+        ></i>
+
+        <p class="font-semibold text-sm text-slate-400 mt-3">
+            Memuat dashboard...
         </p>
+
     </div>
-</div>
 
-<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
 
-    <div class="stat-card rounded-2xl border border-slate-100 shadow-sm p-5">
-        <div class="flex items-center justify-between">
-            <div>
-                <p class="text-[10px] font-bold text-slate-400 tracking-[0.15em] uppercase">Total Data</p>
-                <p id="totalData" class="text-3xl font-black text-blue-900 mt-2">-</p>
+    <!-- DASHBOARD -->
+
+    <div id="dashboard">
+
+
+        <!-- STATISTICS -->
+
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+
+            <div class="stat-card">
+
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                    Total Pekerjaan
+                </p>
+
+                <p
+                    id="totalData"
+                    class="text-3xl font-black text-blue-900 mt-2"
+                >
+                    -
+                </p>
+
             </div>
-            <div class="bg-blue-50 text-blue-800 p-3 rounded-xl">
-                <i data-lucide="database" class="w-6 h-6"></i>
+
+
+            <div class="stat-card">
+
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                    Periodic Service
+                </p>
+
+                <p
+                    id="periodicTotal"
+                    class="text-3xl font-black text-indigo-600 mt-2"
+                >
+                    -
+                </p>
+
             </div>
+
+
+            <div class="stat-card">
+
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                    General Service
+                </p>
+
+                <p
+                    id="generalTotal"
+                    class="text-3xl font-black text-amber-600 mt-2"
+                >
+                    -
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                    Status Baik
+                </p>
+
+                <p
+                    id="baikTotal"
+                    class="text-3xl font-black text-emerald-600 mt-2"
+                >
+                    -
+                </p>
+
+            </div>
+
         </div>
-    </div>
 
-    <div class="stat-card rounded-2xl border border-slate-100 shadow-sm p-5">
-        <div class="flex items-center justify-between">
-            <div>
-                <p class="text-[10px] font-bold text-slate-400 tracking-[0.15em] uppercase">Status Baik</p>
-                <p id="statusBaik" class="text-3xl font-black text-emerald-600 mt-2">-</p>
+
+        <!-- ROW 1 -->
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5">
+
+
+            <!-- SERVICE BY UNIT -->
+
+            <div class="chart-card">
+
+                <div class="chart-title">
+
+                    <span class="bg-blue-100 text-blue-700 p-2 rounded-lg">
+                        <i data-lucide="wrench" class="w-4 h-4"></i>
+                    </span>
+
+                    Service per Jenis Alat
+
+                </div>
+
+                <p class="chart-subtitle">
+                    Perbandingan Periodic dan General Service pada W, FD, D, dan E
+                </p>
+
+                <div class="chart-wrapper">
+                    <canvas id="serviceByUnitChart"></canvas>
+                </div>
+
             </div>
-            <div class="bg-emerald-50 text-emerald-600 p-3 rounded-xl">
-                <i data-lucide="check-circle" class="w-6 h-6"></i>
+
+
+            <!-- STATUS -->
+
+            <div class="chart-card">
+
+                <div class="chart-title">
+
+                    <span class="bg-emerald-100 text-emerald-700 p-2 rounded-lg">
+                        <i data-lucide="circle-check" class="w-4 h-4"></i>
+                    </span>
+
+                    Kondisi Unit
+
+                </div>
+
+                <p class="chart-subtitle">
+                    Perbandingan status Baik dan Rusak
+                </p>
+
+                <div class="chart-wrapper">
+                    <canvas id="statusChart"></canvas>
+                </div>
+
             </div>
-        </div>
-    </div>
 
-    <div class="stat-card rounded-2xl border border-slate-100 shadow-sm p-5">
-        <div class="flex items-center justify-between">
-            <div class="min-w-0">
-                <p class="text-[10px] font-bold text-slate-400 tracking-[0.15em] uppercase">Data Terakhir</p>
-                <p id="lastUpdate" class="text-lg font-black text-slate-700 mt-2 truncate">-</p>
+        </div>
+
+
+        <!-- ROW 2 -->
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5">
+
+
+            <!-- MONTHLY TREND -->
+
+            <div class="chart-card">
+
+                <div class="chart-title">
+
+                    <span class="bg-violet-100 text-violet-700 p-2 rounded-lg">
+                        <i data-lucide="trending-up" class="w-4 h-4"></i>
+                    </span>
+
+                    Trend Pekerjaan Bulanan
+
+                </div>
+
+                <p class="chart-subtitle">
+                    Jumlah pekerjaan berdasarkan bulan
+                </p>
+
+                <div class="chart-wrapper">
+                    <canvas id="monthlyTrendChart"></canvas>
+                </div>
+
             </div>
-            <div class="bg-amber-50 text-amber-600 p-3 rounded-xl shrink-0">
-                <i data-lucide="clock-3" class="w-6 h-6"></i>
+
+
+            <!-- SERVICE TYPE -->
+
+            <div class="chart-card">
+
+                <div class="chart-title">
+
+                    <span class="bg-amber-100 text-amber-700 p-2 rounded-lg">
+                        <i data-lucide="layers-3" class="w-4 h-4"></i>
+                    </span>
+
+                    Komposisi Jenis Service
+
+                </div>
+
+                <p class="chart-subtitle">
+                    Total pekerjaan berdasarkan jenis service
+                </p>
+
+                <div class="chart-wrapper">
+                    <canvas id="serviceTypeChart"></canvas>
+                </div>
+
             </div>
-        </div>
-    </div>
 
-</div>
-
-<div class="bg-white border border-slate-100 rounded-2xl shadow-sm p-4 mb-6">
-    <div class="flex flex-col lg:flex-row gap-3">
-
-        <div class="relative flex-1">
-            <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"></i>
-            <input id="searchInput" type="text" placeholder="Cari unit, service, PIC, remark..." class="filter-control w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-11 pr-4 text-sm font-medium text-slate-700" oninput="applyFilters()">
         </div>
 
-        <select id="statusFilter" onchange="applyFilters()" class="filter-control bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 text-sm font-semibold text-slate-600">
-            <option value="">Semua Status</option>
-        </select>
 
-        <select id="serviceFilter" onchange="applyFilters()" class="filter-control bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 text-sm font-semibold text-slate-600">
-            <option value="">Semua Service</option>
-        </select>
+        <!-- EXTRA CHARTS -->
 
-        <button onclick="resetFilters()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold px-4 py-3 rounded-xl transition flex items-center justify-center gap-2">
-            <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
-            Reset
-        </button>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5">
 
-    </div>
-</div>
 
-<section class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+            <!-- UNIT DISTRIBUTION -->
 
-<div class="px-5 py-4 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-    <div>
-        <h3 class="font-bold text-primary flex items-center gap-2">
-            <i data-lucide="clipboard-list" class="w-5 h-5"></i>
-            Data Periodic Service
-        </h3>
-        <p id="resultInfo" class="text-[10px] text-slate-400 font-medium mt-1">Memuat data...</p>
-    </div>
-</div>
+            <div class="chart-card">
 
-<div id="loading" class="p-12 text-center">
-    <div class="flex flex-col items-center gap-3 text-slate-400">
-        <i data-lucide="loader-circle" class="w-8 h-8 animate-spin text-amber-500"></i>
-        <p class="font-semibold text-sm">Memuat data Periodic Service...</p>
-    </div>
-</div>
+                <div class="chart-title">
 
-<div id="error" class="hidden p-12 text-center">
-    <div class="flex flex-col items-center gap-3">
-        <div class="bg-red-50 text-red-600 p-4 rounded-full">
-            <i data-lucide="alert-circle" class="w-8 h-8"></i>
+                    <span class="bg-cyan-100 text-cyan-700 p-2 rounded-lg">
+                        <i data-lucide="truck" class="w-4 h-4"></i>
+                    </span>
+
+                    Distribusi Jenis Alat
+
+                </div>
+
+                <p class="chart-subtitle">
+                    Jumlah pekerjaan berdasarkan tipe unit
+                </p>
+
+                <div class="chart-wrapper">
+                    <canvas id="unitDistributionChart"></canvas>
+                </div>
+
+            </div>
+
+
+            <!-- STATUS SERVICE -->
+
+            <div class="chart-card">
+
+                <div class="chart-title">
+
+                    <span class="bg-rose-100 text-rose-700 p-2 rounded-lg">
+                        <i data-lucide="activity" class="w-4 h-4"></i>
+                    </span>
+
+                    Aktivitas Service
+
+                </div>
+
+                <p class="chart-subtitle">
+                    Perbandingan aktivitas berdasarkan tipe service
+                </p>
+
+                <div class="chart-wrapper">
+                    <canvas id="activityChart"></canvas>
+                </div>
+
+            </div>
+
         </div>
-        <h3 class="font-bold text-red-700">Gagal mengambil data</h3>
-        <p id="errorMessage" class="text-xs text-slate-500 max-w-md"></p>
-        <button onclick="loadData()" class="mt-2 bg-blue-800 text-white font-bold px-5 py-2.5 rounded-xl text-sm">Coba Lagi</button>
-    </div>
-</div>
 
-<div id="tableContainer" class="hidden overflow-x-auto">
-<table class="data-table w-full text-sm">
-<thead class="bg-slate-800 text-white">
-<tr>
-    <th class="px-4 py-4 text-left whitespace-nowrap">TANGGAL</th>
-    <th class="px-4 py-4 text-left whitespace-nowrap">UNIT</th>
-    <th class="px-2 py-4 text-center whitespace-nowrap w-[80px] min-w-[80px] max-w-[80px]">HM</th>
-    <th class="px-4 py-4 text-left whitespace-nowrap">SERVICE</th>
-    <th class="px-4 py-4 text-left whitespace-nowrap">STATUS</th>
-    <th class="px-4 py-4 text-left whitespace-nowrap">PIC</th>
-    <th class="px-4 py-4 text-left whitespace-nowrap">ITEM "RUSAK"</th>
-    <th class="px-4 py-4 text-left whitespace-nowrap">REMARK</th>
-    <th class="px-4 py-4 text-left whitespace-nowrap">PAP</th>
-</tr>
-</thead>
-<tbody id="tableBody" class="divide-y divide-slate-100"></tbody>
-</table>
-</div>
 
-<div id="emptyState" class="hidden p-12 text-center">
-    <div class="mx-auto bg-slate-100 text-slate-400 w-16 h-16 rounded-full flex items-center justify-center mb-4">
-        <i data-lucide="search-x" class="w-7 h-7"></i>
+        <!-- MECHANIC PRODUCTIVITY - LAST -->
+
+        <div class="chart-card mb-2">
+
+            <div class="chart-title">
+
+                <span class="bg-purple-100 text-purple-700 p-2 rounded-lg">
+                    <i data-lucide="trophy" class="w-4 h-4"></i>
+                </span>
+
+                Produktivitas Mekanik
+
+            </div>
+
+            <p class="chart-subtitle">
+                Jumlah pekerjaan yang ditangani masing-masing PIC
+            </p>
+
+            <div class="chart-wrapper" style="height:380px">
+                <canvas id="mechanicChart"></canvas>
+            </div>
+
+        </div>
+
+
     </div>
-    <h3 class="font-bold text-slate-700">Data tidak ditemukan</h3>
-    <p class="text-xs text-slate-400 mt-1">Coba ubah kata pencarian atau filter.</p>
-</div>
 
 </section>
-</section>
-
-<div id="toast" class="flex items-center gap-3">
-    <i data-lucide="info" class="text-amber-400 w-5 h-5"></i>
-    <span id="toastMsg"></span>
-</div>
 
 </main>
 
+
+<!-- FOOTER -->
+
 <footer class="mt-8 text-center text-slate-400 px-4 pb-8">
+
     <p class="font-bold text-slate-500 tracking-tight uppercase">
         &copy; 2026 Paperless Project - PT TSI. All rights reserved.
     </p>
+
     <p class="text-[10px] mt-1">
         System Architecture by:
-        <span class="text-slate-600 font-semibold uppercase">Imam Wahyu Ramadhan, S.T.</span>
+        <span class="text-slate-600 font-semibold uppercase">
+            Imam Wahyu Ramadhan, S.T.
+        </span>
         |
-        <span class="text-amber-600 font-bold uppercase tracking-tighter">Project 2.0</span>
+        <span class="text-amber-600 font-bold uppercase tracking-tighter">
+            Project 2.0
+        </span>
     </p>
+
 </footer>
 
+
 <!-- FLOATING LEADERBOARD -->
-<button id="leaderboardButton" onclick="openLeaderboard()" aria-label="Leaderboard">
+
+<button
+    id="leaderboardButton"
+    onclick="openLeaderboard()"
+    aria-label="Leaderboard"
+>
+
     <i data-lucide="trophy" class="w-6 h-6"></i>
-    <span class="leader-tooltip">Leaderboard Mekanik</span>
+
+    <span class="leader-tooltip">
+        Leaderboard Mekanik
+    </span>
+
 </button>
 
+
 <!-- LEADERBOARD POPUP -->
-<div id="leaderboardOverlay" onclick="closeLeaderboardOutside(event)">
+
+<div
+    id="leaderboardOverlay"
+    onclick="closeLeaderboardOutside(event)"
+>
+
     <div id="leaderboardModal">
 
         <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
+
             <div>
+
                 <h3 class="font-black text-slate-800 flex items-center gap-2">
+
                     <span class="bg-amber-100 text-amber-600 p-2 rounded-xl">
                         <i data-lucide="trophy" class="w-5 h-5"></i>
                     </span>
+
                     Leaderboard Mekanik
+
                 </h3>
+
                 <p class="text-[10px] text-slate-400 font-medium mt-1">
                     Berdasarkan total pekerjaan
                 </p>
+
             </div>
 
-            <button onclick="closeLeaderboard()" class="text-slate-400 hover:text-slate-700 hover:bg-slate-100 p-2 rounded-xl transition">
+
+            <button
+                onclick="closeLeaderboard()"
+                class="text-slate-400 hover:text-slate-700 hover:bg-slate-100 p-2 rounded-xl transition"
+            >
+
                 <i data-lucide="x" class="w-5 h-5"></i>
+
             </button>
+
         </div>
 
-        <div id="leaderboardList" class="p-5 overflow-y-auto max-h-[60vh]">
+
+        <div
+            id="leaderboardList"
+            class="p-5 overflow-y-auto max-h-[60vh]"
+        >
+
             <div class="text-center text-slate-400 text-sm py-6">
-                Belum ada data.
+                Memuat leaderboard...
             </div>
+
         </div>
 
     </div>
+
 </div>
 
+
 <script>
-const API_URL='https://script.google.com/macros/s/AKfycby9wfiYdn4jrpHgFV6YgySj0ia7h1WSIInQAFAHDeGNUJdIT94EgSJsF2nF6kJS79cD/exec';
-const MAIN_APP_URL='https://pttsipaperlessproject2.netlify.app/';
-let allData=[],filteredData=[];
+
+/* =========================================================
+   CONFIGURATION
+========================================================= */
+
+const API_URL =
+'https://script.google.com/macros/s/AKfycby9wfiYdn4jrpHgFV6YgySj0ia7h1WSIInQAFAHDeGNUJdIT94EgSJsF2nF6kJS79cD/exec';
+
+const TABLE_URL = 'table.html';
+
+let apiData = null;
+let charts = {};
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function goToTable(){
+    window.location.href = TABLE_URL;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
 
 function handleLogoError(){
+
     document.getElementById('companyLogo').classList.add('hidden');
-    document.getElementById('logoFallback').classList.remove('hidden');
+
+    document
+        .getElementById('logoFallback')
+        .classList.remove('hidden');
 }
 
-function goBack(){window.location.href=MAIN_APP_URL}
 
-async function loadData(){
-    const btn=document.getElementById('refreshButton');
-    const icon=document.getElementById('refreshIcon');
-    btn.disabled=true;
-    btn.classList.add('opacity-70');
-    icon.classList.add('refresh-spin');
-    showLoading();
+/* =========================================================
+   CHART DEFAULT CONFIG
+========================================================= */
+
+Chart.defaults.font.family = 'Inter';
+Chart.defaults.font.size = 11;
+Chart.defaults.color = '#64748b';
+
+Chart.defaults.plugins.legend.labels.usePointStyle = true;
+Chart.defaults.plugins.legend.labels.boxWidth = 10;
+
+
+/* =========================================================
+   LOAD API
+========================================================= */
+
+async function loadDashboard(){
 
     try{
-        const response=await fetch(API_URL,{method:'GET',cache:'no-store'});
-        if(!response.ok)throw new Error(`HTTP Error ${response.status}`);
 
-        const data=await response.json();
-        if(!Array.isArray(data))throw new Error('Format data API tidak valid.');
-
-        allData=data;
-        filteredData=[...data];
-
-        updateStatistics();
-        populateFilters();
-        renderTable();
-        updateLeaderboard();
-
-        document.getElementById('loading').classList.add('hidden');
-        document.getElementById('error').classList.add('hidden');
-        document.getElementById('tableContainer').classList.remove('hidden');
-    }catch(error){
-        showError(error);
-    }finally{
-        icon.classList.remove('refresh-spin');
-        btn.disabled=false;
-        btn.classList.remove('opacity-70');
-        lucide.createIcons();
-    }
-}
-
-function updateStatistics(){
-    document.getElementById('totalData').textContent=allData.length;
-    document.getElementById('statusBaik').textContent=
-        allData.filter(r=>String(r.status||'').trim().toLowerCase()==='baik').length;
-    document.getElementById('lastUpdate').textContent=
-        allData.length?allData[allData.length-1].tanggal||'-':'-';
-}
-
-function populateFilters(){
-    const status=document.getElementById('statusFilter');
-    const service=document.getElementById('serviceFilter');
-
-    const getUnique=key=>[
-        ...new Set(
-            allData
-            .map(r=>String(r[key]||'').trim())
-            .filter(Boolean)
-        )
-    ].sort();
-
-    status.innerHTML='<option value="">Semua Status</option>';
-    service.innerHTML='<option value="">Semua Service</option>';
-
-    getUnique('status').forEach(v=>{
-        status.innerHTML+=`<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`;
-    });
-
-    getUnique('service').forEach(v=>{
-        service.innerHTML+=`<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`;
-    });
-}
-
-function applyFilters(){
-    const search=document.getElementById('searchInput').value.trim().toLowerCase();
-    const status=document.getElementById('statusFilter').value.toLowerCase();
-    const service=document.getElementById('serviceFilter').value.toLowerCase();
-
-    filteredData=allData.filter(row=>{
-        const searchable=[
-            row.tanggal,row.unit,row.hm,row.service,row.status,
-            row.pic,row.itemRusak,row.remark,row.pap
-        ].join(' ').toLowerCase();
-
-        return(
-            (!search||searchable.includes(search))&&
-            (!status||String(row.status||'').toLowerCase()===status)&&
-            (!service||String(row.service||'').toLowerCase()===service)
+        const response = await fetch(
+            API_URL,
+            {
+                method:'GET',
+                cache:'no-store'
+            }
         );
-    });
 
-    renderTable();
-}
-
-function resetFilters(){
-    document.getElementById('searchInput').value='';
-    document.getElementById('statusFilter').value='';
-    document.getElementById('serviceFilter').value='';
-    filteredData=[...allData];
-    renderTable();
-}
-
-function createUnitBadge(unit){
-    const value=String(unit||'').trim();
-    if(!value)return'<span class="unit-badge unit-default">-</span>';
-
-    const n=value.toUpperCase();
-    let c='unit-default';
-
-    if(n.startsWith('FD-'))c='unit-fd';
-    else if(n.startsWith('W-'))c='unit-w';
-    else if(n.startsWith('D-'))c='unit-d';
-    else if(n.startsWith('E-'))c='unit-e';
-
-    return`<span class="unit-badge ${c}">${escapeHtml(value)}</span>`;
-}
-
-function createServiceBadge(service){
-    const value=String(service||'').trim();
-    if(!value)return'<span class="service-badge service-default">-</span>';
-
-    const n=value.toLowerCase();
-    const c=n.includes('periodic')
-        ?'service-periodic'
-        :n.includes('general')
-        ?'service-general'
-        :'service-default';
-
-    return`<span class="service-badge ${c}">${escapeHtml(value)}</span>`;
-}
-
-function createStatusBadge(status){
-    const value=String(status||'').trim();
-    if(!value)return'<span class="status-badge status-default">-</span>';
-
-    const n=value.toLowerCase();
-    const c=n==='baik'
-        ?'status-baik'
-        :n.includes('rusak')||n.includes('bad')||n.includes('damage')
-        ?'status-rusak'
-        :'status-default';
-
-    return`<span class="status-badge ${c}">
-        <span>●</span>${escapeHtml(value)}
-    </span>`;
-}
-
-/* PAP / GOOGLE DRIVE */
-function createPapButton(pap){
-    const value=String(pap||'').trim();
-
-    if(!value)return'<span class="text-slate-400">-</span>';
-
-    const urlMatch=value.match(/https?:\/\/[^\s]+/i);
-
-    if(!urlMatch){
-        return`<span class="pap-text">${escapeHtml(value)}</span>`;
-    }
-
-    let url=urlMatch[0].replace(/[),.;]+$/,'');
-
-    if(!/^https?:\/\//i.test(url)){
-        return`<span class="pap-text">${escapeHtml(value)}</span>`;
-    }
-
-    const isDrive=/drive\.google\.com|docs\.google\.com/i.test(url);
-
-    if(isDrive){
-        return`
-        <a href="${escapeHtml(url)}"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="pap-button"
-           title="Buka dokumen PAP di Google Drive">
-            <i data-lucide="file-text"></i>
-            Lihat PAP
-        </a>`;
-    }
-
-    return`
-    <a href="${escapeHtml(url)}"
-       target="_blank"
-       rel="noopener noreferrer"
-       class="pap-button"
-       title="Buka dokumen PAP">
-        <i data-lucide="external-link"></i>
-        Buka PAP
-    </a>`;
-}
-
-function renderTable(){
-    const tbody=document.getElementById('tableBody');
-    const table=document.getElementById('tableContainer');
-    const empty=document.getElementById('emptyState');
-
-    tbody.innerHTML='';
-    document.getElementById('resultInfo').textContent=
-        `${filteredData.length} dari ${allData.length} data ditampilkan`;
-
-    if(!filteredData.length){
-        table.classList.add('hidden');
-        empty.classList.remove('hidden');
-        lucide.createIcons();
-        return;
-    }
-
-    table.classList.remove('hidden');
-    empty.classList.add('hidden');
-
-    filteredData.forEach(row=>{
-        const tr=document.createElement('tr');
-
-        tr.innerHTML=`
-        <td class="px-4 py-3 whitespace-nowrap text-slate-600 font-medium">
-            ${escapeHtml(row.tanggal||'-')}
-        </td>
-        <td class="px-4 py-3 whitespace-nowrap">
-            ${createUnitBadge(row.unit)}
-        </td>
-        <td class="px-2 py-3 text-center whitespace-nowrap w-[80px] min-w-[80px] max-w-[80px] text-slate-600 font-semibold">
-            ${escapeHtml(row.hm||'-')}
-        </td>
-        <td class="px-4 py-3 whitespace-nowrap">
-            ${createServiceBadge(row.service)}
-        </td>
-        <td class="px-4 py-3 whitespace-nowrap">
-            ${createStatusBadge(row.status)}
-        </td>
-        <td class="px-4 py-3 whitespace-nowrap text-slate-600">
-            ${escapeHtml(row.pic||'-')}
-        </td>
-        <td class="px-4 py-3 text-slate-600 min-w-[150px]">
-            ${escapeHtml(row.itemRusak||'-')}
-        </td>
-        <td class="px-4 py-3 text-slate-600 min-w-[180px]">
-            ${escapeHtml(row.remark||'-')}
-        </td>
-        <td class="px-4 py-3 whitespace-nowrap">
-            ${createPapButton(row.pap)}
-        </td>`;
-
-        tbody.appendChild(tr);
-    });
-
-    lucide.createIcons();
-}
-
-/* LEADERBOARD */
-function updateLeaderboard(){
-    const mechanics={};
-
-    allData.forEach(row=>{
-        const original=String(row.pic||'').trim();
-        if(!original)return;
-
-        const key=original.toLowerCase().replace(/\s+/g,' ');
-
-        if(!mechanics[key]){
-            mechanics[key]={name:original,count:0};
+        if(!response.ok){
+            throw new Error(`HTTP Error ${response.status}`);
         }
 
-        mechanics[key].count++;
+        const result = await response.json();
+
+        apiData = result;
+
+        if(!result.chart){
+            throw new Error(
+                'Data chart tidak ditemukan dari API.'
+            );
+        }
+
+        updateStatistics(result);
+
+        createCharts(result.chart);
+
+        updateLeaderboardFromData(
+            result.chart.mechanic || []
+        );
+
+        document
+            .getElementById('loading')
+            .style.display='none';
+
+        document
+            .getElementById('dashboard')
+            .classList.add('show');
+
+    }
+    catch(error){
+
+        document.getElementById('loading').innerHTML = `
+
+            <div class="text-center">
+
+                <div class="bg-red-50 text-red-600 p-4 rounded-full inline-flex">
+                    <i data-lucide="alert-circle" class="w-8 h-8"></i>
+                </div>
+
+                <h3 class="font-bold text-red-700 mt-3">
+                    Gagal memuat dashboard
+                </h3>
+
+                <p class="text-xs text-slate-500 mt-2 max-w-md">
+                    ${escapeHtml(error.message)}
+                </p>
+
+                <button
+                    onclick="loadDashboard()"
+                    class="mt-4 bg-blue-800 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm"
+                >
+                    Coba Lagi
+                </button>
+
+            </div>
+        `;
+
+        lucide.createIcons();
+
+    }
+
+}
+
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+function updateStatistics(result){
+
+    const data = result.data || [];
+    const chart = result.chart || {};
+
+    const total =
+        data.length ||
+        Object.values(chart.serviceByType || {})
+            .reduce((a,b)=>a+b,0);
+
+    const periodic =
+        Object.entries(chart.serviceByType || {})
+            .filter(([key]) =>
+                key.toLowerCase().includes('periodic')
+            )
+            .reduce((sum,[,value])=>sum+Number(value),0);
+
+    const general =
+        Object.entries(chart.serviceByType || {})
+            .filter(([key]) =>
+                key.toLowerCase().includes('general')
+            )
+            .reduce((sum,[,value])=>sum+Number(value),0);
+
+    const baik =
+        Number(chart.status?.Baik || 0);
+
+
+    document.getElementById('totalData').textContent =
+        total;
+
+    document.getElementById('periodicTotal').textContent =
+        periodic;
+
+    document.getElementById('generalTotal').textContent =
+        general;
+
+    document.getElementById('baikTotal').textContent =
+        baik;
+
+}
+
+
+/* =========================================================
+   CREATE ALL CHARTS
+========================================================= */
+
+function createCharts(chart){
+
+    Object.values(charts).forEach(chart=>{
+        if(chart) chart.destroy();
     });
 
-    const ranking=Object.values(mechanics).sort(
-        (a,b)=>b.count-a.count||a.name.localeCompare(b.name)
+    charts = {};
+
+
+    createServiceByUnitChart(
+        chart.serviceByUnit || {}
     );
 
-    const list=document.getElementById('leaderboardList');
+    createStatusChart(
+        chart.status || {}
+    );
 
-    if(!ranking.length){
-        list.innerHTML=
-            '<div class="text-center text-slate-400 text-sm py-6">Belum ada data mekanik.</div>';
+    createMonthlyTrendChart(
+        chart.monthlyTrend || {}
+    );
+
+    createServiceTypeChart(
+        chart.serviceByType || {}
+    );
+
+    createUnitDistributionChart(
+        chart.serviceByUnit || {}
+    );
+
+    createActivityChart(
+        chart.serviceByType || {}
+    );
+
+    createMechanicChart(
+        chart.mechanic || []
+    );
+
+}
+
+
+/* =========================================================
+   SERVICE BY UNIT
+========================================================= */
+
+function createServiceByUnitChart(data){
+
+    const units = ['W','FD','D','E'];
+
+    charts.serviceByUnit =
+        new Chart(
+            document.getElementById('serviceByUnitChart'),
+            {
+                type:'bar',
+
+                data:{
+                    labels:units,
+
+                    datasets:[
+
+                        {
+                            label:'Periodic Service',
+                            data:units.map(
+                                unit =>
+                                Number(
+                                    data[unit]?.periodic || 0
+                                )
+                            ),
+                            backgroundColor:'#1E3A8A',
+                            borderRadius:7
+                        },
+
+                        {
+                            label:'General Service',
+                            data:units.map(
+                                unit =>
+                                Number(
+                                    data[unit]?.general || 0
+                                )
+                            ),
+                            backgroundColor:'#F59E0B',
+                            borderRadius:7
+                        }
+
+                    ]
+                },
+
+                options:{
+                    responsive:true,
+                    maintainAspectRatio:false,
+
+                    plugins:{
+                        legend:{
+                            position:'top'
+                        }
+                    },
+
+                    scales:{
+                        y:{
+                            beginAtZero:true,
+                            ticks:{
+                                precision:0
+                            }
+                        }
+                    }
+                }
+            }
+        );
+
+}
+
+
+/* =========================================================
+   STATUS PIE
+========================================================= */
+
+function createStatusChart(data){
+
+    const labels = Object.keys(data);
+
+    const values = Object.values(data);
+
+    charts.status =
+        new Chart(
+            document.getElementById('statusChart'),
+            {
+                type:'doughnut',
+
+                data:{
+                    labels:labels,
+                    datasets:[
+
+                        {
+                            data:values,
+                            backgroundColor:[
+                                '#10B981',
+                                '#EF4444',
+                                '#94A3B8'
+                            ],
+                            borderWidth:3,
+                            borderColor:'#fff'
+                        }
+
+                    ]
+                },
+
+                options:{
+                    responsive:true,
+                    maintainAspectRatio:false,
+
+                    cutout:'62%',
+
+                    plugins:{
+                        legend:{
+                            position:'bottom'
+                        }
+                    }
+                }
+            }
+        );
+
+}
+
+
+/* =========================================================
+   MONTHLY TREND
+========================================================= */
+
+function createMonthlyTrendChart(data){
+
+    const keys =
+        Object.keys(data).sort();
+
+    const labels =
+        keys.map(key=>{
+
+            const parts = key.split('-');
+
+            if(parts.length<2) return key;
+
+            const month =
+                [
+                    'Jan','Feb','Mar','Apr','Mei','Jun',
+                    'Jul','Agu','Sep','Okt','Nov','Des'
+                ][Number(parts[1])-1];
+
+            return `${month} ${parts[0]}`;
+
+        });
+
+    const values =
+        keys.map(key=>Number(data[key]||0));
+
+
+    charts.monthlyTrend =
+        new Chart(
+            document.getElementById('monthlyTrendChart'),
+            {
+                type:'line',
+
+                data:{
+                    labels:labels,
+
+                    datasets:[
+                        {
+                            label:'Jumlah Pekerjaan',
+                            data:values,
+
+                            borderColor:'#7C3AED',
+                            backgroundColor:'rgba(124,58,237,.10)',
+
+                            fill:true,
+
+                            tension:.35,
+
+                            pointRadius:4,
+                            pointHoverRadius:6
+                        }
+                    ]
+                },
+
+                options:{
+                    responsive:true,
+                    maintainAspectRatio:false,
+
+                    plugins:{
+                        legend:{
+                            display:false
+                        }
+                    },
+
+                    scales:{
+                        y:{
+                            beginAtZero:true,
+                            ticks:{
+                                precision:0
+                            }
+                        }
+                    }
+                }
+            }
+        );
+
+}
+
+
+/* =========================================================
+   SERVICE TYPE
+========================================================= */
+
+function createServiceTypeChart(data){
+
+    const labels =
+        Object.keys(data);
+
+    const values =
+        Object.values(data);
+
+    charts.serviceType =
+        new Chart(
+            document.getElementById('serviceTypeChart'),
+            {
+                type:'doughnut',
+
+                data:{
+                    labels:labels,
+
+                    datasets:[
+                        {
+                            data:values,
+
+                            backgroundColor:[
+                                '#1E3A8A',
+                                '#F59E0B',
+                                '#94A3B8'
+                            ],
+
+                            borderWidth:3,
+                            borderColor:'#fff'
+                        }
+                    ]
+                },
+
+                options:{
+                    responsive:true,
+                    maintainAspectRatio:false,
+
+                    cutout:'58%',
+
+                    plugins:{
+                        legend:{
+                            position:'bottom'
+                        }
+                    }
+                }
+            }
+        );
+
+}
+
+
+/* =========================================================
+   UNIT DISTRIBUTION
+========================================================= */
+
+function createUnitDistributionChart(data){
+
+    const units = ['W','FD','D','E'];
+
+    const values =
+        units.map(unit=>{
+
+            const periodic =
+                Number(data[unit]?.periodic || 0);
+
+            const general =
+                Number(data[unit]?.general || 0);
+
+            const other =
+                Number(data[unit]?.other || 0);
+
+            return periodic + general + other;
+
+        });
+
+
+    charts.unitDistribution =
+        new Chart(
+            document.getElementById('unitDistributionChart'),
+            {
+                type:'bar',
+
+                data:{
+                    labels:units,
+
+                    datasets:[
+                        {
+                            label:'Total Pekerjaan',
+                            data:values,
+                            backgroundColor:[
+                                '#0EA5E9',
+                                '#8B5CF6',
+                                '#F97316',
+                                '#10B981'
+                            ],
+                            borderRadius:7
+                        }
+                    ]
+                },
+
+                options:{
+                    responsive:true,
+                    maintainAspectRatio:false,
+
+                    plugins:{
+                        legend:{
+                            display:false
+                        }
+                    },
+
+                    scales:{
+                        y:{
+                            beginAtZero:true,
+                            ticks:{
+                                precision:0
+                            }
+                        }
+                    }
+                }
+            }
+        );
+
+}
+
+
+/* =========================================================
+   ACTIVITY CHART
+========================================================= */
+
+function createActivityChart(data){
+
+    const labels =
+        Object.keys(data);
+
+    const values =
+        Object.values(data);
+
+
+    charts.activity =
+        new Chart(
+            document.getElementById('activityChart'),
+            {
+                type:'bar',
+
+                data:{
+                    labels:labels,
+
+                    datasets:[
+                        {
+                            label:'Pekerjaan',
+                            data:values,
+
+                            backgroundColor:[
+                                '#3B82F6',
+                                '#F59E0B',
+                                '#64748B'
+                            ],
+
+                            borderRadius:7
+                        }
+                    ]
+                },
+
+                options:{
+                    indexAxis:'y',
+
+                    responsive:true,
+                    maintainAspectRatio:false,
+
+                    plugins:{
+                        legend:{
+                            display:false
+                        }
+                    },
+
+                    scales:{
+                        x:{
+                            beginAtZero:true,
+                            ticks:{
+                                precision:0
+                            }
+                        }
+                    }
+                }
+            }
+        );
+
+}
+
+
+/* =========================================================
+   MECHANIC PRODUCTIVITY
+========================================================= */
+
+function createMechanicChart(data){
+
+    const sorted =
+        [...data].sort(
+            (a,b)=>
+                Number(b.count||0) -
+                Number(a.count||0)
+        );
+
+
+    const labels =
+        sorted.map(item=>item.name);
+
+    const values =
+        sorted.map(item=>Number(item.count||0));
+
+
+    charts.mechanic =
+        new Chart(
+            document.getElementById('mechanicChart'),
+            {
+                type:'bar',
+
+                data:{
+                    labels:labels,
+
+                    datasets:[
+                        {
+                            label:'Jumlah Pekerjaan',
+                            data:values,
+
+                            backgroundColor:'#7C3AED',
+
+                            borderRadius:7
+                        }
+                    ]
+                },
+
+                options:{
+                    indexAxis:'y',
+
+                    responsive:true,
+                    maintainAspectRatio:false,
+
+                    plugins:{
+                        legend:{
+                            display:false
+                        }
+                    },
+
+                    scales:{
+                        x:{
+                            beginAtZero:true,
+                            ticks:{
+                                precision:0
+                            }
+                        },
+
+                        y:{
+                            ticks:{
+                                font:{
+                                    size:10,
+                                    weight:'600'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        );
+
+}
+
+
+/* =========================================================
+   LEADERBOARD
+========================================================= */
+
+function updateLeaderboardFromData(data){
+
+    const list =
+        document.getElementById('leaderboardList');
+
+    if(!data.length){
+
+        list.innerHTML = `
+            <div class="text-center text-slate-400 text-sm py-6">
+                Belum ada data mekanik.
+            </div>
+        `;
+
         return;
     }
 
-    list.innerHTML=ranking.map((mechanic,index)=>{
-        const rank=index+1;
-        const cls=rank<=3?`top-${rank}`:'';
-        const medal=
-            rank===1?'🥇':
-            rank===2?'🥈':
-            rank===3?'🥉':
-            rank;
 
-        return`
-        <div class="leader-row ${cls}">
-            <div class="leader-rank">${medal}</div>
-            <div class="leader-name truncate">${escapeHtml(mechanic.name)}</div>
-            <div class="leader-count">${mechanic.count} pekerjaan</div>
-        </div>`;
-    }).join('');
+    const ranking =
+        [...data].sort(
+            (a,b)=>
+                Number(b.count||0) -
+                Number(a.count||0)
+        );
 
-    lucide.createIcons();
+
+    list.innerHTML =
+        ranking.map((mechanic,index)=>{
+
+            const rank = index + 1;
+
+            const cls =
+                rank <= 3
+                ? `top-${rank}`
+                : '';
+
+            const medal =
+                rank===1
+                ? '🥇'
+                : rank===2
+                ? '🥈'
+                : rank===3
+                ? '🥉'
+                : rank;
+
+
+            return `
+
+                <div class="leader-row ${cls}">
+
+                    <div class="leader-rank">
+                        ${medal}
+                    </div>
+
+                    <div class="leader-name truncate">
+                        ${escapeHtml(mechanic.name)}
+                    </div>
+
+                    <div class="leader-count">
+                        ${mechanic.count} pekerjaan
+                    </div>
+
+                </div>
+
+            `;
+
+        }).join('');
+
 }
+
+
+/* =========================================================
+   LEADERBOARD POPUP
+========================================================= */
 
 function openLeaderboard(){
-    updateLeaderboard();
-    document.getElementById('leaderboardOverlay').classList.add('show');
+
+    if(apiData?.chart?.mechanic){
+        updateLeaderboardFromData(
+            apiData.chart.mechanic
+        );
+    }
+
+    document
+        .getElementById('leaderboardOverlay')
+        .classList.add('show');
+
     document.body.style.overflow='hidden';
+
 }
+
 
 function closeLeaderboard(){
-    document.getElementById('leaderboardOverlay').classList.remove('show');
+
+    document
+        .getElementById('leaderboardOverlay')
+        .classList.remove('show');
+
     document.body.style.overflow='';
+
 }
+
 
 function closeLeaderboardOutside(event){
-    if(event.target===document.getElementById('leaderboardOverlay')){
+
+    if(
+        event.target ===
+        document.getElementById('leaderboardOverlay')
+    ){
         closeLeaderboard();
     }
+
 }
 
-/* ANIMASI LEADERBOARD */
+
+/* =========================================================
+   LEADERBOARD SUBTLE PULSE
+========================================================= */
+
 function scheduleLeaderboardPulse(){
-    const button=document.getElementById('leaderboardButton');
-    const delay=18000+Math.random()*22000;
+
+    const button =
+        document.getElementById('leaderboardButton');
+
+    const delay =
+        18000 + Math.random()*22000;
+
 
     setTimeout(()=>{
-        const overlay=document.getElementById('leaderboardOverlay');
+
+        const overlay =
+            document.getElementById(
+                'leaderboardOverlay'
+            );
 
         if(!overlay.classList.contains('show')){
-            button.classList.remove('leader-pulse');
+
+            button.classList.remove(
+                'leader-pulse'
+            );
+
             void button.offsetWidth;
-            button.classList.add('leader-pulse');
+
+            button.classList.add(
+                'leader-pulse'
+            );
+
         }
 
         scheduleLeaderboardPulse();
+
     },delay);
+
 }
 
-/* LOADING / ERROR */
-function showLoading(){
-    document.getElementById('loading').classList.remove('hidden');
-    document.getElementById('error').classList.add('hidden');
-    document.getElementById('tableContainer').classList.add('hidden');
-    document.getElementById('emptyState').classList.add('hidden');
-}
 
-function showError(error){
-    document.getElementById('loading').classList.add('hidden');
-    document.getElementById('tableContainer').classList.add('hidden');
-    document.getElementById('emptyState').classList.add('hidden');
-    document.getElementById('error').classList.remove('hidden');
+/* =========================================================
+   SECURITY
+========================================================= */
 
-    document.getElementById('errorMessage').textContent=
-        error?.message||'Terjadi kesalahan saat mengambil data.';
-
-    document.getElementById('resultInfo').textContent=
-        'Gagal memuat data.';
-
-    lucide.createIcons();
-}
-
-/* SECURITY */
 function escapeHtml(value){
-    return String(value??'')
+
+    return String(value ?? '')
         .replace(/&/g,'&amp;')
         .replace(/</g,'&lt;')
         .replace(/>/g,'&gt;')
         .replace(/"/g,'&quot;')
         .replace(/'/g,'&#039;');
+
 }
 
-/* START */
-window.onload=()=>{
-    lucide.createIcons();
-    loadData();
-    scheduleLeaderboardPulse();
-};
 
-document.addEventListener('keydown',e=>{
-    if(e.key==='Escape')closeLeaderboard();
+/* =========================================================
+   START
+========================================================= */
+
+window.addEventListener('load',()=>{
+
+    lucide.createIcons();
+
+    loadDashboard();
+
+    scheduleLeaderboardPulse();
+
 });
+
+
+/* =========================================================
+   ESCAPE KEY
+========================================================= */
+
+document.addEventListener('keydown',event=>{
+
+    if(event.key==='Escape'){
+        closeLeaderboard();
+    }
+
+});
+
 </script>
 
 </body>
