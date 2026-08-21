@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -15,32 +16,52 @@
 
     <script src="https://unpkg.com/lucide@latest"></script>
 
+
     <style>
+
+        /* =====================================================
+           GLOBAL
+        ===================================================== */
 
         body {
             font-family: 'Inter', sans-serif;
+
             background: linear-gradient(
                 135deg,
                 #f8fafc 0%,
                 #f1f5f9 100%
             );
+
             min-height: 100vh;
+
             color: #1e293b;
         }
+
 
         .color-primary {
             background-color: #1E3A8A;
         }
 
+
         .text-primary {
             color: #1E3A8A;
         }
 
+
+        /* =====================================================
+           ANIMATION
+        ===================================================== */
+
         .fade-in {
-            animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            animation:
+                fadeIn
+                0.5s
+                cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+
         @keyframes fadeIn {
+
             from {
                 opacity: 0;
                 transform: translateY(12px);
@@ -50,13 +71,24 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+
         }
+
 
         .glass-panel {
             background: rgba(255, 255, 255, 0.95);
+
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.2);
         }
+
+
+        /* =====================================================
+           LOGO
+        ===================================================== */
 
         .logo-wrapper {
             transition:
@@ -64,30 +96,58 @@
                 cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
+
         .logo-wrapper:hover {
-            transform: scale(1.08) rotate(2deg);
+            transform:
+                scale(1.08)
+                rotate(2deg);
         }
+
 
         .logo-shadow {
             filter:
-                drop-shadow(0 10px 8px rgba(0, 0, 0, 0.04))
-                drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1));
+                drop-shadow(
+                    0 10px 8px
+                    rgba(0, 0, 0, 0.04)
+                )
+                drop-shadow(
+                    0 4px 3px
+                    rgba(0, 0, 0, 0.1)
+                );
         }
 
+
+        /* =====================================================
+           STAT CARD
+        ===================================================== */
+
         .stat-card {
-            transition: all 0.25s ease;
+            transition:
+                all 0.25s ease;
+
             background: #ffffff;
         }
 
+
         .stat-card:hover {
-            transform: translateY(-3px);
+            transform:
+                translateY(-3px);
+
             box-shadow:
-                0 10px 20px -5px rgba(0, 0, 0, 0.08);
+                0 10px 20px -5px
+                rgba(0, 0, 0, 0.08);
         }
 
+
+        /* =====================================================
+           TABLE
+        ===================================================== */
+
         .data-table tbody tr {
-            transition: background-color 0.2s ease;
+            transition:
+                background-color 0.2s ease;
         }
+
 
         .data-table tbody tr:hover {
             background-color: #fffbeb;
@@ -99,34 +159,75 @@
         ===================================================== */
 
         .status-badge {
+
             display: inline-flex;
+
             align-items: center;
+
             gap: 5px;
-            padding: 5px 10px;
-            border-radius: 999px;
-            font-size: 10px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            white-space: nowrap;
+
+            padding:
+                5px 10px;
+
+            border-radius:
+                999px;
+
+            font-size:
+                10px;
+
+            font-weight:
+                800;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                0.04em;
+
+            white-space:
+                nowrap;
         }
+
 
         .status-baik {
-            background: #dcfce7;
-            color: #166534;
-            border: 1px solid #bbf7d0;
+
+            background:
+                #dcfce7;
+
+            color:
+                #166534;
+
+            border:
+                1px solid
+                #bbf7d0;
         }
+
 
         .status-rusak {
-            background: #fee2e2;
-            color: #991b1b;
-            border: 1px solid #fecaca;
+
+            background:
+                #fee2e2;
+
+            color:
+                #991b1b;
+
+            border:
+                1px solid
+                #fecaca;
         }
 
+
         .status-default {
-            background: #f1f5f9;
-            color: #475569;
-            border: 1px solid #e2e8f0;
+
+            background:
+                #f1f5f9;
+
+            color:
+                #475569;
+
+            border:
+                1px solid
+                #e2e8f0;
         }
 
 
@@ -135,34 +236,75 @@
         ===================================================== */
 
         .service-badge {
+
             display: inline-flex;
+
             align-items: center;
+
             gap: 6px;
-            padding: 5px 10px;
-            border-radius: 999px;
-            font-size: 10px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-            white-space: nowrap;
+
+            padding:
+                5px 10px;
+
+            border-radius:
+                999px;
+
+            font-size:
+                10px;
+
+            font-weight:
+                800;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                0.03em;
+
+            white-space:
+                nowrap;
         }
+
 
         .service-periodic {
-            background: #e0e7ff;
-            color: #3730a3;
-            border: 1px solid #c7d2fe;
+
+            background:
+                #e0e7ff;
+
+            color:
+                #3730a3;
+
+            border:
+                1px solid
+                #c7d2fe;
         }
+
 
         .service-general {
-            background: #fef3c7;
-            color: #92400e;
-            border: 1px solid #fde68a;
+
+            background:
+                #fef3c7;
+
+            color:
+                #92400e;
+
+            border:
+                1px solid
+                #fde68a;
         }
 
+
         .service-default {
-            background: #f1f5f9;
-            color: #475569;
-            border: 1px solid #e2e8f0;
+
+            background:
+                #f1f5f9;
+
+            color:
+                #475569;
+
+            border:
+                1px solid
+                #e2e8f0;
         }
 
 
@@ -171,134 +313,99 @@
         ===================================================== */
 
         .unit-badge {
+
             display: inline-flex;
+
             align-items: center;
+
             justify-content: center;
-            padding: 5px 10px;
-            border-radius: 9px;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 0.04em;
-            white-space: nowrap;
-            border: 1px solid transparent;
+
+            padding:
+                5px 10px;
+
+            border-radius:
+                9px;
+
+            font-size:
+                11px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                0.04em;
+
+            white-space:
+                nowrap;
+
+            border:
+                1px solid
+                transparent;
         }
+
 
         .unit-w {
-            background: #dcfce7;
-            color: #166534;
-            border-color: #bbf7d0;
+
+            background:
+                #dcfce7;
+
+            color:
+                #166534;
+
+            border-color:
+                #bbf7d0;
         }
+
 
         .unit-fd {
-            background: #f3e8ff;
-            color: #7e22ce;
-            border-color: #e9d5ff;
+
+            background:
+                #f3e8ff;
+
+            color:
+                #7e22ce;
+
+            border-color:
+                #e9d5ff;
         }
+
 
         .unit-d {
-            background: #ffedd5;
-            color: #c2410c;
-            border-color: #fed7aa;
+
+            background:
+                #ffedd5;
+
+            color:
+                #c2410c;
+
+            border-color:
+                #fed7aa;
         }
+
 
         .unit-e {
-            background: #dbeafe;
-            color: #1d4ed8;
-            border-color: #bfdbfe;
+
+            background:
+                #dbeafe;
+
+            color:
+                #1d4ed8;
+
+            border-color:
+                #bfdbfe;
         }
+
 
         .unit-default {
-            background: #f1f5f9;
-            color: #475569;
-            border-color: #e2e8f0;
-        }
 
+            background:
+                #f1f5f9;
 
-        /* =====================================================
-           LEADERBOARD
-        ===================================================== */
+            color:
+                #475569;
 
-        .leaderboard-card {
-            transition: all 0.25s ease;
-            background: #ffffff;
-        }
-
-        .leaderboard-card:hover {
-            transform: translateY(-2px);
-            box-shadow:
-                0 10px 20px -5px rgba(0, 0, 0, 0.08);
-        }
-
-        .leaderboard-row {
-            transition: all 0.2s ease;
-        }
-
-        .leaderboard-row:hover {
-            transform: translateX(3px);
-        }
-
-        .leaderboard-rank {
-            width: 34px;
-            height: 34px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-            font-size: 15px;
-            font-weight: 900;
-            flex-shrink: 0;
-        }
-
-        .rank-first {
-            background: #fef3c7;
-            border: 1px solid #fde68a;
-        }
-
-        .rank-second {
-            background: #e2e8f0;
-            border: 1px solid #cbd5e1;
-        }
-
-        .rank-third {
-            background: #ffedd5;
-            border: 1px solid #fed7aa;
-        }
-
-        .rank-other {
-            background: #f8fafc;
-            color: #64748b;
-            border: 1px solid #e2e8f0;
-        }
-
-        .leaderboard-count {
-            min-width: 58px;
-            text-align: center;
-            padding: 5px 10px;
-            border-radius: 999px;
-            font-size: 10px;
-            font-weight: 800;
-            white-space: nowrap;
-        }
-
-        .count-first {
-            background: #fef3c7;
-            color: #92400e;
-        }
-
-        .count-second {
-            background: #f1f5f9;
-            color: #475569;
-        }
-
-        .count-third {
-            background: #ffedd5;
-            color: #9a3412;
-        }
-
-        .count-other {
-            background: #f8fafc;
-            color: #64748b;
-            border: 1px solid #e2e8f0;
+            border-color:
+                #e2e8f0;
         }
 
 
@@ -307,14 +414,23 @@
         ===================================================== */
 
         .filter-control {
-            transition: all 0.2s ease;
+
+            transition:
+                all 0.2s ease;
         }
 
+
         .filter-control:focus {
-            border-color: #D97706;
+
+            border-color:
+                #D97706;
+
             box-shadow:
-                0 0 0 3px rgba(217, 119, 6, 0.1);
-            outline: none;
+                0 0 0 3px
+                rgba(217, 119, 6, 0.1);
+
+            outline:
+                none;
         }
 
 
@@ -323,20 +439,492 @@
         ===================================================== */
 
         .refresh-spin {
-            animation: spin 0.8s linear infinite;
-            transform-origin: center;
+
+            animation:
+                spin
+                0.8s
+                linear
+                infinite;
         }
+
 
         @keyframes spin {
 
             from {
-                transform: rotate(0deg);
+                transform:
+                    rotate(0deg);
             }
 
             to {
-                transform: rotate(360deg);
+                transform:
+                    rotate(360deg);
             }
 
+        }
+
+
+        /* =====================================================
+           LEADERBOARD FLOATING BUTTON
+        ===================================================== */
+
+        .leaderboard-float {
+
+            position:
+                fixed;
+
+            right:
+                24px;
+
+            bottom:
+                24px;
+
+            z-index:
+                80;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                8px;
+
+            background:
+                #ffffff;
+
+            color:
+                #1e3a8a;
+
+            border:
+                1px solid
+                #e2e8f0;
+
+            box-shadow:
+                0 10px 30px
+                rgba(15, 23, 42, 0.15);
+
+            transition:
+                all 0.25s ease;
+        }
+
+
+        .leaderboard-float:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 15px 35px
+                rgba(15, 23, 42, 0.20);
+        }
+
+
+        .leaderboard-float:active {
+
+            transform:
+                translateY(0);
+        }
+
+
+        /* =====================================================
+           LEADERBOARD OVERLAY
+        ===================================================== */
+
+        #leaderboardOverlay {
+
+            position:
+                fixed;
+
+            inset:
+                0;
+
+            z-index:
+                200;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            padding:
+                20px;
+
+            background:
+                rgba(15, 23, 42, 0.45);
+
+            backdrop-filter:
+                blur(5px);
+
+            opacity:
+                0;
+
+            visibility:
+                hidden;
+
+            transition:
+                all 0.25s ease;
+        }
+
+
+        #leaderboardOverlay.active {
+
+            opacity:
+                1;
+
+            visibility:
+                visible;
+        }
+
+
+        /* =====================================================
+           LEADERBOARD MODAL
+        ===================================================== */
+
+        .leaderboard-modal {
+
+            width:
+                100%;
+
+            max-width:
+                520px;
+
+            max-height:
+                85vh;
+
+            background:
+                #ffffff;
+
+            border-radius:
+                24px;
+
+            box-shadow:
+                0 25px 60px
+                rgba(15, 23, 42, 0.25);
+
+            overflow:
+                hidden;
+
+            transform:
+                translateY(20px)
+                scale(0.97);
+
+            transition:
+                all 0.25s ease;
+        }
+
+
+        #leaderboardOverlay.active
+        .leaderboard-modal {
+
+            transform:
+                translateY(0)
+                scale(1);
+        }
+
+
+        /* =====================================================
+           LEADERBOARD HEADER
+        ===================================================== */
+
+        .leaderboard-header {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1e3a8a,
+                    #1e40af
+                );
+
+            color:
+                white;
+
+            padding:
+                22px 24px;
+
+            position:
+                relative;
+        }
+
+
+        .leaderboard-close {
+
+            position:
+                absolute;
+
+            top:
+                14px;
+
+            right:
+                14px;
+
+            width:
+                34px;
+
+            height:
+                34px;
+
+            border-radius:
+                10px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            color:
+                rgba(255,255,255,0.8);
+
+            background:
+                rgba(255,255,255,0.1);
+
+            transition:
+                all 0.2s ease;
+        }
+
+
+        .leaderboard-close:hover {
+
+            background:
+                rgba(255,255,255,0.2);
+
+            color:
+                white;
+        }
+
+
+        /* =====================================================
+           LEADERBOARD LIST
+        ===================================================== */
+
+        .leaderboard-list {
+
+            max-height:
+                58vh;
+
+            overflow-y:
+                auto;
+
+            padding:
+                12px 16px 18px;
+        }
+
+
+        .leaderboard-row {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                12px;
+
+            padding:
+                11px 12px;
+
+            border-radius:
+                14px;
+
+            margin-bottom:
+                6px;
+
+            transition:
+                background 0.2s ease;
+        }
+
+
+        .leaderboard-row:hover {
+
+            background:
+                #f8fafc;
+        }
+
+
+        /* =====================================================
+           TOP 3
+        ===================================================== */
+
+        .leaderboard-top-1 {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff7d6,
+                    #fffbeb
+                );
+
+            border:
+                1px solid
+                #fde68a;
+        }
+
+
+        .leaderboard-top-2 {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f1f5f9,
+                    #f8fafc
+                );
+
+            border:
+                1px solid
+                #cbd5e1;
+        }
+
+
+        .leaderboard-top-3 {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff1e6,
+                    #fff7ed
+                );
+
+            border:
+                1px solid
+                #fed7aa;
+        }
+
+
+        .rank-badge {
+
+            width:
+                34px;
+
+            height:
+                34px;
+
+            min-width:
+                34px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            border-radius:
+                10px;
+
+            background:
+                #f1f5f9;
+
+            color:
+                #64748b;
+
+            font-size:
+                12px;
+
+            font-weight:
+                900;
+        }
+
+
+        .rank-first {
+
+            background:
+                #fef3c7;
+
+            color:
+                #b45309;
+        }
+
+
+        .rank-second {
+
+            background:
+                #e2e8f0;
+
+            color:
+                #475569;
+        }
+
+
+        .rank-third {
+
+            background:
+                #fed7aa;
+
+            color:
+                #c2410c;
+        }
+
+
+        .mechanic-name {
+
+            flex:
+                1;
+
+            min-width:
+                0;
+
+            font-size:
+                13px;
+
+            font-weight:
+                700;
+
+            color:
+                #334155;
+        }
+
+
+        .mechanic-job {
+
+            font-size:
+                11px;
+
+            font-weight:
+                800;
+
+            color:
+                #64748b;
+
+            white-space:
+                nowrap;
+        }
+
+
+        .top-job {
+
+            color:
+                #1e3a8a;
+
+            font-size:
+                12px;
+        }
+
+
+        /* =====================================================
+           EMPTY LEADERBOARD
+        ===================================================== */
+
+        .leaderboard-empty {
+
+            padding:
+                45px 20px;
+
+            text-align:
+                center;
+
+            color:
+                #94a3b8;
         }
 
 
@@ -345,54 +933,104 @@
         ===================================================== */
 
         #toast {
-            visibility: hidden;
-            min-width: 300px;
-            background-color: #1e293b;
-            color: #fff;
-            text-align: center;
-            border-radius: 12px;
-            padding: 16px;
-            position: fixed;
-            z-index: 100;
-            left: 50%;
-            bottom: 30px;
-            transform: translateX(-50%);
+
+            visibility:
+                hidden;
+
+            min-width:
+                300px;
+
+            background-color:
+                #1e293b;
+
+            color:
+                #fff;
+
+            text-align:
+                center;
+
+            border-radius:
+                12px;
+
+            padding:
+                16px;
+
+            position:
+                fixed;
+
+            z-index:
+                300;
+
+            left:
+                50%;
+
+            bottom:
+                30px;
+
+            transform:
+                translateX(-50%);
+
             box-shadow:
-                0 10px 25px rgba(0,0,0,0.2);
-            border: 1px solid #334155;
+                0 10px 25px
+                rgba(0,0,0,0.2);
+
+            border:
+                1px solid
+                #334155;
         }
 
+
         #toast.show {
-            visibility: visible;
+
+            visibility:
+                visible;
+
             animation:
-                fadein_toast 0.5s,
-                fadeout_toast 0.5s 2.5s;
+                fadein_toast
+                0.5s,
+
+                fadeout_toast
+                0.5s 2.5s;
         }
+
 
         @keyframes fadein_toast {
 
             from {
-                bottom: 0;
-                opacity: 0;
+                bottom:
+                    0;
+
+                opacity:
+                    0;
             }
 
             to {
-                bottom: 30px;
-                opacity: 1;
+                bottom:
+                    30px;
+
+                opacity:
+                    1;
             }
 
         }
 
+
         @keyframes fadeout_toast {
 
             from {
-                bottom: 30px;
-                opacity: 1;
+                bottom:
+                    30px;
+
+                opacity:
+                    1;
             }
 
             to {
-                bottom: 0;
-                opacity: 0;
+                bottom:
+                    0;
+
+                opacity:
+                    0;
             }
 
         }
@@ -405,21 +1043,72 @@
         @media (max-width: 640px) {
 
             .glass-panel {
-                padding: 1.5rem !important;
+                padding:
+                    1.5rem !important;
             }
 
+
             #toast {
-                min-width: 260px;
+                min-width:
+                    260px;
+            }
+
+
+            .leaderboard-float {
+
+                right:
+                    16px;
+
+                bottom:
+                    16px;
+
+                padding:
+                    11px 13px;
+            }
+
+
+            .leaderboard-float span {
+                display:
+                    none;
+            }
+
+
+            .leaderboard-modal {
+
+                max-height:
+                    88vh;
+
+                border-radius:
+                    20px;
+            }
+
+
+            .leaderboard-header {
+
+                padding:
+                    20px;
+            }
+
+
+            .leaderboard-list {
+
+                max-height:
+                    60vh;
             }
 
         }
 
     </style>
+
 </head>
 
 
 <body class="flex flex-col items-center p-4 sm:p-8">
 
+
+    <!-- =========================================================
+         MAIN APP
+    ========================================================== -->
 
     <main
         class="w-full max-w-7xl flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl relative fade-in"
@@ -449,6 +1138,7 @@
                         onerror="handleLogoError()"
                     >
 
+
                     <div
                         id="logoFallback"
                         class="hidden flex flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
@@ -475,9 +1165,11 @@
                     PAPERLESS PROJECT
                 </h1>
 
+
                 <div
                     class="h-0.5 w-16 bg-amber-500 rounded-full my-1"
                 ></div>
+
 
                 <h2
                     class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center"
@@ -552,6 +1244,7 @@
                             class="w-4 h-4"
                         ></i>
 
+
                         <span class="hidden sm:inline">
                             Kembali
                         </span>
@@ -608,12 +1301,15 @@
                         Data Terintegrasi
                     </h4>
 
+
                     <p
                         class="text-emerald-800 text-[10px] sm:text-xs leading-relaxed font-medium"
                     >
+
                         Data ditampilkan langsung dari database
                         <b>Google Sheet</b> melalui sistem API
                         <b>Periodic Service</b>.
+
                     </p>
 
                 </div>
@@ -645,6 +1341,7 @@
                             >
                                 Total Data
                             </p>
+
 
                             <p
                                 id="totalData"
@@ -688,6 +1385,7 @@
                                 Status Baik
                             </p>
 
+
                             <p
                                 id="statusBaik"
                                 class="text-3xl font-black text-emerald-600 mt-2"
@@ -730,6 +1428,7 @@
                                 Data Terakhir
                             </p>
 
+
                             <p
                                 id="lastUpdate"
                                 class="text-lg font-black text-slate-700 mt-2 truncate"
@@ -759,75 +1458,6 @@
 
 
             <!-- =================================================
-                 LEADERBOARD MEKANIK
-            ================================================== -->
-
-            <section
-                class="leaderboard-card bg-white border border-slate-100 rounded-2xl shadow-sm p-5 mb-6"
-            >
-
-                <div
-                    class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5"
-                >
-
-                    <div>
-
-                        <h3
-                            class="font-bold text-primary flex items-center gap-2"
-                        >
-
-                            <span
-                                class="bg-amber-100 text-amber-700 p-2 rounded-lg"
-                            >
-
-                                <i
-                                    data-lucide="trophy"
-                                    class="w-5 h-5"
-                                ></i>
-
-                            </span>
-
-                            Leaderboard Mekanik
-
-                        </h3>
-
-                        <p
-                            class="text-[10px] text-slate-400 font-medium mt-1 ml-1"
-                        >
-                            Peringkat berdasarkan total pekerjaan yang tercatat.
-                        </p>
-
-                    </div>
-
-
-                    <div
-                        class="text-[10px] font-bold text-slate-400 uppercase tracking-wider"
-                    >
-                        Total Pekerjaan
-                    </div>
-
-                </div>
-
-
-                <!-- LEADERBOARD LIST -->
-
-                <div
-                    id="leaderboardList"
-                    class="space-y-2"
-                >
-
-                    <div
-                        class="text-center py-6 text-slate-400 text-sm font-medium"
-                    >
-                        Memuat leaderboard...
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- =================================================
                  FILTER
             ================================================== -->
 
@@ -848,6 +1478,7 @@
                             data-lucide="search"
                             class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"
                         ></i>
+
 
                         <input
                             id="searchInput"
@@ -968,6 +1599,7 @@
                             class="w-8 h-8 animate-spin text-amber-500"
                         ></i>
 
+
                         <p
                             class="font-semibold text-sm"
                         >
@@ -1044,12 +1676,16 @@
 
                             <tr>
 
-                                <th class="px-4 py-4 text-left whitespace-nowrap">
+                                <th
+                                    class="px-4 py-4 text-left whitespace-nowrap"
+                                >
                                     TANGGAL
                                 </th>
 
 
-                                <th class="px-4 py-4 text-left whitespace-nowrap">
+                                <th
+                                    class="px-4 py-4 text-left whitespace-nowrap"
+                                >
                                     UNIT
                                 </th>
 
@@ -1063,32 +1699,44 @@
                                 </th>
 
 
-                                <th class="px-4 py-4 text-left whitespace-nowrap">
+                                <th
+                                    class="px-4 py-4 text-left whitespace-nowrap"
+                                >
                                     SERVICE
                                 </th>
 
 
-                                <th class="px-4 py-4 text-left whitespace-nowrap">
+                                <th
+                                    class="px-4 py-4 text-left whitespace-nowrap"
+                                >
                                     STATUS
                                 </th>
 
 
-                                <th class="px-4 py-4 text-left whitespace-nowrap">
+                                <th
+                                    class="px-4 py-4 text-left whitespace-nowrap"
+                                >
                                     PIC
                                 </th>
 
 
-                                <th class="px-4 py-4 text-left whitespace-nowrap">
+                                <th
+                                    class="px-4 py-4 text-left whitespace-nowrap"
+                                >
                                     ITEM "RUSAK"
                                 </th>
 
 
-                                <th class="px-4 py-4 text-left whitespace-nowrap">
+                                <th
+                                    class="px-4 py-4 text-left whitespace-nowrap"
+                                >
                                     REMARK
                                 </th>
 
 
-                                <th class="px-4 py-4 text-left whitespace-nowrap">
+                                <th
+                                    class="px-4 py-4 text-left whitespace-nowrap"
+                                >
                                     PAP
                                 </th>
 
@@ -1160,11 +1808,140 @@
                 class="text-amber-400 w-5 h-5"
             ></i>
 
+
             <span id="toastMsg"></span>
 
         </div>
 
     </main>
+
+
+    <!-- =========================================================
+         FLOATING LEADERBOARD BUTTON
+    ========================================================== -->
+
+    <button
+        id="leaderboardButton"
+        onclick="openLeaderboard()"
+        class="leaderboard-float rounded-2xl px-4 py-3 font-bold text-sm"
+        aria-label="Buka Leaderboard Mekanik"
+    >
+
+        <i
+            data-lucide="trophy"
+            class="w-5 h-5"
+        ></i>
+
+        <span>
+            Leaderboard
+        </span>
+
+    </button>
+
+
+    <!-- =========================================================
+         LEADERBOARD OVERLAY
+    ========================================================== -->
+
+    <div
+        id="leaderboardOverlay"
+        onclick="handleLeaderboardOverlayClick(event)"
+    >
+
+
+        <div
+            class="leaderboard-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="leaderboardTitle"
+        >
+
+
+            <!-- HEADER -->
+
+            <div
+                class="leaderboard-header"
+            >
+
+                <button
+                    onclick="closeLeaderboard()"
+                    class="leaderboard-close"
+                    aria-label="Tutup Leaderboard"
+                >
+
+                    <i
+                        data-lucide="x"
+                        class="w-5 h-5"
+                    ></i>
+
+                </button>
+
+
+                <div
+                    class="flex items-center gap-3 pr-10"
+                >
+
+                    <div
+                        class="bg-white/10 p-3 rounded-xl"
+                    >
+
+                        <i
+                            data-lucide="trophy"
+                            class="w-6 h-6 text-amber-300"
+                        ></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h3
+                            id="leaderboardTitle"
+                            class="font-black text-lg tracking-tight"
+                        >
+                            Leaderboard Mekanik
+                        </h3>
+
+
+                        <p
+                            class="text-blue-100 text-[10px] font-medium mt-1"
+                        >
+                            Total pekerjaan berdasarkan data service
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="mt-4 flex items-center gap-2 text-[10px] font-semibold text-blue-100"
+                >
+
+                    <i
+                        data-lucide="info"
+                        class="w-3.5 h-3.5"
+                    ></i>
+
+                    <span>
+                        Data diperbarui otomatis saat Refresh.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- LIST -->
+
+            <div
+                id="leaderboardList"
+                class="leaderboard-list"
+            ></div>
+
+        </div>
+
+    </div>
 
 
     <!-- =========================================================
@@ -1244,6 +2021,7 @@
                 .getElementById('companyLogo')
                 .classList.add('hidden');
 
+
             document
                 .getElementById('logoFallback')
                 .classList.remove('hidden');
@@ -1257,7 +2035,8 @@
 
         function goBack() {
 
-            window.location.href = MAIN_APP_URL;
+            window.location.href =
+                MAIN_APP_URL;
 
         }
 
@@ -1269,21 +2048,47 @@
         async function loadData() {
 
             const refreshButton =
-                document.getElementById('refreshButton');
+                document.getElementById(
+                    'refreshButton'
+                );
+
 
             const refreshIcon =
-                document.getElementById('refreshIcon');
+                document.getElementById(
+                    'refreshIcon'
+                );
 
 
             /*
-             * Aktifkan loading
+             * Jika sedang loading,
+             * jangan jalankan request kedua.
              */
 
-            refreshButton.disabled = true;
+            if (
+                refreshButton.dataset.loading === 'true'
+            ) {
 
-            refreshButton.classList.add('opacity-70');
+                return;
 
-            refreshIcon.classList.add('refresh-spin');
+            }
+
+
+            refreshButton.dataset.loading =
+                'true';
+
+
+            refreshButton.disabled =
+                true;
+
+
+            refreshButton.classList.add(
+                'opacity-70'
+            );
+
+
+            refreshIcon.classList.add(
+                'refresh-spin'
+            );
 
 
             showLoading();
@@ -1292,10 +2097,16 @@
             try {
 
                 const response =
-                    await fetch(API_URL, {
-                        method: 'GET',
-                        cache: 'no-store'
-                    });
+                    await fetch(
+                        API_URL,
+                        {
+                            method:
+                                'GET',
+
+                            cache:
+                                'no-store'
+                        }
+                    );
 
 
                 if (!response.ok) {
@@ -1324,18 +2135,19 @@
                  * Simpan data
                  */
 
-                allData = data;
+                allData =
+                    data;
 
-                filteredData = [...data];
+
+                filteredData =
+                    [...data];
 
 
                 /*
-                 * Update seluruh tampilan
+                 * Update tampilan
                  */
 
                 updateStatistics();
-
-                updateLeaderboard();
 
                 populateFilters();
 
@@ -1343,7 +2155,7 @@
 
 
                 /*
-                 * Sembunyikan loading
+                 * Loading selesai
                  */
 
                 document
@@ -1361,35 +2173,44 @@
                     .classList.remove('hidden');
 
 
-            } catch (error) {
+            }
+
+
+            catch (error) {
 
                 showError(error);
 
-            } finally {
+            }
+
+
+            finally {
 
                 /*
                  * =================================================
-                 * STOP REFRESH SPINNER
+                 * PAKSA REFRESH SELESAI
                  * =================================================
-                 *
-                 * Diletakkan di finally supaya:
-                 *
-                 * - API berhasil -> berhenti
-                 * - API gagal    -> berhenti
-                 * - JSON error   -> berhenti
-                 *
                  */
 
-                refreshIcon.classList.remove('refresh-spin');
+                refreshIcon.classList.remove(
+                    'refresh-spin'
+                );
 
-                refreshButton.disabled = false;
 
-                refreshButton.classList.remove('opacity-70');
+                refreshButton.disabled =
+                    false;
+
+
+                refreshButton.classList.remove(
+                    'opacity-70'
+                );
+
+
+                refreshButton.dataset.loading =
+                    'false';
 
 
                 /*
-                 * Pastikan icon Lucide tidak membuat
-                 * animasi lama kembali.
+                 * Render icon kembali
                  */
 
                 lucide.createIcons();
@@ -1412,16 +2233,22 @@
 
 
             const baik =
-                allData.filter(row => {
+                allData.filter(
+                    row => {
 
-                    const status =
-                        String(row.status || '')
+                        const status =
+                            String(
+                                row.status || ''
+                            )
                             .trim()
                             .toLowerCase();
 
-                    return status === 'baik';
 
-                }).length;
+                        return status ===
+                            'baik';
+
+                    }
+                ).length;
 
 
             document
@@ -1430,12 +2257,16 @@
                 baik;
 
 
-            if (allData.length > 0) {
+            if (
+                allData.length > 0
+            ) {
 
                 document
                     .getElementById('lastUpdate')
                     .textContent =
-                    allData[allData.length - 1].tanggal || '-';
+                    allData[
+                        allData.length - 1
+                    ].tanggal || '-';
 
             }
 
@@ -1452,346 +2283,52 @@
 
 
         /* =======================================================
-           LEADERBOARD MEKANIK
-        ======================================================= */
-
-        function updateLeaderboard() {
-
-            const container =
-                document.getElementById('leaderboardList');
-
-
-            /*
-             * Object untuk menghitung jumlah pekerjaan
-             * masing-masing mekanik.
-             */
-
-            const mechanicMap = {};
-
-
-            allData.forEach(row => {
-
-                /*
-                 * Ambil nama PIC
-                 */
-
-                const rawName =
-                    String(row.pic || '').trim();
-
-
-                /*
-                 * Abaikan PIC kosong
-                 */
-
-                if (!rawName) {
-                    return;
-                }
-
-
-                /*
-                 * Normalisasi nama.
-                 *
-                 * Contoh:
-                 *
-                 * "Budi"
-                 * "BUDI"
-                 * "  Budi  "
-                 *
-                 * akan dianggap orang yang sama.
-                 */
-
-                const normalizedName =
-                    rawName
-                        .replace(/\s+/g, ' ')
-                        .trim()
-                        .toLowerCase();
-
-
-                if (!mechanicMap[normalizedName]) {
-
-                    mechanicMap[normalizedName] = {
-
-                        name: rawName,
-
-                        count: 0
-
-                    };
-
-                }
-
-
-                mechanicMap[normalizedName].count++;
-
-            });
-
-
-            /*
-             * Ubah object menjadi array
-             * lalu urutkan berdasarkan jumlah pekerjaan.
-             */
-
-            const leaderboard =
-                Object.values(mechanicMap)
-                    .sort((a, b) => {
-
-                        /*
-                         * Jumlah pekerjaan terbesar
-                         * berada di atas.
-                         */
-
-                        if (b.count !== a.count) {
-
-                            return b.count - a.count;
-
-                        }
-
-
-                        /*
-                         * Jika jumlah sama,
-                         * urutkan berdasarkan nama.
-                         */
-
-                        return a.name.localeCompare(
-                            b.name
-                        );
-
-                    });
-
-
-            /*
-             * Jika belum ada data.
-             */
-
-            if (leaderboard.length === 0) {
-
-                container.innerHTML = `
-
-                    <div
-                        class="text-center py-8 text-slate-400"
-                    >
-
-                        <i
-                            data-lucide="users"
-                            class="w-8 h-8 mx-auto mb-2"
-                        ></i>
-
-                        <p class="text-sm font-semibold">
-                            Belum ada data mekanik.
-                        </p>
-
-                    </div>
-
-                `;
-
-                lucide.createIcons();
-
-                return;
-
-            }
-
-
-            /*
-             * Render semua mekanik.
-             */
-
-            container.innerHTML =
-                leaderboard
-                    .map((mechanic, index) => {
-
-                        const rank =
-                            index + 1;
-
-
-                        let rankClass =
-                            'rank-other';
-
-
-                        let countClass =
-                            'count-other';
-
-
-                        let rankDisplay =
-                            rank;
-
-
-                        /*
-                         * JUARA 1
-                         */
-
-                        if (rank === 1) {
-
-                            rankClass =
-                                'rank-first';
-
-                            countClass =
-                                'count-first';
-
-                            rankDisplay =
-                                '🥇';
-
-                        }
-
-
-                        /*
-                         * JUARA 2
-                         */
-
-                        else if (rank === 2) {
-
-                            rankClass =
-                                'rank-second';
-
-                            countClass =
-                                'count-second';
-
-                            rankDisplay =
-                                '🥈';
-
-                        }
-
-
-                        /*
-                         * JUARA 3
-                         */
-
-                        else if (rank === 3) {
-
-                            rankClass =
-                                'rank-third';
-
-                            countClass =
-                                'count-third';
-
-                            rankDisplay =
-                                '🥉';
-
-                        }
-
-
-                        return `
-
-                            <div
-                                class="
-                                    leaderboard-row
-                                    flex
-                                    items-center
-                                    gap-3
-                                    p-3
-                                    rounded-xl
-                                    ${
-                                        rank <= 3
-                                            ? 'bg-slate-50 border border-slate-100'
-                                            : 'border border-transparent hover:bg-slate-50'
-                                    }
-                                "
-                            >
-
-                                <!-- RANK -->
-
-                                <div
-                                    class="
-                                        leaderboard-rank
-                                        ${rankClass}
-                                    "
-                                >
-
-                                    ${rankDisplay}
-
-                                </div>
-
-
-                                <!-- NAME -->
-
-                                <div
-                                    class="flex-1 min-w-0"
-                                >
-
-                                    <p
-                                        class="
-                                            text-sm
-                                            font-bold
-                                            text-slate-700
-                                            truncate
-                                        "
-                                    >
-                                        ${escapeHtml(mechanic.name)}
-                                    </p>
-
-
-                                    <p
-                                        class="
-                                            text-[9px]
-                                            text-slate-400
-                                            font-semibold
-                                            uppercase
-                                            tracking-wider
-                                        "
-                                    >
-                                        Peringkat #${rank}
-                                    </p>
-
-                                </div>
-
-
-                                <!-- TOTAL -->
-
-                                <div
-                                    class="
-                                        leaderboard-count
-                                        ${countClass}
-                                    "
-                                >
-
-                                    ${mechanic.count}
-                                    ${mechanic.count === 1 ? 'JOB' : 'JOBS'}
-
-                                </div>
-
-                            </div>
-
-                        `;
-
-                    })
-                    .join('');
-
-
-            lucide.createIcons();
-
-        }
-
-
-        /* =======================================================
            FILTER OPTIONS
         ======================================================= */
 
         function populateFilters() {
 
             const statusFilter =
-                document.getElementById('statusFilter');
+                document.getElementById(
+                    'statusFilter'
+                );
+
 
             const serviceFilter =
-                document.getElementById('serviceFilter');
+                document.getElementById(
+                    'serviceFilter'
+                );
 
 
             const statuses =
-                [...new Set(
-                    allData
-                        .map(row =>
-                            String(row.status || '').trim()
-                        )
-                        .filter(Boolean)
-                )]
+                [
+                    ...new Set(
+                        allData
+                            .map(
+                                row =>
+                                    String(
+                                        row.status || ''
+                                    ).trim()
+                            )
+                            .filter(Boolean)
+                    )
+                ]
                 .sort();
 
 
             const services =
-                [...new Set(
-                    allData
-                        .map(row =>
-                            String(row.service || '').trim()
-                        )
-                        .filter(Boolean)
-                )]
+                [
+                    ...new Set(
+                        allData
+                            .map(
+                                row =>
+                                    String(
+                                        row.service || ''
+                                    ).trim()
+                            )
+                            .filter(Boolean)
+                    )
+                ]
                 .sort();
 
 
@@ -1803,32 +2340,54 @@
                 '<option value="">Semua Service</option>';
 
 
-            statuses.forEach(status => {
+            statuses.forEach(
+                status => {
 
-                const option =
-                    document.createElement('option');
-
-                option.value = status;
-
-                option.textContent = status;
-
-                statusFilter.appendChild(option);
-
-            });
+                    const option =
+                        document.createElement(
+                            'option'
+                        );
 
 
-            services.forEach(service => {
+                    option.value =
+                        status;
 
-                const option =
-                    document.createElement('option');
 
-                option.value = service;
+                    option.textContent =
+                        status;
 
-                option.textContent = service;
 
-                serviceFilter.appendChild(option);
+                    statusFilter.appendChild(
+                        option
+                    );
 
-            });
+                }
+            );
+
+
+            services.forEach(
+                service => {
+
+                    const option =
+                        document.createElement(
+                            'option'
+                        );
+
+
+                    option.value =
+                        service;
+
+
+                    option.textContent =
+                        service;
+
+
+                    serviceFilter.appendChild(
+                        option
+                    );
+
+                }
+            );
 
         }
 
@@ -1841,7 +2400,9 @@
 
             const search =
                 document
-                    .getElementById('searchInput')
+                    .getElementById(
+                        'searchInput'
+                    )
                     .value
                     .trim()
                     .toLowerCase();
@@ -1849,62 +2410,77 @@
 
             const status =
                 document
-                    .getElementById('statusFilter')
+                    .getElementById(
+                        'statusFilter'
+                    )
                     .value
                     .toLowerCase();
 
 
             const service =
                 document
-                    .getElementById('serviceFilter')
+                    .getElementById(
+                        'serviceFilter'
+                    )
                     .value
                     .toLowerCase();
 
 
             filteredData =
-                allData.filter(row => {
+                allData.filter(
+                    row => {
 
-                    const searchable = [
+                        const searchable =
+                            [
 
-                        row.tanggal,
-                        row.unit,
-                        row.hm,
-                        row.service,
-                        row.status,
-                        row.pic,
-                        row.itemRusak,
-                        row.remark,
-                        row.pap
+                                row.tanggal,
+                                row.unit,
+                                row.hm,
+                                row.service,
+                                row.status,
+                                row.pic,
+                                row.itemRusak,
+                                row.remark,
+                                row.pap
 
-                    ]
-                    .join(' ')
-                    .toLowerCase();
-
-
-                    const matchesSearch =
-                        !search ||
-                        searchable.includes(search);
+                            ]
+                            .join(' ')
+                            .toLowerCase();
 
 
-                    const matchesStatus =
-                        !status ||
-                        String(row.status || '')
-                            .toLowerCase() === status;
+                        const matchesSearch =
+                            !search ||
+                            searchable.includes(
+                                search
+                            );
 
 
-                    const matchesService =
-                        !service ||
-                        String(row.service || '')
-                            .toLowerCase() === service;
+                        const matchesStatus =
+                            !status ||
+                            String(
+                                row.status || ''
+                            )
+                            .toLowerCase() ===
+                            status;
 
 
-                    return (
-                        matchesSearch &&
-                        matchesStatus &&
-                        matchesService
-                    );
+                        const matchesService =
+                            !service ||
+                            String(
+                                row.service || ''
+                            )
+                            .toLowerCase() ===
+                            service;
 
-                });
+
+                        return (
+                            matchesSearch &&
+                            matchesStatus &&
+                            matchesService
+                        );
+
+                    }
+                );
 
 
             renderTable();
@@ -1919,18 +2495,27 @@
         function resetFilters() {
 
             document
-                .getElementById('searchInput')
-                .value = '';
+                .getElementById(
+                    'searchInput'
+                )
+                .value =
+                '';
 
 
             document
-                .getElementById('statusFilter')
-                .value = '';
+                .getElementById(
+                    'statusFilter'
+                )
+                .value =
+                '';
 
 
             document
-                .getElementById('serviceFilter')
-                .value = '';
+                .getElementById(
+                    'serviceFilter'
+                )
+                .value =
+                '';
 
 
             filteredData =
@@ -1949,7 +2534,9 @@
         function createUnitBadge(unit) {
 
             const value =
-                String(unit || '').trim();
+                String(
+                    unit || ''
+                ).trim();
 
 
             if (!value) {
@@ -1972,7 +2559,7 @@
 
 
             /*
-             * FD HARUS DICEK TERLEBIH DAHULU
+             * FD harus dicek lebih dahulu
              */
 
             if (
@@ -1984,6 +2571,7 @@
 
             }
 
+
             else if (
                 normalized.startsWith('W-')
             ) {
@@ -1993,6 +2581,7 @@
 
             }
 
+
             else if (
                 normalized.startsWith('D-')
             ) {
@@ -2001,6 +2590,7 @@
                     'unit-d';
 
             }
+
 
             else if (
                 normalized.startsWith('E-')
@@ -2013,9 +2603,7 @@
 
 
             return `
-                <span
-                    class="unit-badge ${className}"
-                >
+                <span class="unit-badge ${className}">
                     ${escapeHtml(value)}
                 </span>
             `;
@@ -2030,15 +2618,15 @@
         function createServiceBadge(service) {
 
             const value =
-                String(service || '').trim();
+                String(
+                    service || ''
+                ).trim();
 
 
             if (!value) {
 
                 return `
-                    <span
-                        class="service-badge service-default"
-                    >
+                    <span class="service-badge service-default">
                         -
                     </span>
                 `;
@@ -2055,7 +2643,9 @@
 
 
             if (
-                normalized.includes('periodic')
+                normalized.includes(
+                    'periodic'
+                )
             ) {
 
                 className =
@@ -2065,7 +2655,9 @@
 
 
             else if (
-                normalized.includes('general')
+                normalized.includes(
+                    'general'
+                )
             ) {
 
                 className =
@@ -2075,9 +2667,7 @@
 
 
             return `
-                <span
-                    class="service-badge ${className}"
-                >
+                <span class="service-badge ${className}">
                     ${escapeHtml(value)}
                 </span>
             `;
@@ -2092,20 +2682,31 @@
         function renderTable() {
 
             const tbody =
-                document.getElementById('tableBody');
+                document.getElementById(
+                    'tableBody'
+                );
+
 
             const tableContainer =
-                document.getElementById('tableContainer');
+                document.getElementById(
+                    'tableContainer'
+                );
+
 
             const emptyState =
-                document.getElementById('emptyState');
+                document.getElementById(
+                    'emptyState'
+                );
 
 
-            tbody.innerHTML = '';
+            tbody.innerHTML =
+                '';
 
 
             document
-                .getElementById('resultInfo')
+                .getElementById(
+                    'resultInfo'
+                )
                 .textContent =
                 `${filteredData.length} dari ${allData.length} data ditampilkan`;
 
@@ -2118,9 +2719,11 @@
                     'hidden'
                 );
 
+
                 emptyState.classList.remove(
                     'hidden'
                 );
+
 
                 lucide.createIcons();
 
@@ -2133,153 +2736,130 @@
                 'hidden'
             );
 
+
             emptyState.classList.add(
                 'hidden'
             );
 
 
-            filteredData.forEach(row => {
+            filteredData.forEach(
+                row => {
 
-                const tr =
-                    document.createElement('tr');
-
-
-                tr.innerHTML = `
-
-
-                    <!-- TANGGAL -->
-
-                    <td
-                        class="
-                            px-4
-                            py-3
-                            whitespace-nowrap
-                            text-slate-600
-                            font-medium
-                        "
-                    >
-                        ${escapeHtml(row.tanggal || '-')}
-                    </td>
+                    const tr =
+                        document.createElement(
+                            'tr'
+                        );
 
 
-                    <!-- UNIT -->
+                    tr.innerHTML = `
 
-                    <td
-                        class="
-                            px-4
-                            py-3
-                            whitespace-nowrap
-                        "
-                    >
-                        ${createUnitBadge(row.unit)}
-                    </td>
+                        <!-- TANGGAL -->
 
-
-                    <!-- HM -->
-
-                    <td
-                        class="
-                            px-2
-                            py-3
-                            text-center
-                            whitespace-nowrap
-                            w-[80px]
-                            min-w-[80px]
-                            max-w-[80px]
-                            text-slate-600
-                            font-semibold
-                        "
-                    >
-                        ${escapeHtml(row.hm || '-')}
-                    </td>
+                        <td
+                            class="px-4 py-3 whitespace-nowrap text-slate-600 font-medium"
+                        >
+                            ${escapeHtml(
+                                row.tanggal || '-'
+                            )}
+                        </td>
 
 
-                    <!-- SERVICE -->
+                        <!-- UNIT -->
 
-                    <td
-                        class="
-                            px-4
-                            py-3
-                            whitespace-nowrap
-                        "
-                    >
-                        ${createServiceBadge(row.service)}
-                    </td>
+                        <td
+                            class="px-4 py-3 whitespace-nowrap"
+                        >
+                            ${createUnitBadge(
+                                row.unit
+                            )}
+                        </td>
 
 
-                    <!-- STATUS -->
+                        <!-- HM -->
 
-                    <td
-                        class="
-                            px-4
-                            py-3
-                            whitespace-nowrap
-                        "
-                    >
-                        ${createStatusBadge(row.status)}
-                    </td>
+                        <td
+                            class="px-2 py-3 text-center whitespace-nowrap w-[80px] min-w-[80px] max-w-[80px] text-slate-600 font-semibold"
+                        >
+                            ${escapeHtml(
+                                row.hm || '-'
+                            )}
+                        </td>
 
 
-                    <!-- PIC -->
+                        <!-- SERVICE -->
 
-                    <td
-                        class="
-                            px-4
-                            py-3
-                            whitespace-nowrap
-                            text-slate-600
-                        "
-                    >
-                        ${escapeHtml(row.pic || '-')}
-                    </td>
+                        <td
+                            class="px-4 py-3 whitespace-nowrap"
+                        >
+                            ${createServiceBadge(
+                                row.service
+                            )}
+                        </td>
 
 
-                    <!-- ITEM RUSAK -->
+                        <!-- STATUS -->
 
-                    <td
-                        class="
-                            px-4
-                            py-3
-                            text-slate-600
-                            min-w-[150px]
-                        "
-                    >
-                        ${escapeHtml(row.itemRusak || '-')}
-                    </td>
+                        <td
+                            class="px-4 py-3 whitespace-nowrap"
+                        >
+                            ${createStatusBadge(
+                                row.status
+                            )}
+                        </td>
 
 
-                    <!-- REMARK -->
+                        <!-- PIC -->
 
-                    <td
-                        class="
-                            px-4
-                            py-3
-                            text-slate-600
-                            min-w-[180px]
-                        "
-                    >
-                        ${escapeHtml(row.remark || '-')}
-                    </td>
+                        <td
+                            class="px-4 py-3 whitespace-nowrap text-slate-600"
+                        >
+                            ${escapeHtml(
+                                row.pic || '-'
+                            )}
+                        </td>
 
 
-                    <!-- PAP -->
+                        <!-- ITEM RUSAK -->
 
-                    <td
-                        class="
-                            px-4
-                            py-3
-                            text-slate-600
-                        "
-                    >
-                        ${escapeHtml(row.pap || '-')}
-                    </td>
-
-                `;
+                        <td
+                            class="px-4 py-3 text-slate-600 min-w-[150px]"
+                        >
+                            ${escapeHtml(
+                                row.itemRusak || '-'
+                            )}
+                        </td>
 
 
-                tbody.appendChild(tr);
+                        <!-- REMARK -->
 
-            });
+                        <td
+                            class="px-4 py-3 text-slate-600 min-w-[180px]"
+                        >
+                            ${escapeHtml(
+                                row.remark || '-'
+                            )}
+                        </td>
+
+
+                        <!-- PAP -->
+
+                        <td
+                            class="px-4 py-3 text-slate-600"
+                        >
+                            ${escapeHtml(
+                                row.pap || '-'
+                            )}
+                        </td>
+
+                    `;
+
+
+                    tbody.appendChild(
+                        tr
+                    );
+
+                }
+            );
 
 
             lucide.createIcons();
@@ -2294,15 +2874,15 @@
         function createStatusBadge(status) {
 
             const value =
-                String(status || '').trim();
+                String(
+                    status || ''
+                ).trim();
 
 
             if (!value) {
 
                 return `
-                    <span
-                        class="status-badge status-default"
-                    >
+                    <span class="status-badge status-default">
                         -
                     </span>
                 `;
@@ -2314,18 +2894,13 @@
                 value.toLowerCase();
 
 
-            /*
-             * BAIK
-             */
-
             if (
-                normalized === 'baik'
+                normalized ===
+                'baik'
             ) {
 
                 return `
-                    <span
-                        class="status-badge status-baik"
-                    >
+                    <span class="status-badge status-baik">
                         <span>●</span>
                         ${escapeHtml(value)}
                     </span>
@@ -2334,20 +2909,20 @@
             }
 
 
-            /*
-             * RUSAK
-             */
-
             if (
-                normalized.includes('rusak') ||
-                normalized.includes('bad') ||
-                normalized.includes('damage')
+                normalized.includes(
+                    'rusak'
+                ) ||
+                normalized.includes(
+                    'bad'
+                ) ||
+                normalized.includes(
+                    'damage'
+                )
             ) {
 
                 return `
-                    <span
-                        class="status-badge status-rusak"
-                    >
+                    <span class="status-badge status-rusak">
                         <span>●</span>
                         ${escapeHtml(value)}
                     </span>
@@ -2355,15 +2930,9 @@
 
             }
 
-
-            /*
-             * STATUS LAIN
-             */
 
             return `
-                <span
-                    class="status-badge status-default"
-                >
+                <span class="status-badge status-default">
                     <span>●</span>
                     ${escapeHtml(value)}
                 </span>
@@ -2373,29 +2942,499 @@
 
 
         /* =======================================================
+           LEADERBOARD
+        ======================================================= */
+
+        function buildLeaderboard() {
+
+            /*
+             * Map digunakan agar:
+             *
+             * BUDI
+             * Budi
+             * budi
+             * Budi
+             *
+             * tetap dihitung sebagai orang yang sama.
+             */
+
+            const mechanicMap =
+                new Map();
+
+
+            allData.forEach(
+                row => {
+
+                    const rawName =
+                        String(
+                            row.pic || ''
+                        ).trim();
+
+
+                    /*
+                     * Abaikan PIC kosong
+                     */
+
+                    if (!rawName) {
+
+                        return;
+
+                    }
+
+
+                    /*
+                     * Normalisasi nama:
+                     *
+                     * - lowercase
+                     * - spasi berlebih dihapus
+                     */
+
+                    const normalizedName =
+                        rawName
+                            .toLowerCase()
+                            .replace(
+                                /\s+/g,
+                                ' '
+                            )
+                            .trim();
+
+
+                    if (!normalizedName) {
+
+                        return;
+
+                    }
+
+
+                    if (
+                        !mechanicMap.has(
+                            normalizedName
+                        )
+                    ) {
+
+                        mechanicMap.set(
+                            normalizedName,
+                            {
+                                name:
+                                    rawName,
+
+                                jobs:
+                                    1
+                            }
+                        );
+
+                    }
+
+                    else {
+
+                        mechanicMap.get(
+                            normalizedName
+                        ).jobs++;
+
+                    }
+
+                }
+            );
+
+
+            /*
+             * Ubah Map menjadi Array
+             */
+
+            const leaderboard =
+                Array.from(
+                    mechanicMap.values()
+                );
+
+
+            /*
+             * Urutkan:
+             *
+             * 1. Total pekerjaan terbanyak
+             * 2. Nama alfabetis
+             */
+
+            leaderboard.sort(
+                (a, b) => {
+
+                    if (
+                        b.jobs !==
+                        a.jobs
+                    ) {
+
+                        return (
+                            b.jobs -
+                            a.jobs
+                        );
+
+                    }
+
+
+                    return a.name.localeCompare(
+                        b.name,
+                        'id',
+                        {
+                            sensitivity:
+                                'base'
+                        }
+                    );
+
+                }
+            );
+
+
+            return leaderboard;
+
+        }
+
+
+        /* =======================================================
+           OPEN LEADERBOARD
+        ======================================================= */
+
+        function openLeaderboard() {
+
+            const overlay =
+                document.getElementById(
+                    'leaderboardOverlay'
+                );
+
+
+            const list =
+                document.getElementById(
+                    'leaderboardList'
+                );
+
+
+            const leaderboard =
+                buildLeaderboard();
+
+
+            /*
+             * Kosong
+             */
+
+            if (
+                leaderboard.length === 0
+            ) {
+
+                list.innerHTML = `
+
+                    <div class="leaderboard-empty">
+
+                        <div
+                            class="bg-slate-100 w-14 h-14 mx-auto rounded-2xl flex items-center justify-center mb-3"
+                        >
+
+                            <i
+                                data-lucide="users-round"
+                                class="w-6 h-6"
+                            ></i>
+
+                        </div>
+
+
+                        <p
+                            class="font-bold text-slate-600"
+                        >
+                            Belum ada data mekanik.
+                        </p>
+
+
+                        <p
+                            class="text-[11px] mt-1"
+                        >
+                            Leaderboard akan muncul setelah
+                            data pekerjaan tersedia.
+                        </p>
+
+                    </div>
+
+                `;
+
+            }
+
+
+            else {
+
+                list.innerHTML =
+                    leaderboard
+                        .map(
+                            (mechanic, index) => {
+
+                                const rank =
+                                    index + 1;
+
+
+                                let rowClass =
+                                    'leaderboard-row';
+
+
+                                let rankClass =
+                                    'rank-badge';
+
+
+                                let rankContent =
+                                    rank;
+
+
+                                /*
+                                 * JUARA 1
+                                 */
+
+                                if (
+                                    rank === 1
+                                ) {
+
+                                    rowClass +=
+                                        ' leaderboard-top-1';
+
+                                    rankClass +=
+                                        ' rank-first';
+
+                                    rankContent =
+                                        '🥇';
+
+                                }
+
+
+                                /*
+                                 * JUARA 2
+                                 */
+
+                                else if (
+                                    rank === 2
+                                ) {
+
+                                    rowClass +=
+                                        ' leaderboard-top-2';
+
+                                    rankClass +=
+                                        ' rank-second';
+
+                                    rankContent =
+                                        '🥈';
+
+                                }
+
+
+                                /*
+                                 * JUARA 3
+                                 */
+
+                                else if (
+                                    rank === 3
+                                ) {
+
+                                    rowClass +=
+                                        ' leaderboard-top-3';
+
+                                    rankClass +=
+                                        ' rank-third';
+
+                                    rankContent =
+                                        '🥉';
+
+                                }
+
+
+                                return `
+
+                                    <div
+                                        class="${rowClass}"
+                                    >
+
+                                        <div
+                                            class="${rankClass}"
+                                        >
+                                            ${rankContent}
+                                        </div>
+
+
+                                        <div
+                                            class="mechanic-name"
+                                        >
+                                            ${escapeHtml(
+                                                mechanic.name
+                                            )}
+                                        </div>
+
+
+                                        <div
+                                            class="mechanic-job ${
+                                                rank <= 3
+                                                    ? 'top-job'
+                                                    : ''
+                                            }"
+                                        >
+
+                                            ${mechanic.jobs}
+
+                                            ${
+                                                mechanic.jobs === 1
+                                                    ? ' pekerjaan'
+                                                    : ' pekerjaan'
+                                            }
+
+                                        </div>
+
+                                    </div>
+
+                                `;
+
+                            }
+                        )
+                        .join('');
+
+            }
+
+
+            /*
+             * Tampilkan modal
+             */
+
+            overlay.classList.add(
+                'active'
+            );
+
+
+            /*
+             * Lock scroll halaman
+             */
+
+            document.body.style.overflow =
+                'hidden';
+
+
+            lucide.createIcons();
+
+        }
+
+
+        /* =======================================================
+           CLOSE LEADERBOARD
+        ======================================================= */
+
+        function closeLeaderboard() {
+
+            const overlay =
+                document.getElementById(
+                    'leaderboardOverlay'
+                );
+
+
+            overlay.classList.remove(
+                'active'
+            );
+
+
+            document.body.style.overflow =
+                '';
+
+        }
+
+
+        /* =======================================================
+           CLICK OUTSIDE MODAL
+        ======================================================= */
+
+        function handleLeaderboardOverlayClick(
+            event
+        ) {
+
+            /*
+             * Jika yang diklik adalah
+             * background overlay,
+             * tutup modal.
+             */
+
+            if (
+                event.target.id ===
+                'leaderboardOverlay'
+            ) {
+
+                closeLeaderboard();
+
+            }
+
+        }
+
+
+        /* =======================================================
+           ESCAPE KEY
+        ======================================================= */
+
+        document.addEventListener(
+            'keydown',
+            event => {
+
+                if (
+                    event.key ===
+                    'Escape'
+                ) {
+
+                    const overlay =
+                        document.getElementById(
+                            'leaderboardOverlay'
+                        );
+
+
+                    if (
+                        overlay.classList.contains(
+                            'active'
+                        )
+                    ) {
+
+                        closeLeaderboard();
+
+                    }
+
+                }
+
+            }
+        );
+
+
+        /* =======================================================
            LOADING
         ======================================================= */
 
         function showLoading() {
 
             document
-                .getElementById('loading')
-                .classList.remove('hidden');
+                .getElementById(
+                    'loading'
+                )
+                .classList.remove(
+                    'hidden'
+                );
 
 
             document
-                .getElementById('error')
-                .classList.add('hidden');
+                .getElementById(
+                    'error'
+                )
+                .classList.add(
+                    'hidden'
+                );
 
 
             document
-                .getElementById('tableContainer')
-                .classList.add('hidden');
+                .getElementById(
+                    'tableContainer'
+                )
+                .classList.add(
+                    'hidden'
+                );
 
 
             document
-                .getElementById('emptyState')
-                .classList.add('hidden');
+                .getElementById(
+                    'emptyState'
+                )
+                .classList.add(
+                    'hidden'
+                );
 
         }
 
@@ -2407,34 +3446,54 @@
         function showError(error) {
 
             document
-                .getElementById('loading')
-                .classList.add('hidden');
+                .getElementById(
+                    'loading'
+                )
+                .classList.add(
+                    'hidden'
+                );
 
 
             document
-                .getElementById('tableContainer')
-                .classList.add('hidden');
+                .getElementById(
+                    'tableContainer'
+                )
+                .classList.add(
+                    'hidden'
+                );
 
 
             document
-                .getElementById('emptyState')
-                .classList.add('hidden');
+                .getElementById(
+                    'emptyState'
+                )
+                .classList.add(
+                    'hidden'
+                );
 
 
             document
-                .getElementById('error')
-                .classList.remove('hidden');
+                .getElementById(
+                    'error'
+                )
+                .classList.remove(
+                    'hidden'
+                );
 
 
             document
-                .getElementById('errorMessage')
+                .getElementById(
+                    'errorMessage'
+                )
                 .textContent =
                 error?.message ||
                 'Terjadi kesalahan saat mengambil data.';
 
 
             document
-                .getElementById('resultInfo')
+                .getElementById(
+                    'resultInfo'
+                )
                 .textContent =
                 'Gagal memuat data.';
 
@@ -2450,12 +3509,29 @@
 
         function escapeHtml(value) {
 
-            return String(value ?? '')
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#039;');
+            return String(
+                value ?? ''
+            )
+            .replace(
+                /&/g,
+                '&amp;'
+            )
+            .replace(
+                /</g,
+                '&lt;'
+            )
+            .replace(
+                />/g,
+                '&gt;'
+            )
+            .replace(
+                /"/g,
+                '&quot;'
+            )
+            .replace(
+                /'/g,
+                '&#039;'
+            );
 
         }
 
@@ -2464,13 +3540,15 @@
            START
         ======================================================= */
 
-        window.onload = () => {
+        window.onload =
+            () => {
 
-            lucide.createIcons();
+                lucide.createIcons();
 
-            loadData();
+                loadData();
 
-        };
+            };
+
 
     </script>
 
