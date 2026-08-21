@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>PERIODIC SERVICE - PT TSI</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
@@ -10,223 +10,7 @@
 <script src="https://unpkg.com/lucide@latest"></script>
 
 <style>
-/* =====================================================
-   MOBILE RESPONSIVE
-   Desktop tetap besar.
-   Mobile dibuat lebih compact tetapi tetap mudah dibaca.
-===================================================== */
-
-@media (max-width: 640px) {
-
-    body {
-        padding: 10px !important;
-    }
-
-    main {
-        padding: 18px !important;
-        border-radius: 20px !important;
-    }
-
-    /* HEADER */
-
-    #mainHeader {
-        margin-bottom: 20px !important;
-        padding-bottom: 18px !important;
-    }
-
-    .logo-wrapper {
-        margin-bottom: 12px !important;
-    }
-
-    .logo-wrapper > div {
-        width: 70px !important;
-        height: 70px !important;
-    }
-
-    .color-primary {
-        padding: 12px 18px !important;
-        border-radius: 14px !important;
-        width: 100%;
-    }
-
-    .color-primary h1 {
-        font-size: 15px !important;
-        letter-spacing: 0.06em !important;
-    }
-
-    .color-primary h2 {
-        font-size: 10px !important;
-        letter-spacing: 0.08em !important;
-    }
-
-    /* PAGE TITLE */
-
-    section h2 {
-        font-size: 20px !important;
-    }
-
-    section h2 span {
-        padding: 9px !important;
-    }
-
-    section h2 span svg {
-        width: 20px !important;
-        height: 20px !important;
-    }
-
-    section > div > div > p {
-        font-size: 11px !important;
-        line-height: 1.5;
-    }
-
-    /* BUTTON */
-
-    #refreshButton,
-    button[onclick="goBack()"] {
-        padding: 10px 12px !important;
-        font-size: 11px !important;
-    }
-
-    /* INFORMATION PANEL */
-
-    .mb-6.p-5 {
-        padding: 14px !important;
-    }
-
-    /* STATISTICS */
-
-    .stat-card {
-        padding: 14px !important;
-    }
-
-    .stat-card p.text-3xl {
-        font-size: 24px !important;
-    }
-
-    .stat-card p.text-lg {
-        font-size: 14px !important;
-    }
-
-    .stat-card svg {
-        width: 20px !important;
-        height: 20px !important;
-    }
-
-    .stat-card div.bg-blue-50,
-    .stat-card div.bg-emerald-50,
-    .stat-card div.bg-amber-50 {
-        padding: 9px !important;
-    }
-
-    /* FILTER */
-
-    .filter-control {
-        font-size: 12px !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-    }
-
-    /* TABLE */
-
-    #tableContainer {
-        overflow-x: auto !important;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .data-table {
-        min-width: 950px;
-    }
-
-    .data-table th,
-    .data-table td {
-        font-size: 11px !important;
-    }
-
-    .data-table th {
-        padding-top: 11px !important;
-        padding-bottom: 11px !important;
-    }
-
-    .data-table td {
-        padding-top: 9px !important;
-        padding-bottom: 9px !important;
-    }
-
-    /* RESULT INFO */
-
-    #resultInfo {
-        font-size: 9px !important;
-    }
-
-    /* LOADING */
-
-    #loading {
-        padding: 40px 15px !important;
-    }
-
-    /* TOAST */
-
-    #toast {
-        min-width: unset !important;
-        width: calc(100% - 30px);
-        max-width: 360px;
-        font-size: 11px;
-        padding: 12px !important;
-    }
-
-    /* FOOTER */
-
-    footer {
-        margin-top: 20px !important;
-        padding-bottom: 20px !important;
-        font-size: 10px;
-    }
-
-}
-
-
-/* =====================================================
-   EXTRA SMALL PHONE
-   Contoh: 320px - 375px
-===================================================== */
-
-@media (max-width: 375px) {
-
-    body {
-        padding: 6px !important;
-    }
-
-    main {
-        padding: 14px !important;
-        border-radius: 16px !important;
-    }
-
-    .color-primary h1 {
-        font-size: 13px !important;
-    }
-
-    .color-primary h2 {
-        font-size: 9px !important;
-    }
-
-    section h2 {
-        font-size: 18px !important;
-    }
-
-    .stat-card {
-        padding: 12px !important;
-    }
-
-    .stat-card p.text-3xl {
-        font-size: 22px !important;
-    }
-
-    .data-table {
-        min-width: 900px;
-    }
-
-}
-    body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#f8fafc,#f1f5f9);min-height:100vh;color:#1e293b}
+body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#f8fafc,#f1f5f9);min-height:100vh;color:#1e293b}
 .color-primary{background:#1E3A8A}.text-primary{color:#1E3A8A}
 .fade-in{animation:fadeIn .5s cubic-bezier(.4,0,.2,1)}
 @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
@@ -236,7 +20,8 @@
 .logo-shadow{filter:drop-shadow(0 10px 8px rgba(0,0,0,.04)) drop-shadow(0 4px 3px rgba(0,0,0,.1))}
 .stat-card{transition:all .25s ease;background:#fff}
 .stat-card:hover{transform:translateY(-3px);box-shadow:0 10px 20px -5px rgba(0,0,0,.08)}
-.data-table tbody tr{transition:background-color .2s ease}.data-table tbody tr:hover{background:#fffbeb}
+.data-table tbody tr{transition:background-color .2s ease}
+.data-table tbody tr:hover{background:#fffbeb}
 
 .status-badge,.service-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:999px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
 .status-baik{background:#dcfce7;color:#166534;border:1px solid #bbf7d0}
@@ -253,25 +38,55 @@
 .unit-e{background:#dbeafe;color:#1d4ed8;border-color:#bfdbfe}
 .unit-default{background:#f1f5f9;color:#475569;border-color:#e2e8f0}
 
-.filter-control{transition:all .2s ease}.filter-control:focus{border-color:#D97706;box-shadow:0 0 0 3px rgba(217,119,6,.1);outline:none}
+.filter-control{transition:all .2s ease}
+.filter-control:focus{border-color:#D97706;box-shadow:0 0 0 3px rgba(217,119,6,.1);outline:none}
 .refresh-spin{animation:spin .8s linear infinite}
 @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 
-#toast{visibility:hidden;min-width:300px;background:#1e293b;color:#fff;text-align:center;border-radius:12px;padding:16px;position:fixed;z-index:100;left:50%;bottom:30px;transform:translateX(-50%);box-shadow:0 10px 25px rgba(0,0,0,.2);border:1px solid #334155}
+.pap-button{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:7px 11px;border-radius:10px;
+    background:#eff6ff;color:#1d4ed8;
+    border:1px solid #bfdbfe;
+    font-size:10px;font-weight:800;
+    text-decoration:none;white-space:nowrap;
+    transition:all .2s ease
+}
+.pap-button:hover{
+    background:#dbeafe;
+    transform:translateY(-1px);
+    box-shadow:0 4px 10px rgba(37,99,235,.12)
+}
+.pap-button i{width:14px;height:14px}
+.pap-text{font-size:11px;color:#64748b;font-weight:600}
+
+#toast{
+    visibility:hidden;min-width:300px;background:#1e293b;color:#fff;
+    text-align:center;border-radius:12px;padding:16px;
+    position:fixed;z-index:100;left:50%;bottom:30px;
+    transform:translateX(-50%);
+    box-shadow:0 10px 25px rgba(0,0,0,.2);
+    border:1px solid #334155
+}
 #toast.show{visibility:visible;animation:fadeinToast .5s,fadeoutToast .5s 2.5s}
 @keyframes fadeinToast{from{bottom:0;opacity:0}to{bottom:30px;opacity:1}}
 @keyframes fadeoutToast{from{bottom:30px;opacity:1}to{bottom:0;opacity:0}}
 
-/* LEADERBOARD FLOATING BUTTON */
+/* LEADERBOARD */
 #leaderboardButton{
     position:fixed;right:24px;bottom:24px;z-index:90;
     width:54px;height:54px;border-radius:18px;
-    background:#1e3a8a;color:#fff;border:1px solid rgba(255,255,255,.3);
+    background:#1e3a8a;color:#fff;
+    border:1px solid rgba(255,255,255,.3);
     box-shadow:0 10px 25px rgba(15,23,42,.22);
     display:flex;align-items:center;justify-content:center;
-    cursor:pointer;transition:transform .25s ease,box-shadow .25s ease,opacity .25s ease;
+    cursor:pointer;
+    transition:transform .25s ease,box-shadow .25s ease,opacity .25s ease
 }
-#leaderboardButton:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 14px 30px rgba(15,23,42,.28)}
+#leaderboardButton:hover{
+    transform:translateY(-3px) scale(1.04);
+    box-shadow:0 14px 30px rgba(15,23,42,.28)
+}
 #leaderboardButton.leader-pulse{animation:leaderPulse 1.3s ease-in-out}
 @keyframes leaderPulse{
     0%{transform:scale(1);opacity:1}
@@ -282,36 +97,138 @@
 .leader-tooltip{
     position:absolute;right:0;bottom:64px;white-space:nowrap;
     background:#0f172a;color:#fff;font-size:10px;font-weight:700;
-    padding:7px 10px;border-radius:8px;opacity:0;pointer-events:none;
-    transform:translateY(5px);transition:.2s;
+    padding:7px 10px;border-radius:8px;opacity:0;
+    pointer-events:none;transform:translateY(5px);transition:.2s
 }
-#leaderboardButton:hover .leader-tooltip{opacity:1;transform:translateY(0)}
+#leaderboardButton:hover .leader-tooltip{
+    opacity:1;transform:translateY(0)
+}
 
 #leaderboardOverlay{
-    position:fixed;inset:0;z-index:95;background:rgba(15,23,42,.28);
-    backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:20px;
+    position:fixed;inset:0;z-index:95;
+    background:rgba(15,23,42,.28);
+    backdrop-filter:blur(3px);
+    display:none;align-items:center;justify-content:center;
+    padding:20px
 }
 #leaderboardOverlay.show{display:flex}
 #leaderboardModal{
-    width:min(430px,100%);max-height:80vh;overflow:hidden;
-    background:#fff;border:1px solid #e2e8f0;border-radius:22px;
+    width:min(430px,100%);max-height:80vh;
+    overflow:hidden;background:#fff;
+    border:1px solid #e2e8f0;border-radius:22px;
     box-shadow:0 25px 60px rgba(15,23,42,.25);
-    animation:leaderModalIn .25s ease;
+    animation:leaderModalIn .25s ease
 }
-@keyframes leaderModalIn{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
-.leader-row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;margin-bottom:7px;background:#f8fafc;border:1px solid #f1f5f9}
+@keyframes leaderModalIn{
+    from{opacity:0;transform:translateY(12px) scale(.97)}
+    to{opacity:1;transform:translateY(0) scale(1)}
+}
+.leader-row{
+    display:flex;align-items:center;gap:12px;
+    padding:12px 14px;border-radius:14px;
+    margin-bottom:7px;background:#f8fafc;
+    border:1px solid #f1f5f9
+}
 .leader-row.top-1{background:#fffbeb;border-color:#fde68a}
 .leader-row.top-2{background:#f8fafc;border-color:#cbd5e1}
 .leader-row.top-3{background:#fff7ed;border-color:#fed7aa}
-.leader-rank{width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;background:#e2e8f0;color:#475569;flex-shrink:0}
-.top-1 .leader-rank{background:#fbbf24;color:#78350f}.top-2 .leader-rank{background:#cbd5e1;color:#334155}.top-3 .leader-rank{background:#fdba74;color:#7c2d12}
-.leader-name{font-size:12px;font-weight:800;color:#334155;flex:1;min-width:0}
-.leader-count{font-size:11px;font-weight:900;color:#1e3a8a;background:#dbeafe;padding:5px 9px;border-radius:999px;white-space:nowrap}
+.leader-rank{
+    width:30px;height:30px;border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:12px;font-weight:900;
+    background:#e2e8f0;color:#475569;flex-shrink:0
+}
+.top-1 .leader-rank{background:#fbbf24;color:#78350f}
+.top-2 .leader-rank{background:#cbd5e1;color:#334155}
+.top-3 .leader-rank{background:#fdba74;color:#7c2d12}
+.leader-name{
+    font-size:12px;font-weight:800;color:#334155;
+    flex:1;min-width:0
+}
+.leader-count{
+    font-size:11px;font-weight:900;color:#1e3a8a;
+    background:#dbeafe;padding:5px 9px;
+    border-radius:999px;white-space:nowrap
+}
 
+/* MOBILE */
 @media(max-width:640px){
+    body{padding:10px!important}
+    main{padding:18px!important;border-radius:20px!important}
+    #mainHeader{margin-bottom:20px!important;padding-bottom:18px!important}
+    .logo-wrapper{margin-bottom:12px!important}
+    .logo-wrapper>div{width:70px!important;height:70px!important}
+    .color-primary{
+        padding:12px 18px!important;
+        border-radius:14px!important;
+        width:100%
+    }
+    .color-primary h1{font-size:15px!important;letter-spacing:.06em!important}
+    .color-primary h2{font-size:10px!important;letter-spacing:.08em!important}
+    section h2{font-size:20px!important}
+    section h2 span{padding:9px!important}
+    section h2 span svg{width:20px!important;height:20px!important}
+    section>div>div>p{font-size:11px!important;line-height:1.5}
+    #refreshButton,button[onclick="goBack()"]{
+        padding:10px 12px!important;font-size:11px!important
+    }
+    .mb-6.p-5{padding:14px!important}
+    .stat-card{padding:14px!important}
+    .stat-card p.text-3xl{font-size:24px!important}
+    .stat-card p.text-lg{font-size:14px!important}
+    .stat-card svg{width:20px!important;height:20px!important}
+    .stat-card div.bg-blue-50,
+    .stat-card div.bg-emerald-50,
+    .stat-card div.bg-amber-50{padding:9px!important}
+    .filter-control{
+        font-size:12px!important;
+        padding-top:10px!important;
+        padding-bottom:10px!important
+    }
+    #tableContainer{
+        overflow-x:auto!important;
+        -webkit-overflow-scrolling:touch
+    }
+    .data-table{min-width:950px}
+    .data-table th,.data-table td{font-size:11px!important}
+    .data-table th{
+        padding-top:11px!important;
+        padding-bottom:11px!important
+    }
+    .data-table td{
+        padding-top:9px!important;
+        padding-bottom:9px!important
+    }
+    #resultInfo{font-size:9px!important}
+    #loading{padding:40px 15px!important}
+    #toast{
+        min-width:unset!important;
+        width:calc(100% - 30px);
+        max-width:360px;
+        font-size:11px;
+        padding:12px!important
+    }
+    footer{
+        margin-top:20px!important;
+        padding-bottom:20px!important;
+        font-size:10px
+    }
     .glass-panel{padding:1.5rem!important}
-    #toast{min-width:260px}
-    #leaderboardButton{right:16px;bottom:16px;width:50px;height:50px;border-radius:16px}
+    #leaderboardButton{
+        right:16px;bottom:16px;
+        width:50px;height:50px;border-radius:16px
+    }
+}
+
+@media(max-width:375px){
+    body{padding:6px!important}
+    main{padding:14px!important;border-radius:16px!important}
+    .color-primary h1{font-size:13px!important}
+    .color-primary h2{font-size:9px!important}
+    section h2{font-size:18px!important}
+    .stat-card{padding:12px!important}
+    .stat-card p.text-3xl{font-size:22px!important}
+    .data-table{min-width:900px}
 }
 </style>
 </head>
@@ -344,7 +261,9 @@
 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
     <div>
         <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight flex items-center gap-3">
-            <span class="bg-blue-900 text-white p-3 rounded-xl shadow-md"><i data-lucide="calendar-clock" class="w-6 h-6"></i></span>
+            <span class="bg-blue-900 text-white p-3 rounded-xl shadow-md">
+                <i data-lucide="calendar-clock" class="w-6 h-6"></i>
+            </span>
             Periodic Service
         </h2>
         <p class="text-slate-500 font-medium text-sm mt-2 ml-1">Monitoring data periodic service unit secara terintegrasi.</p>
@@ -352,20 +271,26 @@
 
     <div class="flex gap-2">
         <button onclick="goBack()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-4 rounded-xl transition flex items-center gap-2 border border-slate-200">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i><span class="hidden sm:inline">Kembali</span>
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            <span class="hidden sm:inline">Kembali</span>
         </button>
 
         <button id="refreshButton" onclick="loadData()" class="bg-blue-800 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl transition flex items-center gap-2 shadow-md">
-            <i id="refreshIcon" data-lucide="refresh-cw" class="w-4 h-4"></i>Refresh
+            <i id="refreshIcon" data-lucide="refresh-cw" class="w-4 h-4"></i>
+            Refresh
         </button>
     </div>
 </div>
 
 <div class="mb-6 p-5 rounded-2xl bg-emerald-50 border border-emerald-100 shadow-sm flex flex-col sm:flex-row items-start gap-4">
-    <div class="bg-emerald-600 p-2.5 rounded-xl text-white shrink-0"><i data-lucide="database" class="w-6 h-6"></i></div>
+    <div class="bg-emerald-600 p-2.5 rounded-xl text-white shrink-0">
+        <i data-lucide="database" class="w-6 h-6"></i>
+    </div>
     <div class="space-y-1">
         <h4 class="font-bold text-emerald-900 text-[11px] sm:text-xs uppercase tracking-[0.15em]">Data Terintegrasi</h4>
-        <p class="text-emerald-800 text-[10px] sm:text-xs leading-relaxed font-medium">Data ditampilkan langsung dari database <b>Google Sheet</b> melalui sistem API <b>Periodic Service</b>.</p>
+        <p class="text-emerald-800 text-[10px] sm:text-xs leading-relaxed font-medium">
+            Data ditampilkan langsung dari database <b>Google Sheet</b> melalui sistem API <b>Periodic Service</b>.
+        </p>
     </div>
 </div>
 
@@ -377,7 +302,9 @@
                 <p class="text-[10px] font-bold text-slate-400 tracking-[0.15em] uppercase">Total Data</p>
                 <p id="totalData" class="text-3xl font-black text-blue-900 mt-2">-</p>
             </div>
-            <div class="bg-blue-50 text-blue-800 p-3 rounded-xl"><i data-lucide="database" class="w-6 h-6"></i></div>
+            <div class="bg-blue-50 text-blue-800 p-3 rounded-xl">
+                <i data-lucide="database" class="w-6 h-6"></i>
+            </div>
         </div>
     </div>
 
@@ -387,7 +314,9 @@
                 <p class="text-[10px] font-bold text-slate-400 tracking-[0.15em] uppercase">Status Baik</p>
                 <p id="statusBaik" class="text-3xl font-black text-emerald-600 mt-2">-</p>
             </div>
-            <div class="bg-emerald-50 text-emerald-600 p-3 rounded-xl"><i data-lucide="check-circle" class="w-6 h-6"></i></div>
+            <div class="bg-emerald-50 text-emerald-600 p-3 rounded-xl">
+                <i data-lucide="check-circle" class="w-6 h-6"></i>
+            </div>
         </div>
     </div>
 
@@ -397,7 +326,9 @@
                 <p class="text-[10px] font-bold text-slate-400 tracking-[0.15em] uppercase">Data Terakhir</p>
                 <p id="lastUpdate" class="text-lg font-black text-slate-700 mt-2 truncate">-</p>
             </div>
-            <div class="bg-amber-50 text-amber-600 p-3 rounded-xl shrink-0"><i data-lucide="clock-3" class="w-6 h-6"></i></div>
+            <div class="bg-amber-50 text-amber-600 p-3 rounded-xl shrink-0">
+                <i data-lucide="clock-3" class="w-6 h-6"></i>
+            </div>
         </div>
     </div>
 
@@ -405,6 +336,7 @@
 
 <div class="bg-white border border-slate-100 rounded-2xl shadow-sm p-4 mb-6">
     <div class="flex flex-col lg:flex-row gap-3">
+
         <div class="relative flex-1">
             <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"></i>
             <input id="searchInput" type="text" placeholder="Cari unit, service, PIC, remark..." class="filter-control w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-11 pr-4 text-sm font-medium text-slate-700" oninput="applyFilters()">
@@ -419,8 +351,10 @@
         </select>
 
         <button onclick="resetFilters()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold px-4 py-3 rounded-xl transition flex items-center justify-center gap-2">
-            <i data-lucide="rotate-ccw" class="w-4 h-4"></i>Reset
+            <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+            Reset
         </button>
+
     </div>
 </div>
 
@@ -428,7 +362,10 @@
 
 <div class="px-5 py-4 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
     <div>
-        <h3 class="font-bold text-primary flex items-center gap-2"><i data-lucide="clipboard-list" class="w-5 h-5"></i>Data Periodic Service</h3>
+        <h3 class="font-bold text-primary flex items-center gap-2">
+            <i data-lucide="clipboard-list" class="w-5 h-5"></i>
+            Data Periodic Service
+        </h3>
         <p id="resultInfo" class="text-[10px] text-slate-400 font-medium mt-1">Memuat data...</p>
     </div>
 </div>
@@ -442,7 +379,9 @@
 
 <div id="error" class="hidden p-12 text-center">
     <div class="flex flex-col items-center gap-3">
-        <div class="bg-red-50 text-red-600 p-4 rounded-full"><i data-lucide="alert-circle" class="w-8 h-8"></i></div>
+        <div class="bg-red-50 text-red-600 p-4 rounded-full">
+            <i data-lucide="alert-circle" class="w-8 h-8"></i>
+        </div>
         <h3 class="font-bold text-red-700">Gagal mengambil data</h3>
         <p id="errorMessage" class="text-xs text-slate-500 max-w-md"></p>
         <button onclick="loadData()" class="mt-2 bg-blue-800 text-white font-bold px-5 py-2.5 rounded-xl text-sm">Coba Lagi</button>
@@ -469,7 +408,9 @@
 </div>
 
 <div id="emptyState" class="hidden p-12 text-center">
-    <div class="mx-auto bg-slate-100 text-slate-400 w-16 h-16 rounded-full flex items-center justify-center mb-4"><i data-lucide="search-x" class="w-7 h-7"></i></div>
+    <div class="mx-auto bg-slate-100 text-slate-400 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+        <i data-lucide="search-x" class="w-7 h-7"></i>
+    </div>
     <h3 class="font-bold text-slate-700">Data tidak ditemukan</h3>
     <p class="text-xs text-slate-400 mt-1">Coba ubah kata pencarian atau filter.</p>
 </div>
@@ -485,25 +426,24 @@
 </main>
 
 <footer class="mt-8 text-center text-slate-400 px-4 pb-8">
-    <p class="font-bold text-slate-500 tracking-tight uppercase">&copy; 2026 Paperless Project - PT TSI. All rights reserved.</p>
-    <p class="text-[10px] mt-1">System Architecture by: <span class="text-slate-600 font-semibold uppercase">Imam Wahyu Ramadhan, S.T.</span> | <span class="text-amber-600 font-bold uppercase tracking-tighter">Project 2.0</span></p>
+    <p class="font-bold text-slate-500 tracking-tight uppercase">
+        &copy; 2026 Paperless Project - PT TSI. All rights reserved.
+    </p>
+    <p class="text-[10px] mt-1">
+        System Architecture by:
+        <span class="text-slate-600 font-semibold uppercase">Imam Wahyu Ramadhan, S.T.</span>
+        |
+        <span class="text-amber-600 font-bold uppercase tracking-tighter">Project 2.0</span>
+    </p>
 </footer>
 
-
-<!-- =========================================================
-     FLOATING LEADERBOARD BUTTON
-========================================================= -->
-
+<!-- FLOATING LEADERBOARD -->
 <button id="leaderboardButton" onclick="openLeaderboard()" aria-label="Leaderboard">
     <i data-lucide="trophy" class="w-6 h-6"></i>
     <span class="leader-tooltip">Leaderboard Mekanik</span>
 </button>
 
-
-<!-- =========================================================
-     LEADERBOARD POPUP
-========================================================= -->
-
+<!-- LEADERBOARD POPUP -->
 <div id="leaderboardOverlay" onclick="closeLeaderboardOutside(event)">
     <div id="leaderboardModal">
 
@@ -534,59 +474,104 @@
     </div>
 </div>
 
-
 <script>
 const API_URL='https://script.google.com/macros/s/AKfycby9wfiYdn4jrpHgFV6YgySj0ia7h1WSIInQAFAHDeGNUJdIT94EgSJsF2nF6kJS79cD/exec';
 const MAIN_APP_URL='https://pttsipaperlessproject2.netlify.app/';
 let allData=[],filteredData=[];
 
-function handleLogoError(){document.getElementById('companyLogo').classList.add('hidden');document.getElementById('logoFallback').classList.remove('hidden')}
+function handleLogoError(){
+    document.getElementById('companyLogo').classList.add('hidden');
+    document.getElementById('logoFallback').classList.remove('hidden');
+}
+
 function goBack(){window.location.href=MAIN_APP_URL}
 
 async function loadData(){
-    const btn=document.getElementById('refreshButton'),icon=document.getElementById('refreshIcon');
-    btn.disabled=true;btn.classList.add('opacity-70');icon.classList.add('refresh-spin');showLoading();
+    const btn=document.getElementById('refreshButton');
+    const icon=document.getElementById('refreshIcon');
+    btn.disabled=true;
+    btn.classList.add('opacity-70');
+    icon.classList.add('refresh-spin');
+    showLoading();
+
     try{
         const response=await fetch(API_URL,{method:'GET',cache:'no-store'});
         if(!response.ok)throw new Error(`HTTP Error ${response.status}`);
+
         const data=await response.json();
         if(!Array.isArray(data))throw new Error('Format data API tidak valid.');
-        allData=data;filteredData=[...data];
-        updateStatistics();populateFilters();renderTable();updateLeaderboard();
+
+        allData=data;
+        filteredData=[...data];
+
+        updateStatistics();
+        populateFilters();
+        renderTable();
+        updateLeaderboard();
+
         document.getElementById('loading').classList.add('hidden');
         document.getElementById('error').classList.add('hidden');
         document.getElementById('tableContainer').classList.remove('hidden');
-    }catch(error){showError(error)}
-    finally{
+    }catch(error){
+        showError(error);
+    }finally{
         icon.classList.remove('refresh-spin');
-        btn.disabled=false;btn.classList.remove('opacity-70');
+        btn.disabled=false;
+        btn.classList.remove('opacity-70');
         lucide.createIcons();
     }
 }
 
 function updateStatistics(){
     document.getElementById('totalData').textContent=allData.length;
-    document.getElementById('statusBaik').textContent=allData.filter(r=>String(r.status||'').trim().toLowerCase()==='baik').length;
-    document.getElementById('lastUpdate').textContent=allData.length?allData[allData.length-1].tanggal||'-':'-';
+    document.getElementById('statusBaik').textContent=
+        allData.filter(r=>String(r.status||'').trim().toLowerCase()==='baik').length;
+    document.getElementById('lastUpdate').textContent=
+        allData.length?allData[allData.length-1].tanggal||'-':'-';
 }
 
 function populateFilters(){
-    const status=document.getElementById('statusFilter'),service=document.getElementById('serviceFilter');
-    const getUnique=key=>[...new Set(allData.map(r=>String(r[key]||'').trim()).filter(Boolean))].sort();
+    const status=document.getElementById('statusFilter');
+    const service=document.getElementById('serviceFilter');
+
+    const getUnique=key=>[
+        ...new Set(
+            allData
+            .map(r=>String(r[key]||'').trim())
+            .filter(Boolean)
+        )
+    ].sort();
+
     status.innerHTML='<option value="">Semua Status</option>';
     service.innerHTML='<option value="">Semua Service</option>';
-    getUnique('status').forEach(v=>status.innerHTML+=`<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`);
-    getUnique('service').forEach(v=>service.innerHTML+=`<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`);
+
+    getUnique('status').forEach(v=>{
+        status.innerHTML+=`<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`;
+    });
+
+    getUnique('service').forEach(v=>{
+        service.innerHTML+=`<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`;
+    });
 }
 
 function applyFilters(){
     const search=document.getElementById('searchInput').value.trim().toLowerCase();
     const status=document.getElementById('statusFilter').value.toLowerCase();
     const service=document.getElementById('serviceFilter').value.toLowerCase();
+
     filteredData=allData.filter(row=>{
-        const searchable=[row.tanggal,row.unit,row.hm,row.service,row.status,row.pic,row.itemRusak,row.remark,row.pap].join(' ').toLowerCase();
-        return(!search||searchable.includes(search))&&(!status||String(row.status||'').toLowerCase()===status)&&(!service||String(row.service||'').toLowerCase()===service);
+        const searchable=[
+            row.tanggal,row.unit,row.hm,row.service,row.status,
+            row.pic,row.itemRusak,row.remark,row.pap
+        ].join(' ').toLowerCase();
+
+        return(
+            (!search||searchable.includes(search))&&
+            (!status||String(row.status||'').toLowerCase()===status)&&
+            (!service||String(row.service||'').toLowerCase()===service)
+        );
     });
+
     renderTable();
 }
 
@@ -594,65 +579,156 @@ function resetFilters(){
     document.getElementById('searchInput').value='';
     document.getElementById('statusFilter').value='';
     document.getElementById('serviceFilter').value='';
-    filteredData=[...allData];renderTable();
+    filteredData=[...allData];
+    renderTable();
 }
 
 function createUnitBadge(unit){
     const value=String(unit||'').trim();
     if(!value)return'<span class="unit-badge unit-default">-</span>';
+
     const n=value.toUpperCase();
     let c='unit-default';
+
     if(n.startsWith('FD-'))c='unit-fd';
     else if(n.startsWith('W-'))c='unit-w';
     else if(n.startsWith('D-'))c='unit-d';
     else if(n.startsWith('E-'))c='unit-e';
+
     return`<span class="unit-badge ${c}">${escapeHtml(value)}</span>`;
 }
 
 function createServiceBadge(service){
     const value=String(service||'').trim();
     if(!value)return'<span class="service-badge service-default">-</span>';
+
     const n=value.toLowerCase();
-    const c=n.includes('periodic')?'service-periodic':n.includes('general')?'service-general':'service-default';
+    const c=n.includes('periodic')
+        ?'service-periodic'
+        :n.includes('general')
+        ?'service-general'
+        :'service-default';
+
     return`<span class="service-badge ${c}">${escapeHtml(value)}</span>`;
 }
 
 function createStatusBadge(status){
     const value=String(status||'').trim();
     if(!value)return'<span class="status-badge status-default">-</span>';
+
     const n=value.toLowerCase();
-    const c=n==='baik'?'status-baik':n.includes('rusak')||n.includes('bad')||n.includes('damage')?'status-rusak':'status-default';
-    return`<span class="status-badge ${c}"><span>●</span>${escapeHtml(value)}</span>`;
+    const c=n==='baik'
+        ?'status-baik'
+        :n.includes('rusak')||n.includes('bad')||n.includes('damage')
+        ?'status-rusak'
+        :'status-default';
+
+    return`<span class="status-badge ${c}">
+        <span>●</span>${escapeHtml(value)}
+    </span>`;
+}
+
+/* PAP / GOOGLE DRIVE */
+function createPapButton(pap){
+    const value=String(pap||'').trim();
+
+    if(!value)return'<span class="text-slate-400">-</span>';
+
+    const urlMatch=value.match(/https?:\/\/[^\s]+/i);
+
+    if(!urlMatch){
+        return`<span class="pap-text">${escapeHtml(value)}</span>`;
+    }
+
+    let url=urlMatch[0].replace(/[),.;]+$/,'');
+
+    if(!/^https?:\/\//i.test(url)){
+        return`<span class="pap-text">${escapeHtml(value)}</span>`;
+    }
+
+    const isDrive=/drive\.google\.com|docs\.google\.com/i.test(url);
+
+    if(isDrive){
+        return`
+        <a href="${escapeHtml(url)}"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="pap-button"
+           title="Buka dokumen PAP di Google Drive">
+            <i data-lucide="file-text"></i>
+            Lihat PAP
+        </a>`;
+    }
+
+    return`
+    <a href="${escapeHtml(url)}"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="pap-button"
+       title="Buka dokumen PAP">
+        <i data-lucide="external-link"></i>
+        Buka PAP
+    </a>`;
 }
 
 function renderTable(){
-    const tbody=document.getElementById('tableBody'),table=document.getElementById('tableContainer'),empty=document.getElementById('emptyState');
+    const tbody=document.getElementById('tableBody');
+    const table=document.getElementById('tableContainer');
+    const empty=document.getElementById('emptyState');
+
     tbody.innerHTML='';
-    document.getElementById('resultInfo').textContent=`${filteredData.length} dari ${allData.length} data ditampilkan`;
-    if(!filteredData.length){table.classList.add('hidden');empty.classList.remove('hidden');lucide.createIcons();return}
-    table.classList.remove('hidden');empty.classList.add('hidden');
+    document.getElementById('resultInfo').textContent=
+        `${filteredData.length} dari ${allData.length} data ditampilkan`;
+
+    if(!filteredData.length){
+        table.classList.add('hidden');
+        empty.classList.remove('hidden');
+        lucide.createIcons();
+        return;
+    }
+
+    table.classList.remove('hidden');
+    empty.classList.add('hidden');
+
     filteredData.forEach(row=>{
         const tr=document.createElement('tr');
+
         tr.innerHTML=`
-        <td class="px-4 py-3 whitespace-nowrap text-slate-600 font-medium">${escapeHtml(row.tanggal||'-')}</td>
-        <td class="px-4 py-3 whitespace-nowrap">${createUnitBadge(row.unit)}</td>
-        <td class="px-2 py-3 text-center whitespace-nowrap w-[80px] min-w-[80px] max-w-[80px] text-slate-600 font-semibold">${escapeHtml(row.hm||'-')}</td>
-        <td class="px-4 py-3 whitespace-nowrap">${createServiceBadge(row.service)}</td>
-        <td class="px-4 py-3 whitespace-nowrap">${createStatusBadge(row.status)}</td>
-        <td class="px-4 py-3 whitespace-nowrap text-slate-600">${escapeHtml(row.pic||'-')}</td>
-        <td class="px-4 py-3 text-slate-600 min-w-[150px]">${escapeHtml(row.itemRusak||'-')}</td>
-        <td class="px-4 py-3 text-slate-600 min-w-[180px]">${escapeHtml(row.remark||'-')}</td>
-        <td class="px-4 py-3 text-slate-600">${escapeHtml(row.pap||'-')}</td>`;
+        <td class="px-4 py-3 whitespace-nowrap text-slate-600 font-medium">
+            ${escapeHtml(row.tanggal||'-')}
+        </td>
+        <td class="px-4 py-3 whitespace-nowrap">
+            ${createUnitBadge(row.unit)}
+        </td>
+        <td class="px-2 py-3 text-center whitespace-nowrap w-[80px] min-w-[80px] max-w-[80px] text-slate-600 font-semibold">
+            ${escapeHtml(row.hm||'-')}
+        </td>
+        <td class="px-4 py-3 whitespace-nowrap">
+            ${createServiceBadge(row.service)}
+        </td>
+        <td class="px-4 py-3 whitespace-nowrap">
+            ${createStatusBadge(row.status)}
+        </td>
+        <td class="px-4 py-3 whitespace-nowrap text-slate-600">
+            ${escapeHtml(row.pic||'-')}
+        </td>
+        <td class="px-4 py-3 text-slate-600 min-w-[150px]">
+            ${escapeHtml(row.itemRusak||'-')}
+        </td>
+        <td class="px-4 py-3 text-slate-600 min-w-[180px]">
+            ${escapeHtml(row.remark||'-')}
+        </td>
+        <td class="px-4 py-3 whitespace-nowrap">
+            ${createPapButton(row.pap)}
+        </td>`;
+
         tbody.appendChild(tr);
     });
+
     lucide.createIcons();
 }
 
-
-/* =========================================================
-   LEADERBOARD
-========================================================= */
-
+/* LEADERBOARD */
 function updateLeaderboard(){
     const mechanics={};
 
@@ -661,22 +737,35 @@ function updateLeaderboard(){
         if(!original)return;
 
         const key=original.toLowerCase().replace(/\s+/g,' ');
-        if(!mechanics[key])mechanics[key]={name:original,count:0};
+
+        if(!mechanics[key]){
+            mechanics[key]={name:original,count:0};
+        }
+
         mechanics[key].count++;
     });
 
-    const ranking=Object.values(mechanics).sort((a,b)=>b.count-a.count||a.name.localeCompare(b.name));
+    const ranking=Object.values(mechanics).sort(
+        (a,b)=>b.count-a.count||a.name.localeCompare(b.name)
+    );
+
     const list=document.getElementById('leaderboardList');
 
     if(!ranking.length){
-        list.innerHTML='<div class="text-center text-slate-400 text-sm py-6">Belum ada data mekanik.</div>';
+        list.innerHTML=
+            '<div class="text-center text-slate-400 text-sm py-6">Belum ada data mekanik.</div>';
         return;
     }
 
     list.innerHTML=ranking.map((mechanic,index)=>{
         const rank=index+1;
         const cls=rank<=3?`top-${rank}`:'';
-        const medal=rank===1?'🥇':rank===2?'🥈':rank===3?'🥉':rank;
+        const medal=
+            rank===1?'🥇':
+            rank===2?'🥈':
+            rank===3?'🥉':
+            rank;
+
         return`
         <div class="leader-row ${cls}">
             <div class="leader-rank">${medal}</div>
@@ -700,33 +789,30 @@ function closeLeaderboard(){
 }
 
 function closeLeaderboardOutside(event){
-    if(event.target===document.getElementById('leaderboardOverlay'))closeLeaderboard();
+    if(event.target===document.getElementById('leaderboardOverlay')){
+        closeLeaderboard();
+    }
 }
 
-
-/* =========================================================
-   SUBTLE LEADERBOARD ANIMATION
-========================================================= */
-
+/* ANIMASI LEADERBOARD */
 function scheduleLeaderboardPulse(){
     const button=document.getElementById('leaderboardButton');
     const delay=18000+Math.random()*22000;
 
     setTimeout(()=>{
-        if(!document.getElementById('leaderboardOverlay').classList.contains('show')){
+        const overlay=document.getElementById('leaderboardOverlay');
+
+        if(!overlay.classList.contains('show')){
             button.classList.remove('leader-pulse');
             void button.offsetWidth;
             button.classList.add('leader-pulse');
         }
+
         scheduleLeaderboardPulse();
     },delay);
 }
 
-
-/* =========================================================
-   LOADING / ERROR / SECURITY
-========================================================= */
-
+/* LOADING / ERROR */
 function showLoading(){
     document.getElementById('loading').classList.remove('hidden');
     document.getElementById('error').classList.add('hidden');
@@ -739,23 +825,27 @@ function showError(error){
     document.getElementById('tableContainer').classList.add('hidden');
     document.getElementById('emptyState').classList.add('hidden');
     document.getElementById('error').classList.remove('hidden');
-    document.getElementById('errorMessage').textContent=error?.message||'Terjadi kesalahan saat mengambil data.';
-    document.getElementById('resultInfo').textContent='Gagal memuat data.';
+
+    document.getElementById('errorMessage').textContent=
+        error?.message||'Terjadi kesalahan saat mengambil data.';
+
+    document.getElementById('resultInfo').textContent=
+        'Gagal memuat data.';
+
     lucide.createIcons();
 }
 
+/* SECURITY */
 function escapeHtml(value){
     return String(value??'')
-        .replace(/&/g,'&amp;').replace(/</g,'&lt;')
-        .replace(/>/g,'&gt;').replace(/"/g,'&quot;')
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;')
         .replace(/'/g,'&#039;');
 }
 
-
-/* =========================================================
-   START
-========================================================= */
-
+/* START */
 window.onload=()=>{
     lucide.createIcons();
     loadData();
