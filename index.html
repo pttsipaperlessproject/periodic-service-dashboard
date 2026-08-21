@@ -1,1 +1,1896 @@
-jhkg
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PERIODIC SERVICE - PT TSI</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(
+                135deg,
+                #f8fafc 0%,
+                #f1f5f9 100%
+            );
+            min-height: 100vh;
+            color: #1e293b;
+        }
+
+        .color-primary {
+            background-color: #1E3A8A;
+        }
+
+        .text-primary {
+            color: #1E3A8A;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .logo-wrapper {
+            transition:
+                transform 0.4s
+                cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .logo-wrapper:hover {
+            transform: scale(1.08) rotate(2deg);
+        }
+
+        .logo-shadow {
+            filter:
+                drop-shadow(0 10px 8px rgba(0, 0, 0, 0.04))
+                drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1));
+        }
+
+        .stat-card {
+            transition: all 0.25s ease;
+            background: #ffffff;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow:
+                0 10px 20px -5px rgba(0, 0, 0, 0.08);
+        }
+
+        .data-table tbody tr {
+            transition: background-color 0.2s ease;
+        }
+
+        .data-table tbody tr:hover {
+            background-color: #fffbeb;
+        }
+
+        /* =====================================================
+           STATUS BADGE
+        ===================================================== */
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 10px;
+            border-radius: 999px;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+        }
+
+        .status-baik {
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+        }
+
+        .status-rusak {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
+        .status-default {
+            background: #f1f5f9;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+        }
+
+
+        /* =====================================================
+           SERVICE BADGE
+        ===================================================== */
+
+        .service-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 10px;
+            border-radius: 999px;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            white-space: nowrap;
+        }
+
+        /* PERIODIC SERVICE */
+
+        .service-periodic {
+            background: #e0e7ff;
+            color: #3730a3;
+            border: 1px solid #c7d2fe;
+        }
+
+        /* GENERAL SERVICE */
+
+        .service-general {
+            background: #fef3c7;
+            color: #92400e;
+            border: 1px solid #fde68a;
+        }
+
+        /* SERVICE LAIN */
+
+        .service-default {
+            background: #f1f5f9;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+        }
+
+
+        /* =====================================================
+           UNIT BADGE
+        ===================================================== */
+
+        .unit-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 10px;
+            border-radius: 9px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+            border: 1px solid transparent;
+        }
+
+        /* W- */
+
+        .unit-w {
+            background: #dcfce7;
+            color: #166534;
+            border-color: #bbf7d0;
+        }
+
+        /* FD- */
+
+        .unit-fd {
+            background: #f3e8ff;
+            color: #7e22ce;
+            border-color: #e9d5ff;
+        }
+
+        /* D- */
+
+        .unit-d {
+            background: #ffedd5;
+            color: #c2410c;
+            border-color: #fed7aa;
+        }
+
+        /* E- */
+
+        .unit-e {
+            background: #dbeafe;
+            color: #1d4ed8;
+            border-color: #bfdbfe;
+        }
+
+        /* UNKNOWN */
+
+        .unit-default {
+            background: #f1f5f9;
+            color: #475569;
+            border-color: #e2e8f0;
+        }
+
+
+        /* =====================================================
+           FILTER
+        ===================================================== */
+
+        .filter-control {
+            transition: all 0.2s ease;
+        }
+
+        .filter-control:focus {
+            border-color: #D97706;
+            box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
+            outline: none;
+        }
+
+
+        /* =====================================================
+           REFRESH
+        ===================================================== */
+
+        .refresh-spin {
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        /* =====================================================
+           TOAST
+        ===================================================== */
+
+        #toast {
+            visibility: hidden;
+            min-width: 300px;
+            background-color: #1e293b;
+            color: #fff;
+            text-align: center;
+            border-radius: 12px;
+            padding: 16px;
+            position: fixed;
+            z-index: 100;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border: 1px solid #334155;
+        }
+
+        #toast.show {
+            visibility: visible;
+            animation:
+                fadein_toast 0.5s,
+                fadeout_toast 0.5s 2.5s;
+        }
+
+        @keyframes fadein_toast {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeout_toast {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 640px) {
+
+            .glass-panel {
+                padding: 1.5rem !important;
+            }
+
+            #toast {
+                min-width: 260px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body class="flex flex-col items-center p-4 sm:p-8">
+
+
+    <main
+        class="w-full max-w-7xl flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl relative fade-in"
+    >
+
+
+        <!-- =====================================================
+             HEADER
+        ====================================================== -->
+
+        <header
+            id="mainHeader"
+            class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center"
+        >
+
+            <div class="mb-4 logo-wrapper">
+
+                <div
+                    class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2"
+                >
+
+                    <img
+                        src="default_logo.png"
+                        alt="Logo PT TSI"
+                        class="w-full h-full object-contain"
+                        id="companyLogo"
+                        onerror="handleLogoError()"
+                    >
+
+                    <div
+                        id="logoFallback"
+                        class="hidden flex flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
+                    >
+
+                        <span class="font-black text-2xl">
+                            TSI
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1"
+            >
+
+                <h1
+                    class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center"
+                >
+                    PAPERLESS PROJECT
+                </h1>
+
+                <div
+                    class="h-0.5 w-16 bg-amber-500 rounded-full my-1"
+                ></div>
+
+                <h2
+                    class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center"
+                >
+                    PT TATSUMI SERUNI INDONESIA
+                </h2>
+
+            </div>
+
+
+            <div
+                class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase"
+            >
+                Digitalization Initiative v2.0
+            </div>
+
+        </header>
+
+
+        <!-- =====================================================
+             PAGE TITLE
+        ====================================================== -->
+
+        <section class="fade-in">
+
+
+            <div
+                class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6"
+            >
+
+                <div>
+
+                    <h2
+                        class="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight flex items-center gap-3"
+                    >
+
+                        <span
+                            class="bg-blue-900 text-white p-3 rounded-xl shadow-md"
+                        >
+
+                            <i
+                                data-lucide="calendar-clock"
+                                class="w-6 h-6"
+                            ></i>
+
+                        </span>
+
+                        Periodic Service
+
+                    </h2>
+
+
+                    <p
+                        class="text-slate-500 font-medium text-sm mt-2 ml-1"
+                    >
+                        Monitoring data periodic service unit secara terintegrasi.
+                    </p>
+
+                </div>
+
+
+                <div class="flex gap-2">
+
+
+                    <button
+                        onclick="goBack()"
+                        class="bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-4 rounded-xl transition flex items-center gap-2 border border-slate-200"
+                    >
+
+                        <i
+                            data-lucide="arrow-left"
+                            class="w-4 h-4"
+                        ></i>
+
+                        <span class="hidden sm:inline">
+                            Kembali
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        id="refreshButton"
+                        onclick="loadData()"
+                        class="bg-blue-800 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl transition flex items-center gap-2 shadow-md"
+                    >
+
+                        <i
+                            id="refreshIcon"
+                            data-lucide="refresh-cw"
+                            class="w-4 h-4"
+                        ></i>
+
+                        Refresh
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 INFORMATION PANEL
+            ================================================== -->
+
+            <div
+                class="mb-6 p-5 rounded-2xl bg-emerald-50 border border-emerald-100 shadow-sm flex flex-col sm:flex-row items-start gap-4"
+            >
+
+                <div
+                    class="bg-emerald-600 p-2.5 rounded-xl text-white shrink-0"
+                >
+
+                    <i
+                        data-lucide="database"
+                        class="w-6 h-6"
+                    ></i>
+
+                </div>
+
+
+                <div class="space-y-1">
+
+                    <h4
+                        class="font-bold text-emerald-900 text-[11px] sm:text-xs uppercase tracking-[0.15em]"
+                    >
+                        Data Terintegrasi
+                    </h4>
+
+                    <p
+                        class="text-emerald-800 text-[10px] sm:text-xs leading-relaxed font-medium"
+                    >
+                        Data ditampilkan langsung dari database
+                        <b>Google Sheet</b> melalui sistem API
+                        <b>Periodic Service</b>.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 STATISTICS
+            ================================================== -->
+
+            <div
+                class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6"
+            >
+
+
+                <!-- TOTAL -->
+
+                <div
+                    class="stat-card rounded-2xl border border-slate-100 shadow-sm p-5"
+                >
+
+                    <div class="flex items-center justify-between">
+
+                        <div>
+
+                            <p
+                                class="text-[10px] font-bold text-slate-400 tracking-[0.15em] uppercase"
+                            >
+                                Total Data
+                            </p>
+
+                            <p
+                                id="totalData"
+                                class="text-3xl font-black text-blue-900 mt-2"
+                            >
+                                -
+                            </p>
+
+                        </div>
+
+
+                        <div
+                            class="bg-blue-50 text-blue-800 p-3 rounded-xl"
+                        >
+
+                            <i
+                                data-lucide="database"
+                                class="w-6 h-6"
+                            ></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BAIK -->
+
+                <div
+                    class="stat-card rounded-2xl border border-slate-100 shadow-sm p-5"
+                >
+
+                    <div class="flex items-center justify-between">
+
+                        <div>
+
+                            <p
+                                class="text-[10px] font-bold text-slate-400 tracking-[0.15em] uppercase"
+                            >
+                                Status Baik
+                            </p>
+
+                            <p
+                                id="statusBaik"
+                                class="text-3xl font-black text-emerald-600 mt-2"
+                            >
+                                -
+                            </p>
+
+                        </div>
+
+
+                        <div
+                            class="bg-emerald-50 text-emerald-600 p-3 rounded-xl"
+                        >
+
+                            <i
+                                data-lucide="check-circle"
+                                class="w-6 h-6"
+                            ></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LAST -->
+
+                <div
+                    class="stat-card rounded-2xl border border-slate-100 shadow-sm p-5"
+                >
+
+                    <div class="flex items-center justify-between">
+
+                        <div class="min-w-0">
+
+                            <p
+                                class="text-[10px] font-bold text-slate-400 tracking-[0.15em] uppercase"
+                            >
+                                Data Terakhir
+                            </p>
+
+                            <p
+                                id="lastUpdate"
+                                class="text-lg font-black text-slate-700 mt-2 truncate"
+                            >
+                                -
+                            </p>
+
+                        </div>
+
+
+                        <div
+                            class="bg-amber-50 text-amber-600 p-3 rounded-xl shrink-0"
+                        >
+
+                            <i
+                                data-lucide="clock-3"
+                                class="w-6 h-6"
+                            ></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 FILTER
+            ================================================== -->
+
+            <div
+                class="bg-white border border-slate-100 rounded-2xl shadow-sm p-4 mb-6"
+            >
+
+                <div
+                    class="flex flex-col lg:flex-row gap-3"
+                >
+
+
+                    <!-- SEARCH -->
+
+                    <div class="relative flex-1">
+
+                        <i
+                            data-lucide="search"
+                            class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"
+                        ></i>
+
+                        <input
+                            id="searchInput"
+                            type="text"
+                            placeholder="Cari unit, service, PIC, remark..."
+                            class="filter-control w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-11 pr-4 text-sm font-medium text-slate-700"
+                            oninput="applyFilters()"
+                        >
+
+                    </div>
+
+
+                    <!-- STATUS -->
+
+                    <select
+                        id="statusFilter"
+                        onchange="applyFilters()"
+                        class="filter-control bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 text-sm font-semibold text-slate-600"
+                    >
+
+                        <option value="">
+                            Semua Status
+                        </option>
+
+                    </select>
+
+
+                    <!-- SERVICE -->
+
+                    <select
+                        id="serviceFilter"
+                        onchange="applyFilters()"
+                        class="filter-control bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 text-sm font-semibold text-slate-600"
+                    >
+
+                        <option value="">
+                            Semua Service
+                        </option>
+
+                    </select>
+
+
+                    <!-- RESET -->
+
+                    <button
+                        onclick="resetFilters()"
+                        class="bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold px-4 py-3 rounded-xl transition flex items-center justify-center gap-2"
+                    >
+
+                        <i
+                            data-lucide="rotate-ccw"
+                            class="w-4 h-4"
+                        ></i>
+
+                        Reset
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 DATA TABLE
+            ================================================== -->
+
+            <section
+                class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden"
+            >
+
+
+                <div
+                    class="px-5 py-4 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2"
+                >
+
+                    <div>
+
+                        <h3
+                            class="font-bold text-primary flex items-center gap-2"
+                        >
+
+                            <i
+                                data-lucide="clipboard-list"
+                                class="w-5 h-5"
+                            ></i>
+
+                            Data Periodic Service
+
+                        </h3>
+
+
+                        <p
+                            id="resultInfo"
+                            class="text-[10px] text-slate-400 font-medium mt-1"
+                        >
+                            Memuat data...
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LOADING -->
+
+                <div
+                    id="loading"
+                    class="p-12 text-center"
+                >
+
+                    <div
+                        class="flex flex-col items-center gap-3 text-slate-400"
+                    >
+
+                        <i
+                            data-lucide="loader-circle"
+                            class="w-8 h-8 animate-spin text-amber-500"
+                        ></i>
+
+                        <p
+                            class="font-semibold text-sm"
+                        >
+                            Memuat data Periodic Service...
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ERROR -->
+
+                <div
+                    id="error"
+                    class="hidden p-12 text-center"
+                >
+
+                    <div
+                        class="flex flex-col items-center gap-3"
+                    >
+
+                        <div
+                            class="bg-red-50 text-red-600 p-4 rounded-full"
+                        >
+
+                            <i
+                                data-lucide="alert-circle"
+                                class="w-8 h-8"
+                            ></i>
+
+                        </div>
+
+
+                        <h3
+                            class="font-bold text-red-700"
+                        >
+                            Gagal mengambil data
+                        </h3>
+
+
+                        <p
+                            id="errorMessage"
+                            class="text-xs text-slate-500 max-w-md"
+                        ></p>
+
+
+                        <button
+                            onclick="loadData()"
+                            class="mt-2 bg-blue-800 text-white font-bold px-5 py-2.5 rounded-xl text-sm"
+                        >
+                            Coba Lagi
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TABLE -->
+
+                <div
+                    id="tableContainer"
+                    class="hidden overflow-x-auto"
+                >
+
+                    <table
+                        class="data-table w-full text-sm"
+                    >
+
+                        <thead
+                            class="bg-slate-800 text-white"
+                        >
+
+                            <tr>
+
+                                <th class="px-4 py-4 text-left whitespace-nowrap">
+                                    TANGGAL
+                                </th>
+
+
+                                <th class="px-4 py-4 text-left whitespace-nowrap">
+                                    UNIT
+                                </th>
+
+
+                                <!-- HM DIPERKECIL -->
+
+                                <th
+                                    class="px-2 py-4 text-center whitespace-nowrap w-[80px] min-w-[80px] max-w-[80px]"
+                                >
+                                    HM
+                                </th>
+
+
+                                <th class="px-4 py-4 text-left whitespace-nowrap">
+                                    SERVICE
+                                </th>
+
+
+                                <th class="px-4 py-4 text-left whitespace-nowrap">
+                                    STATUS
+                                </th>
+
+
+                                <th class="px-4 py-4 text-left whitespace-nowrap">
+                                    PIC
+                                </th>
+
+
+                                <th class="px-4 py-4 text-left whitespace-nowrap">
+                                    ITEM "RUSAK"
+                                </th>
+
+
+                                <th class="px-4 py-4 text-left whitespace-nowrap">
+                                    REMARK
+                                </th>
+
+
+                                <th class="px-4 py-4 text-left whitespace-nowrap">
+                                    PAP
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody
+                            id="tableBody"
+                            class="divide-y divide-slate-100"
+                        ></tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- EMPTY -->
+
+                <div
+                    id="emptyState"
+                    class="hidden p-12 text-center"
+                >
+
+                    <div
+                        class="mx-auto bg-slate-100 text-slate-400 w-16 h-16 rounded-full flex items-center justify-center mb-4"
+                    >
+
+                        <i
+                            data-lucide="search-x"
+                            class="w-7 h-7"
+                        ></i>
+
+                    </div>
+
+
+                    <h3
+                        class="font-bold text-slate-700"
+                    >
+                        Data tidak ditemukan
+                    </h3>
+
+
+                    <p
+                        class="text-xs text-slate-400 mt-1"
+                    >
+                        Coba ubah kata pencarian atau filter.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </section>
+
+
+        <!-- =====================================================
+             TOAST
+        ====================================================== -->
+
+        <div
+            id="toast"
+            class="flex items-center gap-3"
+        >
+
+            <i
+                data-lucide="info"
+                class="text-amber-400 w-5 h-5"
+            ></i>
+
+            <span id="toastMsg"></span>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer
+        class="mt-8 text-center text-slate-400 px-4 pb-8"
+    >
+
+        <p
+            class="font-bold text-slate-500 tracking-tight uppercase"
+        >
+            &copy; 2026 Paperless Project - PT TSI.
+            All rights reserved.
+        </p>
+
+
+        <p class="text-[10px] mt-1">
+
+            System Architecture by:
+
+            <span
+                class="text-slate-600 font-semibold uppercase"
+            >
+                Imam Wahyu Ramadhan, S.T.
+            </span>
+
+            |
+
+            <span
+                class="text-amber-600 font-bold uppercase tracking-tighter"
+            >
+                Project 2.0
+            </span>
+
+        </p>
+
+    </footer>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
+
+    <script>
+
+
+        /* =======================================================
+           CONFIGURATION
+        ======================================================= */
+
+        const API_URL =
+            'https://script.google.com/macros/s/AKfycby9wfiYdn4jrpHgFV6YgySj0ia7h1WSIInQAFAHDeGNUJdIT94EgSJsF2nF6kJS79cD/exec';
+
+
+        const MAIN_APP_URL =
+            'https://pttsipaperlessproject2.netlify.app/';
+
+
+        /* =======================================================
+           GLOBAL DATA
+        ======================================================= */
+
+        let allData = [];
+
+        let filteredData = [];
+
+
+        /* =======================================================
+           LOGO FALLBACK
+        ======================================================= */
+
+        function handleLogoError() {
+
+            document
+                .getElementById('companyLogo')
+                .classList.add('hidden');
+
+            document
+                .getElementById('logoFallback')
+                .classList.remove('hidden');
+
+        }
+
+
+        /* =======================================================
+           BACK TO MAIN APP
+        ======================================================= */
+
+        function goBack() {
+
+            window.location.href = MAIN_APP_URL;
+
+        }
+
+
+        /* =======================================================
+           LOAD API
+        ======================================================= */
+
+        async function loadData() {
+
+            const refreshButton =
+                document.getElementById('refreshButton');
+
+            const refreshIcon =
+                document.getElementById('refreshIcon');
+
+
+            refreshButton.disabled = true;
+
+            refreshButton.classList.add('opacity-70');
+
+            refreshIcon.classList.add('refresh-spin');
+
+
+            showLoading();
+
+
+            try {
+
+                const response =
+                    await fetch(API_URL);
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        `HTTP Error ${response.status}`
+                    );
+
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                if (!Array.isArray(data)) {
+
+                    throw new Error(
+                        'Format data API tidak valid.'
+                    );
+
+                }
+
+
+                allData = data;
+
+                filteredData = [...data];
+
+
+                updateStatistics();
+
+                populateFilters();
+
+                renderTable();
+
+
+                document
+                    .getElementById('loading')
+                    .classList.add('hidden');
+
+
+                document
+                    .getElementById('error')
+                    .classList.add('hidden');
+
+
+                document
+                    .getElementById('tableContainer')
+                    .classList.remove('hidden');
+
+
+            } catch (error) {
+
+                showError(error);
+
+            } finally {
+
+                refreshButton.disabled = false;
+
+                refreshButton.classList.remove('opacity-70');
+
+                refreshIcon.classList.remove('refresh-spin');
+
+                lucide.createIcons();
+
+            }
+
+        }
+
+
+        /* =======================================================
+           STATISTICS
+        ======================================================= */
+
+        function updateStatistics() {
+
+            document
+                .getElementById('totalData')
+                .textContent = allData.length;
+
+
+            const baik =
+                allData.filter(row => {
+
+                    const status =
+                        String(row.status || '')
+                            .trim()
+                            .toLowerCase();
+
+                    return status === 'baik';
+
+                }).length;
+
+
+            document
+                .getElementById('statusBaik')
+                .textContent = baik;
+
+
+            if (allData.length > 0) {
+
+                document
+                    .getElementById('lastUpdate')
+                    .textContent =
+                    allData[allData.length - 1].tanggal || '-';
+
+            } else {
+
+                document
+                    .getElementById('lastUpdate')
+                    .textContent = '-';
+
+            }
+
+        }
+
+
+        /* =======================================================
+           FILTER OPTIONS
+        ======================================================= */
+
+        function populateFilters() {
+
+            const statusFilter =
+                document.getElementById('statusFilter');
+
+            const serviceFilter =
+                document.getElementById('serviceFilter');
+
+
+            const statuses =
+                [...new Set(
+                    allData
+                        .map(row =>
+                            String(row.status || '').trim()
+                        )
+                        .filter(Boolean)
+                )]
+                .sort();
+
+
+            const services =
+                [...new Set(
+                    allData
+                        .map(row =>
+                            String(row.service || '').trim()
+                        )
+                        .filter(Boolean)
+                )]
+                .sort();
+
+
+            statusFilter.innerHTML =
+                '<option value="">Semua Status</option>';
+
+
+            serviceFilter.innerHTML =
+                '<option value="">Semua Service</option>';
+
+
+            statuses.forEach(status => {
+
+                const option =
+                    document.createElement('option');
+
+                option.value = status;
+
+                option.textContent = status;
+
+                statusFilter.appendChild(option);
+
+            });
+
+
+            services.forEach(service => {
+
+                const option =
+                    document.createElement('option');
+
+                option.value = service;
+
+                option.textContent = service;
+
+                serviceFilter.appendChild(option);
+
+            });
+
+        }
+
+
+        /* =======================================================
+           FILTER
+        ======================================================= */
+
+        function applyFilters() {
+
+            const search =
+                document
+                    .getElementById('searchInput')
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+
+            const status =
+                document
+                    .getElementById('statusFilter')
+                    .value
+                    .toLowerCase();
+
+
+            const service =
+                document
+                    .getElementById('serviceFilter')
+                    .value
+                    .toLowerCase();
+
+
+            filteredData =
+                allData.filter(row => {
+
+                    const searchable = [
+
+                        row.tanggal,
+                        row.unit,
+                        row.hm,
+                        row.service,
+                        row.status,
+                        row.pic,
+                        row.itemRusak,
+                        row.remark,
+                        row.pap
+
+                    ]
+                    .join(' ')
+                    .toLowerCase();
+
+
+                    const matchesSearch =
+                        !search ||
+                        searchable.includes(search);
+
+
+                    const matchesStatus =
+                        !status ||
+                        String(row.status || '')
+                            .toLowerCase() === status;
+
+
+                    const matchesService =
+                        !service ||
+                        String(row.service || '')
+                            .toLowerCase() === service;
+
+
+                    return (
+                        matchesSearch &&
+                        matchesStatus &&
+                        matchesService
+                    );
+
+                });
+
+
+            renderTable();
+
+        }
+
+
+        /* =======================================================
+           RESET FILTER
+        ======================================================= */
+
+        function resetFilters() {
+
+            document
+                .getElementById('searchInput')
+                .value = '';
+
+
+            document
+                .getElementById('statusFilter')
+                .value = '';
+
+
+            document
+                .getElementById('serviceFilter')
+                .value = '';
+
+
+            filteredData = [...allData];
+
+
+            renderTable();
+
+        }
+
+
+        /* =======================================================
+           UNIT BADGE
+        ======================================================= */
+
+        function createUnitBadge(unit) {
+
+            const value =
+                String(unit || '').trim();
+
+
+            if (!value) {
+
+                return `
+                    <span class="unit-badge unit-default">
+                        -
+                    </span>
+                `;
+
+            }
+
+
+            const normalized =
+                value.toUpperCase();
+
+
+            let className = 'unit-default';
+
+
+            /*
+             * URUTAN FD HARUS DICEK TERLEBIH DAHULU
+             * karena FD juga mengandung huruf F + D.
+             */
+
+            if (normalized.startsWith('FD-')) {
+
+                className = 'unit-fd';
+
+            }
+
+            else if (normalized.startsWith('W-')) {
+
+                className = 'unit-w';
+
+            }
+
+            else if (normalized.startsWith('D-')) {
+
+                className = 'unit-d';
+
+            }
+
+            else if (normalized.startsWith('E-')) {
+
+                className = 'unit-e';
+
+            }
+
+
+            return `
+                <span class="unit-badge ${className}">
+                    ${escapeHtml(value)}
+                </span>
+            `;
+
+        }
+
+
+        /* =======================================================
+           SERVICE BADGE
+        ======================================================= */
+
+        function createServiceBadge(service) {
+
+            const value =
+                String(service || '').trim();
+
+
+            if (!value) {
+
+                return `
+                    <span class="service-badge service-default">
+                        -
+                    </span>
+                `;
+
+            }
+
+
+            const normalized =
+                value.toLowerCase();
+
+
+            let className =
+                'service-default';
+
+
+            /*
+             * PERIODIC SERVICE
+             */
+
+            if (
+                normalized.includes('periodic')
+            ) {
+
+                className =
+                    'service-periodic';
+
+            }
+
+
+            /*
+             * GENERAL SERVICE
+             */
+
+            else if (
+                normalized.includes('general')
+            ) {
+
+                className =
+                    'service-general';
+
+            }
+
+
+            return `
+                <span class="service-badge ${className}">
+                    ${escapeHtml(value)}
+                </span>
+            `;
+
+        }
+
+
+        /* =======================================================
+           RENDER TABLE
+        ======================================================= */
+
+        function renderTable() {
+
+            const tbody =
+                document.getElementById('tableBody');
+
+            const tableContainer =
+                document.getElementById('tableContainer');
+
+            const emptyState =
+                document.getElementById('emptyState');
+
+
+            tbody.innerHTML = '';
+
+
+            document
+                .getElementById('resultInfo')
+                .textContent =
+                `${filteredData.length} dari ${allData.length} data ditampilkan`;
+
+
+            if (filteredData.length === 0) {
+
+                tableContainer.classList.add('hidden');
+
+                emptyState.classList.remove('hidden');
+
+                lucide.createIcons();
+
+                return;
+
+            }
+
+
+            tableContainer.classList.remove('hidden');
+
+            emptyState.classList.add('hidden');
+
+
+            filteredData.forEach(row => {
+
+                const tr =
+                    document.createElement('tr');
+
+
+                tr.innerHTML = `
+
+
+                    <!-- TANGGAL -->
+
+                    <td
+                        class="px-4 py-3 whitespace-nowrap text-slate-600 font-medium"
+                    >
+                        ${escapeHtml(row.tanggal || '-')}
+                    </td>
+
+
+                    <!-- UNIT -->
+
+                    <td
+                        class="px-4 py-3 whitespace-nowrap"
+                    >
+                        ${createUnitBadge(row.unit)}
+                    </td>
+
+
+                    <!-- HM
+                         DIBUAT SEMPIT -->
+
+                    <td
+                        class="px-2 py-3 text-center whitespace-nowrap w-[80px] min-w-[80px] max-w-[80px] text-slate-600 font-semibold"
+                    >
+                        ${escapeHtml(row.hm || '-')}
+                    </td>
+
+
+                    <!-- SERVICE -->
+
+                    <td
+                        class="px-4 py-3 whitespace-nowrap"
+                    >
+                        ${createServiceBadge(row.service)}
+                    </td>
+
+
+                    <!-- STATUS -->
+
+                    <td
+                        class="px-4 py-3 whitespace-nowrap"
+                    >
+                        ${createStatusBadge(row.status)}
+                    </td>
+
+
+                    <!-- PIC -->
+
+                    <td
+                        class="px-4 py-3 whitespace-nowrap text-slate-600"
+                    >
+                        ${escapeHtml(row.pic || '-')}
+                    </td>
+
+
+                    <!-- ITEM RUSAK -->
+
+                    <td
+                        class="px-4 py-3 text-slate-600 min-w-[150px]"
+                    >
+                        ${escapeHtml(row.itemRusak || '-')}
+                    </td>
+
+
+                    <!-- REMARK -->
+
+                    <td
+                        class="px-4 py-3 text-slate-600 min-w-[180px]"
+                    >
+                        ${escapeHtml(row.remark || '-')}
+                    </td>
+
+
+                    <!-- PAP -->
+
+                    <td
+                        class="px-4 py-3 text-slate-600"
+                    >
+                        ${escapeHtml(row.pap || '-')}
+                    </td>
+
+                `;
+
+
+                tbody.appendChild(tr);
+
+            });
+
+
+            lucide.createIcons();
+
+        }
+
+
+        /* =======================================================
+           STATUS BADGE
+        ======================================================= */
+
+        function createStatusBadge(status) {
+
+            const value =
+                String(status || '').trim();
+
+
+            if (!value) {
+
+                return `
+                    <span class="status-badge status-default">
+                        -
+                    </span>
+                `;
+
+            }
+
+
+            const normalized =
+                value.toLowerCase();
+
+
+            /*
+             * BAIK
+             */
+
+            if (normalized === 'baik') {
+
+                return `
+                    <span class="status-badge status-baik">
+                        <span>●</span>
+                        ${escapeHtml(value)}
+                    </span>
+                `;
+
+            }
+
+
+            /*
+             * RUSAK / BAD / DAMAGE
+             */
+
+            if (
+                normalized.includes('rusak') ||
+                normalized.includes('bad') ||
+                normalized.includes('damage')
+            ) {
+
+                return `
+                    <span class="status-badge status-rusak">
+                        <span>●</span>
+                        ${escapeHtml(value)}
+                    </span>
+                `;
+
+            }
+
+
+            /*
+             * STATUS LAIN
+             */
+
+            return `
+                <span class="status-badge status-default">
+                    <span>●</span>
+                    ${escapeHtml(value)}
+                </span>
+            `;
+
+        }
+
+
+        /* =======================================================
+           LOADING
+        ======================================================= */
+
+        function showLoading() {
+
+            document
+                .getElementById('loading')
+                .classList.remove('hidden');
+
+
+            document
+                .getElementById('error')
+                .classList.add('hidden');
+
+
+            document
+                .getElementById('tableContainer')
+                .classList.add('hidden');
+
+
+            document
+                .getElementById('emptyState')
+                .classList.add('hidden');
+
+        }
+
+
+        /* =======================================================
+           ERROR
+        ======================================================= */
+
+        function showError(error) {
+
+            document
+                .getElementById('loading')
+                .classList.add('hidden');
+
+
+            document
+                .getElementById('tableContainer')
+                .classList.add('hidden');
+
+
+            document
+                .getElementById('emptyState')
+                .classList.add('hidden');
+
+
+            document
+                .getElementById('error')
+                .classList.remove('hidden');
+
+
+            document
+                .getElementById('errorMessage')
+                .textContent =
+                error?.message ||
+                'Terjadi kesalahan saat mengambil data.';
+
+
+            document
+                .getElementById('resultInfo')
+                .textContent =
+                'Gagal memuat data.';
+
+
+            lucide.createIcons();
+
+        }
+
+
+        /* =======================================================
+           HTML SECURITY
+        ======================================================= */
+
+        function escapeHtml(value) {
+
+            return String(value ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+
+        }
+
+
+        /* =======================================================
+           START
+        ======================================================= */
+
+        window.onload = () => {
+
+            lucide.createIcons();
+
+            loadData();
+
+        };
+
+    </script>
+
+</body>
+</html>
